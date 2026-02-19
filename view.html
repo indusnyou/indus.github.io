@@ -1,0 +1,85 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Wallpaper</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body{
+background:#0b0f12;
+color:white;
+font-family:Arial;
+margin:0;
+text-align:center;
+}
+
+img{
+max-width:90%;
+margin-top:30px;
+border-radius:14px;
+}
+
+.download{
+margin-top:20px;
+padding:14px 24px;
+background:#ff4d5a;
+color:white;
+text-decoration:none;
+border-radius:10px;
+display:inline-block;
+font-size:18px;
+}
+
+.suggest{
+margin-top:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:14px;
+padding:20px;
+}
+
+.grid img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2 id="title">Wallpaper</h2>
+
+<img id="wall">
+
+<br>
+
+<a id="downloadBtn" class="download">Download</a>
+
+<div class="suggest">
+<h3>You may also like</h3>
+
+<div class="grid">
+<a href="view.html?img=tree.jpg"><img src="wallpapers/tree.jpg"></a>
+<a href="view.html?img=moon.jpg"><img src="wallpapers/moon.jpg"></a>
+<a href="view.html?img=milkyway.jpg"><img src="wallpapers/milkyway.jpg"></a>
+<a href="view.html?img=street.jpg"><img src="wallpapers/street.jpg"></a>
+</div>
+
+</div>
+
+<script>
+const params=new URLSearchParams(window.location.search);
+const img=params.get("img");
+
+document.getElementById("wall").src="wallpapers/"+img;
+document.getElementById("downloadBtn").href="wallpapers/"+img;
+document.getElementById("title").innerText=img.replace(".jpg","").toUpperCase();
+</script>
+
+</body>
+</html>
