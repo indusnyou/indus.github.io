@@ -4,194 +4,195 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>INDUS — Just for you.</title>
-<meta name="description" content="INDUS — short cinematic stories, human behaviour and hidden lives. New videos, visual projects and limited wallpapers." />
+<meta name="description" content="INDUS — cinematic short stories, human behaviour and visual projects." />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --bg:#0b0f12;
-    --panel:#0f1418;
-    --muted:#9aa3a8;
-    --accent:#ff4d5a; /* warm accent */
-    --glass: rgba(255,255,255,0.04);
-    --max-width:1200px;
-  }
-  /* Reset + base */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-    background:linear-gradient(180deg,#07090b 0%, #0b0f12 100%);
-    color:#e6eef3;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.45;
-  }
-  a{color:inherit; text-decoration:none}
-  .container{max-width:var(--max-width); margin:0 auto; padding:0 20px;}
+:root{
+  --bg:#07090b;
+  --panel:#0f1418;
+  --muted:#9aa3a8;
+  --accent:#ff4d5a;
+  --maxw:1160px;
+  --glass: rgba(255,255,255,0.03);
+  --soft: rgba(255,255,255,0.02);
+}
 
-  /* NAV */
-  header.site-header{
-    position:sticky; top:0; z-index:40;
-    background:linear-gradient(180deg, rgba(6,8,10,0.9), rgba(6,8,10,0.7));
-    border-bottom:1px solid rgba(255,255,255,0.02);
-    backdrop-filter: blur(6px);
-  }
-  .nav-inner{display:flex;align-items:center; justify-content:space-between; gap:16px; padding:18px 20px;}
-  .brand{
-    display:flex;align-items:center;gap:12px;
-  }
-  .brand h1{font-family:'Playfair Display', serif; font-size:28px; margin:0; letter-spacing:1px;}
-  .brand small{display:block;color:var(--muted); font-size:12px; margin-top:-4px}
+/* base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background:linear-gradient(180deg,#050607 0%, #081015 100%);
+  color:#e9f1f6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
 
-  nav.main-nav{display:flex; gap:18px; align-items:center;}
-  nav.main-nav a{color:#cfd8dc; padding:8px 12px; border-radius:8px; font-weight:600; font-size:14px;}
-  nav.main-nav a:hover{background:var(--glass); color:#fff}
+/* header / nav */
+.site-header{
+  position:sticky; top:0; z-index:60;
+  background:linear-gradient(180deg, rgba(6,8,10,0.9), rgba(6,8,10,0.7));
+  border-bottom:1px solid rgba(255,255,255,0.02);
+  backdrop-filter: blur(6px);
+}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand h1{font-family:'Playfair Display', serif; font-size:26px; margin:0}
+.brand small{display:block;color:var(--muted);font-size:12px;margin-top:-4px}
 
-  /* HERO */
-  .hero{
-    min-height:70vh;
-    display:grid;
-    grid-template-rows:1fr auto;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-  }
-  .hero-bg{
-    position:absolute; inset:0; z-index:0;
-    background-size:cover; background-position:center center;
-    filter:brightness(.46) saturate(.95);
-  }
-  .hero-overlay{position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,12,13,0.25), rgba(8,9,11,0.6)); z-index:1}
-  .hero-content{position:relative; z-index:2; padding:60px 20px; display:flex; gap:40px; align-items:center; justify-content:center; flex-direction:column; text-align:center;}
-  .hero h2{font-family:'Playfair Display', serif; font-size:64px; margin:0 0 8px; line-height:1; letter-spacing:0.6px;}
-  .hero p.tag{color:var(--muted); font-size:18px; margin:0 0 20px;}
-  .cta-row{display:flex; gap:12px; align-items:center; justify-content:center; margin-top:10px;}
-  .btn{
-    padding:14px 18px; border-radius:12px; font-weight:700; font-size:15px; cursor:pointer; display:inline-block;
-    text-decoration:none;
-  }
-  .btn-primary{background:linear-gradient(90deg,var(--accent), #e11d48); color:white; box-shadow:0 12px 30px rgba(225,29,72,0.14);}
-  .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:#dbe6ea}
+/* styled social icons (pill) */
+.main-nav{display:flex;align-items:center;gap:10px}
+.main-nav a{font-weight:700;padding:8px 12px;border-radius:10px;color:#dfe9ee;border:1px solid transparent}
+.main-nav a:hover{background:var(--glass);transform:translateY(-2px)}
 
-  /* MAIN SECTIONS */
-  main{padding:48px 0 120px;}
-  .split{display:grid; grid-template-columns:1fr 420px; gap:36px; align-items:start;}
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:22px; border:1px solid rgba(255,255,255,0.03)}
-  h3{font-family:'Playfair Display', serif; font-size:22px; margin:0 0 12px}
-  p.lead{color:var(--muted); margin:0 0 14px; font-size:15px}
+/* compact icon buttons (for social links) */
+.social-pill{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);font-weight:700}
+.social-pill span{display:inline-block;min-width:20px;text-align:center;font-weight:800}
 
-  /* category grid */
-  .cats{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-top:22px}
-  .cat{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.03)}
-  .cat h4{margin:0 0 8px; font-size:16px}
-  .cat p{margin:0; color:var(--muted); font-size:13px}
+/* hero */
+.hero{min-height:72vh;display:grid;align-items:center;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;filter:brightness(.46) saturate(.95);z-index:0}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(9,11,13,0.2), rgba(6,7,9,0.6));z-index:1}
+.hero-inner{position:relative;z-index:2;padding:60px 20px;text-align:center;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center}
+.hero h2{font-family:'Playfair Display', serif;font-size:64px;margin:0;line-height:1}
+.hero .tag{color:var(--muted);font-size:18px;margin:0}
+.cta-row{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:12px}
+.btn{padding:14px 18px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;display:inline-block}
+.btn-primary{background:linear-gradient(90deg,var(--accent), #e11d48);color:white;box-shadow:0 10px 30px rgba(225,29,72,0.14)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:#dbe7eb}
 
-  /* future list */
-  .future-list{margin-top:10px; display:flex; flex-direction:column; gap:10px;}
-  .future-item{display:flex; gap:12px; align-items:flex-start; padding:12px; background:rgba(255,255,255,0.02); border-radius:10px; font-size:14px}
-  .future-item small{color:var(--muted); font-size:13px}
+/* main layout */
+main{padding:48px 0 90px}
+.grid-2{display:grid;grid-template-columns:1fr 370px;gap:32px;align-items:start}
+.card{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:20px;border-radius:12px;border:1px solid var(--soft)}
+.lead{color:var(--muted);margin:0 0 12px;font-size:15px}
+.h3{font-family:'Playfair Display', serif;font-size:20px;margin:0 0 10px}
 
-  /* footer */
-  footer.site-footer{border-top:1px solid rgba(255,255,255,0.02); padding:28px 0; margin-top:28px; color:var(--muted)}
-  .socials{display:flex; gap:10px}
-  .socials a{padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.03); color:var(--muted); font-weight:600; text-decoration:none}
+/* Featured video block */
+.feature-video{margin-top:18px;border-radius:12px; overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+.feature-video .player{width:100%;height:340px;border:0;display:block}
+.video-row{display:flex;gap:12px;align-items:center;margin-top:12px}
 
-  /* responsive */
-  @media (max-width:1000px){
-    .split{grid-template-columns:1fr; }
-    .hero h2{font-size:48px}
-    .hero{min-height:62vh}
-  }
-  @media (max-width:520px){
-    .nav-inner{padding:12px}
-    .brand h1{font-size:20px}
-    nav.main-nav{display:none}
-    .cta-row{flex-direction:column; width:100%}
-    .hero h2{font-size:34px}
-  }
+/* wallpaper preview row (small strip) */
+.wall-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:18px}
+.wall-tile{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));transition:transform .25s, box-shadow .25s}
+.wall-tile img{width:100%;height:320px;object-fit:cover;display:block}
+.wall-tile .meta{padding:10px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.wall-tile:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.6)}
+
+/* footer */
+.site-footer{border-top:1px solid rgba(255,255,255,0.02);padding:28px 0;color:var(--muted)}
+
+/* responsive */
+@media (max-width:980px){.grid-2{grid-template-columns:1fr;}.hero h2{font-size:44px}.hero .tag{font-size:16px}}
+@media (max-width:520px){.main-nav{display:none}.hero h2{font-size:30px}.wall-tile img{height:420px}}
 </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="nav-inner container">
+  <div class="nav-row container">
     <div class="brand">
       <h1>INDUS</h1>
       <small>Just for you.</small>
     </div>
 
     <nav class="main-nav" aria-label="Main navigation">
+      <!-- use absolute path that matches your repository path if needed -->
       <a href="/indus.github.io/index.html">Home</a>
       <a href="/indus.github.io/content.html">Content</a>
       <a href="/indus.github.io/wallpaper.html">Wallpapers</a>
       <a href="/indus.github.io/contact.html">Contact</a>
     </nav>
+
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener">
+        <span>▶</span> YouTube
+      </a>
+      <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener">
+        <span>•</span> Instagram
+      </a>
+      <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener">
+        <span>@</span> X
+      </a>
+    </div>
   </div>
 </header>
 
 <section class="hero">
-  <!-- Replace these with real images (see below). If you have a short background video, use that instead and keep an image fallback -->
   <div class="hero-bg" style="background-image:url('assets/hero.jpg');"></div>
   <div class="hero-overlay"></div>
 
-  <div class="hero-content container">
+  <div class="hero-inner container">
     <h2>INDUS</h2>
     <p class="tag">Just for you.</p>
 
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener">▶ Watch Latest</a>
+      <a class="btn btn-primary" href="https://youtu.be/kkyywowKCiw" target="_blank" rel="noopener">▶ Watch Latest</a>
       <a class="btn btn-ghost" href="/indus.github.io/content.html">Explore Content</a>
     </div>
   </div>
 </section>
 
 <main class="container">
-  <div class="split">
+  <div class="grid-2">
+
     <div>
       <section class="card">
-        <h3>Why INDUS exists</h3>
-        <p class="lead">Short, cinematic stories about people and places you think you know — until you don't. I make thoughtful visual pieces and short documentaries that explore behaviour, solitude and everyday courage.</p>
-        <p class="lead" style="margin-top:8px">This page is the hub — watch the latest video, read the ideas, and see the limited visual work available as wallpapers and downloads.</p>
+        <h3 class="h3">Why INDUS exists</h3>
+        <p class="lead">Short, cinematic stories about ordinary people and quiet places. I make video essays and visual pieces that look calm on the surface — but reveal something human underneath.</p>
 
-        <h3 style="margin-top:20px;">What you'll find</h3>
-        <div class="cats">
-          <a class="cat" href="/indus.github.io/content.html">
-            <h4>Human Behaviour</h4>
-            <p>Why people do what they do — short essays and films.</p>
+        <h3 class="h3" style="margin-top:18px">Featured (one minute)</h3>
+        <div class="feature-video">
+          <!-- embedded player for the featured video -->
+          <iframe class="player" src="https://www.youtube.com/embed/kkyywowKCiw" title="Featured video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h3 class="h3" style="margin-top:18px">Explore wallpapers</h3>
+        <p class="lead">A small curated collection — free previews here, full-resolution on the store.</p>
+
+        <div class="wall-strip">
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
+            <img src="assets/wall-prev-1.jpg" alt="preview 1">
+            <div class="meta"><div>Lonely Tree</div><div style="color:var(--accent);font-weight:700">Free</div></div>
           </a>
 
-          <a class="cat" href="/indus.github.io/content.html">
-            <h4>Hidden Lives</h4>
-            <p>Stories from night workers, lonely places and quiet streets.</p>
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
+            <img src="assets/wall-prev-2.jpg" alt="preview 2">
+            <div class="meta"><div>Smooth Beige</div><div style="color:var(--accent);font-weight:700">Free</div></div>
           </a>
 
-          <a class="cat" href="/indus.github.io/content.html">
-            <h4>Quiet Visuals</h4>
-            <p>Motion visuals, wallpapers and limited downloads.</p>
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
+            <img src="assets/wall-prev-3.jpg" alt="preview 3">
+            <div class="meta"><div>Empty Room</div><div style="color:#ffd28a;font-weight:700">₹29</div></div>
           </a>
 
-          <a class="cat" href="/indus.github.io/content.html">
-            <h4>Real Experiments</h4>
-            <p>Challenges and short projects — lived and filmed.</p>
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
+            <img src="assets/wall-prev-4.jpg" alt="preview 4">
+            <div class="meta"><div>Night Lamp</div><div style="color:#ffd28a;font-weight:700">₹99</div></div>
           </a>
         </div>
+
       </section>
 
-      <section class="card" style="margin-top:20px;">
-        <h3>Featured projects</h3>
-        <p class="lead">Small visual and social experiments to come. These are short & shareable — watch them on the channel.</p>
-
-        <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;">
-          <div style="min-width:180px;flex:1" class="card">
-            <strong>24 hours — Homeless</strong>
-            <div style="color:var(--muted);margin-top:8px;font-size:13px">A grounded visual experiment about living without comfort.</div>
+      <section class="card" style="margin-top:20px">
+        <h3 class="h3">What you'll find</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:12px">
+          <div class="card" style="padding:12px">
+            <strong>Human Behaviour</strong>
+            <div style="color:var(--muted);margin-top:8px;font-size:13px">Short explanations and film essays about everyday psychology.</div>
           </div>
-          <div style="min-width:180px;flex:1" class="card">
-            <strong>Monk For 7 Days</strong>
-            <div style="color:var(--muted);margin-top:8px;font-size:13px">A short film about silence and rhythm.</div>
+          <div class="card" style="padding:12px">
+            <strong>Hidden Lives</strong>
+            <div style="color:var(--muted);margin-top:8px;font-size:13px">Night workers, street stalls and quiet routines.</div>
+          </div>
+          <div class="card" style="padding:12px">
+            <strong>Visuals & Wallpapers</strong>
+            <div style="color:var(--muted);margin-top:8px;font-size:13px">Minimal, cinematic images for phones and walls.</div>
           </div>
         </div>
       </section>
@@ -199,59 +200,44 @@
 
     <aside>
       <div class="card">
-        <h3>About the creator</h3>
-        <p style="color:var(--muted); margin:0 0 12px">From struggling student to a maker with a laptop and a big idea. I build cinematic videos with limited gear and better thinking. This is my work — small, intentional and improving with every piece.</p>
-
-        <div style="display:flex; gap:10px; margin-top:12px;">
+        <h3 class="h3">About the creator</h3>
+        <p style="color:var(--muted);margin:0 0 12px">From confusion to small wins — building cinematic videos with limited gear. I focus on storytelling and consistent craft.</p>
+        <div style="display:flex;gap:10px;margin-top:12px">
           <a class="btn btn-ghost" href="/indus.github.io/contact.html">Get in touch</a>
           <a class="btn btn-primary" href="/indus.github.io/wallpaper.html">Visit Store</a>
         </div>
 
-        <h3 style="margin-top:18px;">Join the journey</h3>
-        <div class="socials" style="margin-top:8px;">
-          <a href="https://www.youtube.com/@indusnyou" target="_blank">YouTube</a>
-          <a href="https://www.instagram.com/indusnyou/" target="_blank">Instagram</a>
-          <a href="https://x.com/indusnyou" target="_blank">X</a>
+        <h3 class="h3" style="margin-top:16px">Follow</h3>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener"><span>▶</span> YouTube</a>
+          <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener"><span>•</span> Instagram</a>
+          <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener"><span>@</span> X</a>
         </div>
       </div>
 
-      <div class="card" style="margin-top:18px;">
-        <h3>Upcoming ideas</h3>
-        <div class="future-list">
-          <div class="future-item"><strong>24 hours as a homeless person</strong><small> — documentary experiment</small></div>
-          <div class="future-item"><strong>7 days with Himalayan monk</strong><small> — silence & routine</small></div>
-          <div class="future-item"><strong>Haunted village</strong><small> — field investigation</small></div>
+      <div class="card" style="margin-top:18px">
+        <h3 class="h3">Upcoming ideas</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+          <div style="background:var(--soft);padding:10px;border-radius:8px">24 hours as a homeless person</div>
+          <div style="background:var(--soft);padding:10px;border-radius:8px">7 days with Himalayan monk</div>
+          <div style="background:var(--soft);padding:10px;border-radius:8px">Haunted village</div>
         </div>
       </div>
     </aside>
+
   </div>
 </main>
 
 <footer class="site-footer">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
     <div>
       <strong>INDUS</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">Stories. Visuals. Small projects.</div>
     </div>
-    <div style="text-align:right">
-      <div style="color:var(--muted);font-size:13px">© INDUS — 2026</div>
-      <div style="margin-top:8px" class="socials">
-        <a href="https://www.youtube.com/@indusnyou" target="_blank">YouTube</a>
-        <a href="https://www.instagram.com/indusnyou/" target="_blank">Instagram</a>
-      </div>
+    <div style="text-align:right;color:var(--muted);font-size:13px">
+      © INDUS — 2026
     </div>
   </div>
 </footer>
 
-<!-- optional small script to ensure hero image loads smoothly -->
-<script>
-  // simple: if hero image missing, use a built-in color fallback
-  (function(){
-    const el = document.querySelector('.hero-bg');
-    const url = el && el.style.backgroundImage;
-    if(!url || url === 'url(\'assets/hero.jpg\')' && !el.style.backgroundImage){
-      el.style.background = 'linear-gradient(180deg,#0b1114,#081014)';
-    }
-  })();
-</script>
 </body>
 </html>
