@@ -1,85 +1,240 @@
- <!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title>Wallpaper</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Wallpaper · INDUS</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
 <style>
+  :root{
+    --bg: #07090b;
+    --panel:#0f1418;
+    --muted:#9aa3a8;
+    --accent:#ff4d5a;
+    --success:#16a34a;
+    --maxw:980px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(180deg,#040506,#0b0f12);
+    color:#eaf3f7;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:var(--maxw);margin:0 auto;padding:20px}
+  header{padding:18px 0;display:flex;align-items:center;justify-content:space-between}
+  header h1{font-family:'Playfair Display',serif;margin:0;font-size:20px}
+  header small{display:block;color:var(--muted);font-size:12px;margin-top:4px}
 
-body{
-background:#0b0f12;
-color:white;
-font-family:Arial;
-margin:0;
-text-align:center;
-}
+  /* main wallpaper area */
+  .hero{
+    display:flex;
+    gap:28px;
+    align-items:flex-start;
+    margin-top:6px;
+  }
 
-img{
-max-width:90%;
-margin-top:30px;
-border-radius:14px;
-}
+  .preview {
+    flex:1 1 560px;
+    background:var(--panel);
+    padding:14px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,0.03);
+    box-shadow:0 10px 30px rgba(2,6,23,0.5);
+    text-align:center;
+  }
 
-.download{
-margin-top:20px;
-padding:14px 24px;
-background:#ff4d5a;
-color:white;
-text-decoration:none;
-border-radius:10px;
-display:inline-block;
-font-size:18px;
-}
+  .preview img{
+    width:100%;
+    height:calc(100vh - 260px);
+    max-height:820px;
+    object-fit:contain;
+    border-radius:10px;
+    background:#061014;
+  }
 
-.suggest{
-margin-top:40px;
-}
+  /* info column */
+  .info {
+    width:320px;
+    min-width:260px;
+  }
+  .title-row{display:flex;align-items:center;gap:12px;justify-content:space-between}
+  .title{font-family:'Playfair Display',serif;font-size:20px;margin:0}
+  .price-badge{
+    font-weight:700;
+    padding:8px 10px;border-radius:10px;
+    background:linear-gradient(90deg,var(--accent),#e11d48);
+    color:white;font-size:15px;
+  }
+  .desc{color:var(--muted);margin:10px 0 14px;font-size:14px}
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-gap:14px;
-padding:20px;
-}
+  .actions{display:flex;gap:10px;flex-direction:column}
+  .btn{
+    display:inline-block;padding:12px 14px;border-radius:10px;text-decoration:none;text-align:center;font-weight:700;
+  }
 
-.grid img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
+  .btn-download{background:linear-gradient(90deg,var(--success),#0ea46c);color:white}
+  .btn-preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#eaf3f7}
+  .btn-buy{background:linear-gradient(90deg,var(--accent),#e11d48);color:white}
+
+  .note{color:var(--muted);font-size:13px;margin-top:8px}
+
+  /* suggestions */
+  .suggest{margin-top:26px}
+  .suggest h3{margin:0 0 10px;font-size:16px}
+  .suggest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+  .suggest-grid a{display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+  .suggest-grid img{width:100%;height:110px;object-fit:cover;display:block}
+
+  /* small devices */
+  @media (max-width:920px){
+    .hero{flex-direction:column}
+    .preview img{height:60vh}
+    .info{width:100%}
+  }
+
+  @media (max-width:520px){
+    .preview img{height:52vh}
+    .title{font-size:18px}
+    .price-badge{font-size:14px;padding:8px}
+    .btn{width:100%}
+    .suggest-grid img{height:120px}
+  }
 
 </style>
 </head>
-
 <body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>INDUS</h1>
+        <small>Just for you.</small>
+      </div>
+      <div style="color:var(--muted);font-size:13px">Wallpapers store</div>
+    </header>
 
-<h2 id="title">Wallpaper</h2>
+    <main class="hero">
+      <div class="preview">
+        <img id="wallImg" src="" alt="Wallpaper preview">
+      </div>
 
-<img id="wall">
+      <aside class="info">
+        <div class="title-row">
+          <div>
+            <div id="wallTitle" class="title">Loading…</div>
+            <div id="meta" class="note" style="margin-top:6px"></div>
+          </div>
+          <div id="priceBadge" class="price-badge" style="display:none">₹0</div>
+        </div>
 
-<br>
+        <p id="desc" class="desc">—</p>
 
-<a id="downloadBtn" class="download">Download</a>
+        <div class="actions">
+          <!-- Buttons will be injected by JS -->
+          <a id="primaryBtn" class="btn btn-download" href="#" download>Download HD</a>
+          <a id="secondaryBtn" class="btn btn-preview" href="#" download style="display:none">Preview (low-res)</a>
+          <div id="buyNote" class="note" style="display:none">After purchase you will receive an instant secure download link.</div>
+        </div>
 
-<div class="suggest">
-<h3>You may also like</h3>
-
-<div class="grid">
-<a href="view.html?img=tree.jpg"><img src="wallpapers/tree.jpg"></a>
-<a href="view.html?img=moon.jpg"><img src="wallpapers/moon.jpg"></a>
-<a href="view.html?img=milkyway.jpg"><img src="wallpapers/milkyway.jpg"></a>
-<a href="view.html?img=street.jpg"><img src="wallpapers/street.jpg"></a>
-</div>
-
-</div>
+        <div class="suggest">
+          <h3>You may also like</h3>
+          <div class="suggest-grid" id="suggestGrid">
+            <!-- JS will populate suggestions -->
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
 
 <script>
-const params=new URLSearchParams(window.location.search);
-const img=params.get("img");
+/*
+  Data map: update paths / Gumroad links as you create products.
+  - preview: the small preview (already in wallpapers/)
+  - hd: the HD original you must upload to wallpapers/hd/<file>
+  - type: 'free' or 'paid'
+  - price: integer (for paid)
+  - payLink: replace with actual Gumroad/Pay link for that item
+*/
+const ITEMS = {
+  "tree.jpg":   {title:"Lonely Tree", preview:"wallpapers/tree.jpg", hd:"wallpapers/hd/tree.jpg", type:"free", price:0},
+  "beige.jpg":  {title:"Smooth Beige", preview:"wallpapers/beige.jpg", hd:"wallpapers/hd/beige.jpg", type:"free", price:0},
+  "room.jpg":   {title:"Empty Room Sunlight", preview:"wallpapers/room.jpg", hd:"wallpapers/hd/room.jpg", type:"free", price:0},
+  "moon.jpg":   {title:"Moon Night", preview:"wallpapers/moon.jpg", hd:"wallpapers/hd/moon.jpg", type:"paid", price:29, payLink:"https://gumroad.com/l/replace-moon"},
+  "milkyway.jpg":{title:"Milky Way", preview:"wallpapers/milkyway.jpg", hd:"wallpapers/hd/milkyway.jpg", type:"paid", price:15, payLink:"https://gumroad.com/l/replace-milky"},
+  "street.jpg": {title:"Night Street Lamp", preview:"wallpapers/street.jpg", hd:"wallpapers/hd/street.jpg", type:"paid", price:99, payLink:"https://gumroad.com/l/replace-street"}
+};
 
-document.getElementById("wall").src="wallpapers/"+img;
-document.getElementById("downloadBtn").href="wallpapers/"+img;
-document.getElementById("title").innerText=img.replace(".jpg","").toUpperCase();
+// get filename from querystring like view.html?img=moon.jpg
+const params = new URLSearchParams(window.location.search);
+const img = params.get('img') || 'tree.jpg';
+const item = ITEMS[img] || {title:img.replace('.jpg',''), preview:'wallpapers/'+img, hd:'wallpapers/hd/'+img, type:'free', price:0};
+
+// set UI
+document.getElementById('wallImg').src = item.preview;
+document.getElementById('wallTitle').innerText = item.title;
+document.getElementById('desc').innerText = item.type === 'free' ? "Free HD download available" : "Premium HD wallpaper — purchase to get full-resolution file.";
+document.getElementById('meta').innerText = item.type === 'free' ? "Free • 9:16 preview" : "Premium • 9:16 preview";
+
+// price badge + buttons logic
+const priceBadge = document.getElementById('priceBadge');
+const primaryBtn = document.getElementById('primaryBtn');
+const secondaryBtn = document.getElementById('secondaryBtn');
+const buyNote = document.getElementById('buyNote');
+
+if(item.type === 'free'){
+  priceBadge.style.display = 'inline-block';
+  priceBadge.innerText = 'FREE';
+  primaryBtn.className = 'btn btn-download';
+  primaryBtn.href = item.hd;           // must upload HD file here
+  primaryBtn.setAttribute('download',''); // prompt download
+  primaryBtn.innerText = 'Download HD';
+  secondaryBtn.style.display='none';
+  buyNote.style.display='none';
+} else {
+  // paid
+  priceBadge.style.display = 'inline-block';
+  priceBadge.innerText = "₹" + item.price;
+  // primary = buy
+  primaryBtn.className = 'btn btn-buy';
+  primaryBtn.href = item.payLink || '#';
+  primaryBtn.target = '_blank';
+  primaryBtn.innerText = 'Buy now';
+  // secondary = preview download (low-res)
+  secondaryBtn.style.display = 'inline-block';
+  secondaryBtn.href = item.preview;
+  secondaryBtn.setAttribute('download','');
+  secondaryBtn.innerText = 'Download preview';
+  buyNote.style.display = 'block';
+}
+
+// suggestions: show other items (exclude current) — max 6
+const suggestGrid = document.getElementById('suggestGrid');
+Object.keys(ITEMS).forEach(key=>{
+  if(key === img) return;
+  const it = ITEMS[key];
+  const a = document.createElement('a');
+  a.href = 'view.html?img=' + key;
+  a.innerHTML = `<img src="${it.preview}" alt="${it.title}">`;
+  suggestGrid.appendChild(a);
+});
+
+// small UX: if HD link missing for free item, show a small warning
+if(item.type === 'free'){
+  // check if hd file likely exists (we assume you upload it). If you haven't, show small note
+  // (can't check server existence without fetch; so we only add a friendly note)
+  // You must upload file to wallpapers/hd/<name>.jpg for the HD download to work.
+  const note = document.createElement('div');
+  note.className = 'note';
+  note.style.marginTop='12px';
+  note.innerText = 'If HD download does not start, upload the HD file to: ' + item.hd;
+  // show this only if you want; comment out next line to hide the message.
+  // document.querySelector('.actions').appendChild(note);
+}
 </script>
-
 </body>
 </html>
