@@ -147,12 +147,12 @@ const ITEMS = {
   "tree.jpg":    { title:"Lonely Tree", preview:"wallpapers/tree.jpg", hd:"wallpapers/hd/tree.jpg", type:"free", price:0 },
   "beige.jpg":   { title:"Smooth Beige", preview:"wallpapers/beige.jpg", hd:"wallpapers/hd/beige.jpg", type:"free", price:0 },
   "room.jpg":    { title:"Empty Room Sunlight", preview:"wallpapers/room.jpg", hd:"wallpapers/hd/room.jpg", type:"free", price:0 },
-  "moon.jpg": {
+ "moon.jpg": {
   title:"Moon Night",
   preview:"wallpapers/moon.jpg",
   type:"paid",
   price:79,
-  payLink:"https://indus.gumroad.com/l/asndjt" },
+  payLink:"https://indus.gumroad.com/l/asndjtk"
 },
 
   "milkyway.jpg":{ title:"Milky Way", preview:"wallpapers/milkyway.jpg", type:"paid", price:15, payLink:"https://gumroad.com" },
@@ -236,6 +236,8 @@ if(item.type === 'free'){
   buyBtn.style.display = 'inline-block';
   buyBtn.href = item.payLink;
   previewBtn.style.display = 'inline-block';
+  buyBtn.onclick = () => window.open(item.payLink, "_blank");
+
   fileNote.innerText = 'Preview is watermarked and not downloadable. Buy to get HD.';
 }
 
