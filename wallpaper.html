@@ -5,122 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 
-body{
-background:#0b0f12;
-color:white;
-font-family:Arial;
-margin:0;
-}
+/* ===== INDUS CATEGORY SECTION ===== */
 
-/* top bar */
-.top{
-padding:18px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
-}
-
-/* search */
-.search{
-text-align:center;
-margin-bottom:20px;
-}
-
-.search input{
-width:80%;
-max-width:400px;
-padding:12px;
-border-radius:8px;
-border:none;
-font-size:16px;
-background:#141a1f;
-color:white;
-}
-
-/* grid */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:18px;
-padding:20px;
-}
-
-.wall{
-cursor:pointer;
-border-radius:12px;
-overflow:hidden;
-background:#141a1f;
-transition:.25s;
-}
-
-.wall:hover{
-transform:scale(1.03);
-}
-
-.wall img{
-width:100%;
-height:340px;
-object-fit:cover;
-}
-
-.name{
-padding:10px;
-font-size:14px;
-color:#cfd8dc;
-}
-/* CATEGORY SECTION */
-
-.category-section{
-margin-top:80px;
-padding:20px;
+.category-wrap{
+margin-top:120px;
+padding:40px 20px 80px;
 }
 
 .category-title{
 text-align:center;
-font-size:32px;
-margin-bottom:40px;
+font-size:42px;
 font-weight:700;
-letter-spacing:1px;
+letter-spacing:2px;
+margin-bottom:60px;
+font-family:'Playfair Display',serif;
+background:linear-gradient(90deg,#ffffff,#b7c6d1);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
+/* grid */
 .category-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:28px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:32px;
+max-width:1200px;
+margin:auto;
 }
 
+/* card */
 .category-card{
 position:relative;
-border-radius:18px;
+height:300px;
+border-radius:22px;
 overflow:hidden;
+cursor:pointer;
 text-decoration:none;
+background:#0b0f12;
+box-shadow:0 20px 60px rgba(0,0,0,.45);
+transition:.45s cubic-bezier(.2,.8,.2,1);
 }
 
 .category-card img{
 width:100%;
-height:220px;
+height:100%;
 object-fit:cover;
-transition:0.4s;
-filter:brightness(0.75);
+transition:transform .6s ease, filter .6s ease;
+filter:brightness(.65);
+}
+
+/* glow */
+.category-card::after{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.8));
+}
+
+/* text */
+.category-name{
+position:absolute;
+bottom:24px;
+left:24px;
+font-size:26px;
+font-weight:600;
+color:white;
+z-index:2;
+letter-spacing:1px;
+}
+
+/* hover animation */
+.category-card:hover{
+transform:translateY(-12px) scale(1.03);
+box-shadow:0 30px 90px rgba(0,0,0,.7);
 }
 
 .category-card:hover img{
-transform:scale(1.08);
-filter:brightness(1);
+transform:scale(1.15);
+filter:brightness(.95);
 }
 
-.category-name{
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:18px;
-font-size:20px;
-font-weight:600;
-background:linear-gradient(transparent,rgba(0,0,0,0.8));
-color:white;
-text-align:center;
-letter-spacing:1px;
+/* mobile responsive */
+@media(max-width:600px){
+.category-title{font-size:28px}
+.category-card{height:220px}
+.category-name{font-size:20px}
 }
 
 </style>
@@ -166,6 +135,43 @@ letter-spacing:1px;
 <div class="name">Night Street Lamp (₹99)</div>
 </a>
 <!-- ===== CATEGORIES SECTION ===== -->
+<!-- ===== INDUS CATEGORIES ===== -->
+
+<section class="category-wrap">
+
+<div class="category-title">
+Discover Wallpaper Collections
+</div>
+
+<div class="category-grid">
+
+<a href="cars.html" class="category-card">
+<img src="assets/cars.jpg">
+<div class="category-name">Cars</div>
+</a>
+
+<a href="nature.html" class="category-card">
+<img src="assets/nature.jpg">
+<div class="category-name">Nature</div>
+</a>
+
+<a href="minimal.html" class="category-card">
+<img src="assets/minimal.jpg">
+<div class="category-name">Minimal</div>
+</a>
+
+<a href="motivational.html" class="category-card">
+<img src="assets/motivation.jpg">
+<div class="category-name">Motivation</div>
+</a>
+
+<a href="spiritual.html" class="category-card">
+<img src="assets/spiritual.jpg">
+<div class="category-name">Spiritual</div>
+</a>
+
+</div>
+</section>
 
 <div style="margin-top:80px; text-align:center;">
 <h2 style="font-size:34px; margin-bottom:35px; letter-spacing:1px;">
