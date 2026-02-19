@@ -90,6 +90,80 @@ main{padding:48px 0 90px}
 /* responsive */
 @media (max-width:980px){.grid-2{grid-template-columns:1fr;}.hero h2{font-size:44px}.hero .tag{font-size:16px}}
 @media (max-width:520px){.main-nav{display:none}.hero h2{font-size:30px}.wall-tile img{height:420px}}
+/* MOBILE FIX */
+
+#menuBtn{
+display:none;
+background:none;
+border:none;
+color:white;
+font-size:24px;
+padding:6px;
+cursor:pointer;
+}
+
+/* phone screens */
+@media (max-width: 600px){
+
+#menuBtn{
+display:block;
+}
+
+.main-nav{
+position:absolute;
+top:60px;
+right:10px;
+background:#0f1418;
+padding:10px;
+border-radius:10px;
+flex-direction:column;
+display:none;
+}
+
+.main-nav a{
+display:block;
+padding:10px;
+font-size:16px;
+}
+
+.main-nav.open{
+display:flex;
+}
+
+/* hero fix */
+.hero h2{
+font-size:32px;
+}
+
+.hero .tag{
+font-size:14px;
+}
+
+.cta-row{
+flex-direction:column;
+}
+
+.btn{
+width:100%;
+}
+
+/* video fix */
+.feature-video .player{
+height:220px;
+}
+
+/* wallpaper preview */
+.wall-tile img{
+height:360px;
+}
+
+/* column layout fix */
+.grid-2{
+grid-template-columns:1fr;
+}
+
+}
+
 </style>
 </head>
 <body>
@@ -100,6 +174,7 @@ main{padding:48px 0 90px}
       <h1>INDUS</h1>
       <small>Just for you.</small>
     </div>
+<button id="menuBtn">☰</button>
 
     <nav class="main-nav" aria-label="Main navigation">
       <!-- use absolute path that matches your repository path if needed -->
@@ -238,6 +313,14 @@ main{padding:48px 0 90px}
     </div>
   </div>
 </footer>
+<script>
+const btn = document.getElementById("menuBtn");
+const nav = document.querySelector(".main-nav");
+
+btn.onclick = () => {
+nav.classList.toggle("open");
+};
+</script>
 
 </body>
 </html>
