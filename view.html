@@ -113,14 +113,7 @@ header small{color:var(--muted);display:block;font-size:12px;margin-top:4px}
 
 <script>
 /* ====== Adjust this map to match your files & payment links ====== */
-const ITEMS = {
-  "tree.jpg":    {title:"Lonely Tree", preview:"wallpapers/tree_preview.jpg", hd:"wallpapers/hd/tree.jpg", type:"free", price:0},
-  "beige.jpg":   {title:"Smooth Beige", preview:"wallpapers/beige_preview.jpg", hd:"wallpapers/hd/beige.jpg", type:"free", price:0},
-  "room.jpg":    {title:"Empty Room Sunlight", preview:"wallpapers/room_preview.jpg", hd:"wallpapers/hd/room.jpg", type:"free", price:0},
-  "moon.jpg":    {title:"Moon Night", preview:"wallpapers/moon_preview.jpg", hd:"wallpapers/hd/moon_preview.jpg", type:"paid", price:29, payLink:"https://gumroad.com/l/replace-moon"},
-  "milkyway.jpg":{title:"Milky Way", preview:"wallpapers/milkyway_preview.jpg", hd:"wallpapers/hd/milkyway_preview.jpg", type:"paid", price:15, payLink:"https://gumroad.com/l/replace-milky"},
-  "street.jpg":  {title:"Night Street Lamp", preview:"wallpapers/street_preview.jpg", hd:"wallpapers/hd/street_preview.jpg", type:"paid", price:99, payLink:"https://gumroad.com/l/replace-street"}
-};
+
 
 const params = new URLSearchParams(window.location.search);
 const img = params.get('img') || 'tree.jpg';
