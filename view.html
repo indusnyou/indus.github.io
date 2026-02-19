@@ -1,124 +1,62 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Wallpaper · INDUS</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#040506; --panel:#0f1418; --muted:#9aa3a8; --accent:#ff4d5a; --success:#16a34a; --maxw:980px;
-}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:linear-gradient(180deg,#040506,#0b0f12);color:#eaf3f7;font-family:Inter,system-ui,Arial}
-.container{max-width:var(--maxw);margin:0 auto;padding:20px}
-
-header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-header h1{font-family:'Playfair Display',serif;margin:0;font-size:20px}
-header small{color:var(--muted);display:block;font-size:12px;margin-top:4px}
-
-/* layout */
-.hero{display:flex;gap:28px;align-items:flex-start;margin-top:6px}
-.preview{flex:1 1 560px;background:var(--panel);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 30px rgba(2,6,23,0.5);text-align:center}
-.preview img{width:100%;height:calc(100vh - 260px);max-height:820px;object-fit:contain;border-radius:10px;background:#061014;cursor:zoom-in;display:block}
-
-/* info column */
-.info{width:320px;min-width:260px}
-.title-row{display:flex;align-items:center;gap:12px;justify-content:space-between}
-.title{font-family:'Playfair Display',serif;font-size:20px;margin:0}
-.price-badge{font-weight:700;padding:8px 10px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#e11d48);color:white;font-size:15px}
-.desc{color:var(--muted);margin:10px 0 14px;font-size:14px}
-.actions{display:flex;gap:10px;flex-direction:column}
-.btn{display:inline-block;padding:12px 14px;border-radius:10px;text-decoration:none;text-align:center;font-weight:700}
-.btn-download{background:linear-gradient(90deg,var(--success),#0ea46c);color:white}
-.btn-buy{background:linear-gradient(90deg,var(--accent),#e11d48);color:white}
-.btn-preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#eaf3f7}
-.note{color:var(--muted);font-size:13px;margin-top:8px}
-
-/* suggestions stylish */
-.suggest{margin-top:26px}
-.suggest h3{margin:0 0 10px;font-size:16px}
-.suggest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
-.suggest-grid a{display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);position:relative;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005))}
-.suggest-grid img{width:100%;height:110px;object-fit:cover;display:block;transition:transform .28s ease,filter .28s ease}
-.suggest-grid a:hover img{transform:scale(1.07) translateY(-6px); filter:brightness(1.06) saturate(1.05)}
-/* subtle floating on alternate items */
-.suggest-grid a:nth-child(odd){animation:float 6s ease-in-out infinite; transform-origin:center}
-@keyframes float{ 0%{transform:translateY(0)} 50%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
-
-/* modal preview (watermarked) */
-.modal {position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:9999; background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85)); padding:20px;}
-.modal.open{display:flex}
-.modal .popup{max-width:960px; width:100%; border-radius:12px; overflow:hidden; position:relative; background:#071018; padding:14px}
-.modal img{width:100%; height:70vh; object-fit:contain; display:block; border-radius:8px; background:#061014}
-.wm{position:absolute; left:12px; bottom:14px; color:rgba(255,255,255,0.14); font-weight:800; font-family:Inter; font-size:22px; transform:rotate(-18deg); pointer-events:none; user-select:none;}
-.closeBtn{position:absolute; right:12px; top:12px; background:rgba(0,0,0,0.4); border:0; color:white; padding:8px 10px; border-radius:8px; cursor:pointer}
-
-/* mobile adjustments */
-@media (max-width:920px){ .hero{flex-direction:column} .preview img{height:60vh} .info{width:100%} }
-@media (max-width:520px){ .preview img{height:52vh} .title{font-size:18px} .price-badge{font-size:14px;padding:8px} .btn{width:100%} .suggest-grid img{height:120px} }
-</style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div>
-        <h1>INDUS</h1>
-        <small>Just for you.</small>
-      </div>
-      <div style="color:var(--muted);font-size:13px">Wallpapers store</div>
-    </header>
-
-    <main class="hero">
-      <div class="preview" aria-live="polite">
-        <img id="wallImg" src="" alt="Wallpaper preview" />
-        <div id="previewNote" style="margin-top:10px;color:var(--muted);font-size:13px"></div>
-      </div>
-
-      <aside class="info">
-        <div class="title-row">
-          <div>
-            <div id="wallTitle" class="title">Loading…</div>
-            <div id="meta" class="note" style="margin-top:6px"></div>
-          </div>
-          <div id="priceBadge" class="price-badge" style="display:none">₹0</div>
-        </div>
-
-        <p id="desc" class="desc">—</p>
-
-        <div class="actions">
-          <a id="primaryBtn" class="btn btn-download" href="#" download>Download HD</a>
-          <a id="secondaryBtn" class="btn btn-preview" href="#" style="display:none">Preview</a>
-          <div id="buyNote" class="note" style="display:none">After purchase you'll receive a secure download link from the seller.</div>
-        </div>
-
-        <div class="suggest">
-          <h3>You may also like</h3>
-          <div class="suggest-grid" id="suggestGrid"></div>
-        </div>
-      </aside>
-    </main>
-  </div>
-
-  <!-- preview modal -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Preview">
-    <div class="popup" role="document">
-      <button class="closeBtn" id="closeModal">Close</button>
-      <div style="position:relative;">
-        <img id="modalImg" src="" alt="Preview (watermarked)">
-        <div class="wm">INDUS — preview</div>
-      </div>
-    </div>
-  </div>
-
 <script>
-/* ====== Adjust this map to match your files & payment links ====== */
 
+/* ===== WALLPAPER DATABASE ===== */
+const ITEMS = {
+  "tree.jpg":{
+    title:"Lonely Tree",
+    preview:"wallpapers/tree.jpg",
+    hd:"wallpapers/hd/tree.jpg",
+    type:"free",
+    price:0
+  },
 
+  "beige.jpg":{
+    title:"Smooth Beige",
+    preview:"wallpapers/beige.jpg",
+    hd:"wallpapers/hd/beige.jpg",
+    type:"free",
+    price:0
+  },
+
+  "room.jpg":{
+    title:"Empty Room Sunlight",
+    preview:"wallpapers/room.jpg",
+    hd:"wallpapers/hd/room.jpg",
+    type:"free",
+    price:0
+  },
+
+  "moon.jpg":{
+    title:"Moon Night",
+    preview:"wallpapers/moon.jpg",
+    type:"paid",
+    price:29,
+    payLink:"https://gumroad.com"
+  },
+
+  "milkyway.jpg":{
+    title:"Milky Way",
+    preview:"wallpapers/milkyway.jpg",
+    type:"paid",
+    price:15,
+    payLink:"https://gumroad.com"
+  },
+
+  "street.jpg":{
+    title:"Night Street Lamp",
+    preview:"wallpapers/street.jpg",
+    type:"paid",
+    price:99,
+    payLink:"https://gumroad.com"
+  }
+};
+
+/* ===== GET IMAGE FROM URL ===== */
 const params = new URLSearchParams(window.location.search);
 const img = params.get('img') || 'tree.jpg';
-const item = ITEMS[img] || {title:img.replace('.jpg',''), preview:'wallpapers/'+img, hd:'wallpapers/hd/'+img, type:'free', price:0};
+const item = ITEMS[img];
 
+/* ===== UI ELEMENTS ===== */
 const wallImg = document.getElementById('wallImg');
 const wallTitle = document.getElementById('wallTitle');
 const meta = document.getElementById('meta');
@@ -127,88 +65,45 @@ const priceBadge = document.getElementById('priceBadge');
 const primaryBtn = document.getElementById('primaryBtn');
 const secondaryBtn = document.getElementById('secondaryBtn');
 const buyNote = document.getElementById('buyNote');
-const previewNote = document.getElementById('previewNote');
 
-// set UI
+/* ===== SET WALLPAPER ===== */
 wallImg.src = item.preview;
 wallTitle.innerText = item.title;
-desc.innerText = item.type === 'free' ? "Free HD available" : "Premium preview — buy to get full-resolution file.";
-meta.innerText = item.type === 'free' ? "Free • 9:16 preview" : "Premium • 9:16 preview";
 
-// Free vs Paid logic
-if(item.type === 'free'){
-  priceBadge.style.display = 'inline-block';
-  priceBadge.innerText = 'FREE';
-  primaryBtn.className = 'btn btn-download';
-  primaryBtn.href = item.hd;          // must upload HD files here
-  primaryBtn.setAttribute('download','');
-  primaryBtn.innerText = 'Download HD';
-  secondaryBtn.style.display = 'none';
-  buyNote.style.display = 'none';
-  previewNote.innerText = 'Tip: HD download will start when you press Download HD (if HD file uploaded).';
-} else {
-  priceBadge.style.display = 'inline-block';
-  priceBadge.innerText = "₹" + item.price;
-  primaryBtn.className = 'btn btn-buy';
-  primaryBtn.href = item.payLink || '#';
-  primaryBtn.target = '_blank';
-  primaryBtn.innerText = 'Buy now';
+if(item.type==="free"){
+  meta.innerText="Free wallpaper • HD download";
+  desc.innerText="You can download this wallpaper in full resolution.";
+  priceBadge.style.display="inline-block";
+  priceBadge.innerText="FREE";
 
-  // preview opens modal (no download)
-  secondaryBtn.style.display = 'inline-block';
-  secondaryBtn.className = 'btn btn-preview';
-  secondaryBtn.innerText = 'Open preview';
-  secondaryBtn.removeAttribute('download');
-  buyNote.style.display = 'block';
-  previewNote.innerText = 'Preview is watermarked and not downloadable.';
+  primaryBtn.href=item.hd;
+  primaryBtn.innerText="Download HD";
+  primaryBtn.setAttribute("download","");
+
+}else{
+
+  meta.innerText="Premium wallpaper";
+  desc.innerText="Preview available. Buy to unlock full resolution.";
+  priceBadge.style.display="inline-block";
+  priceBadge.innerText="₹"+item.price;
+
+  primaryBtn.href=item.payLink;
+  primaryBtn.innerText="Buy Now";
+  primaryBtn.removeAttribute("download");
+  primaryBtn.target="_blank";
+
+  secondaryBtn.style.display="inline-block";
 }
 
-// Build suggestions stylishly
-const suggestGrid = document.getElementById('suggestGrid');
+/* ===== SUGGESTIONS ===== */
+const suggestGrid=document.getElementById("suggestGrid");
+
 Object.keys(ITEMS).forEach(key=>{
   if(key===img) return;
-  const it = ITEMS[key];
-  const a = document.createElement('a');
-  a.href = 'view.html?img='+key;
-  a.innerHTML = `<img src="${it.preview}" alt="${it.title}">`;
-  // add a subtle staggered float effect
+  const a=document.createElement("a");
+  a.href="view.html?img="+key;
+  a.innerHTML=`<img src="${ITEMS[key].preview}">`;
   suggestGrid.appendChild(a);
 });
 
-// Modal logic: show preview (watermarked) — no download link provided
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
-const closeModal = document.getElementById('closeModal');
-
-secondaryBtn && secondaryBtn.addEventListener('click', function(e){
-  e.preventDefault();
-  if(item.type === 'paid'){
-    modalImg.src = item.preview;
-    modal.classList.add('open');
-    // disable right click on modal image
-    modalImg.oncontextmenu = (ev)=>{ ev.preventDefault(); return false; };
-    // prevent long-press on mobile from opening save dialog (partial deterrent)
-    modalImg.addEventListener('touchstart', (ev)=>{ ev.preventDefault(); }, {passive:false});
-  } else {
-    // should not happen: free items use direct download button
-    window.open(item.preview, '_blank');
-  }
-});
-closeModal && closeModal.addEventListener('click', ()=> { modal.classList.remove('open'); modalImg.src=''; });
-modal.addEventListener('click', (e)=>{ if(e.target === modal){ modal.classList.remove('open'); modalImg.src=''; }});
-
-// Primary download button safety check (warn if HD missing)
-primaryBtn.addEventListener('click', function(e){
-  if(item.type === 'free'){
-    if(!primaryBtn.href || primaryBtn.href.indexOf('/wallpapers/hd/')===-1){
-      e.preventDefault();
-      alert('HD file not found. Upload the HD file to: ' + (item.hd || 'wallpapers/hd/<name>.jpg') + ' and try again.');
-    }
-  }
-});
-
-// Accessibility: close modal with Esc
-document.addEventListener('keydown', (ev)=>{ if(ev.key==='Escape'){ modal.classList.remove('open'); modalImg.src=''; }});
 </script>
-</body>
-</html>
