@@ -1,253 +1,989 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>INDUS Wallpapers</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Wallpapers · INDUS</title>
+  <meta name="description" content="Premium curated wallpapers by INDUS. Explore nature, minimal, cars, and spiritual collections.">
+  <meta name="theme-color" content="#030406">
 
-/* ===== INDUS CATEGORY SECTION ===== */
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&display=swap" rel="stylesheet">
 
-.category-wrap{
-margin-top:120px;
-padding:40px 20px 80px;
-}
+  <style>
+    /* ========== ROOT VARIABLES (Ultra Premium Dark Store) ========== */
+    :root {
+      /* Deep Cinematic Backgrounds */
+      --bg-base: #030406;
+      --bg-surface: #0a0d12;
+      --bg-glass: rgba(10, 13, 18, 0.6);
+      
+      /* Store Accents */
+      --accent-primary: #ff4555;
+      --accent-glow: #ff7a18;
+      --success: #10b981;
+      --paid-gold: #fbbf24;
+      
+      /* Text Colors */
+      --text-main: #f3f7f9;
+      --text-muted: #8b99a4;
+      
+      /* Borders & Shadows */
+      --border-subtle: rgba(255, 255, 255, 0.04);
+      --border-highlight: rgba(255, 255, 255, 0.08);
+      --shadow-premium: 0 30px 60px rgba(0, 0, 0, 0.6);
+      --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.4);
+      
+      /* Smooth Animations */
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      
+      --maxw: 1280px;
+    }
+    /* ========== BASE RESET & TYPOGRAPHY ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.category-title{
-text-align:center;
-font-size:42px;
-font-weight:700;
-letter-spacing:2px;
-margin-bottom:60px;
-font-family:'Playfair Display',serif;
-background:linear-gradient(90deg,#ffffff,#b7c6d1);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* grid */
-.category-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:32px;
-max-width:1200px;
-margin:auto;
-}
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      
+      /* Subtle noise texture & ambient glow for store */
+      background-image: 
+        radial-gradient(circle at 10% 0%, rgba(255, 69, 85, 0.04), transparent 30%),
+        radial-gradient(circle at 90% 100%, rgba(255, 122, 24, 0.04), transparent 30%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-/* card */
-.category-card{
-position:relative;
-height:300px;
-border-radius:22px;
-overflow:hidden;
-cursor:pointer;
-text-decoration:none;
-background:#0b0f12;
-box-shadow:0 20px 60px rgba(0,0,0,.45);
-transition:.45s cubic-bezier(.2,.8,.2,1);
-}
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f252b;
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
 
-.category-card img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:transform .6s ease, filter .6s ease;
-filter:brightness(.65);
-}
+    h1, h2, h3, h4, h5 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
 
-/* glow */
-.category-card::after{
-content:'';
-position:absolute;
-inset:0;
-background:linear-gradient(180deg,transparent,rgba(0,0,0,.8));
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-/* text */
-.category-name{
-position:absolute;
-bottom:24px;
-left:24px;
-font-size:26px;
-font-weight:600;
-color:white;
-z-index:2;
-letter-spacing:1px;
-}
+    ul {
+      list-style: none;
+    }
 
-/* hover animation */
-.category-card:hover{
-transform:translateY(-12px) scale(1.03);
-box-shadow:0 30px 90px rgba(0,0,0,.7);
-}
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    /* ========== HEADER / NAVBAR (Glassmorphism) ========== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(3, 4, 6, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 0;
+      transition: var(--transition-smooth);
+    }
 
-.category-card:hover img{
-transform:scale(1.15);
-filter:brightness(.95);
-}
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* mobile responsive */
-@media(max-width:600px){
-.category-title{font-size:28px}
-.category-card{height:220px}
-.category-name{font-size:20px}
-}
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: var(--transition-bounce);
+    }
 
-</style>
+    .brand-logo:hover {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+
+    .brand-text h1 {
+      font-size: 1.4rem;
+      background: linear-gradient(180deg, #fff, #a1b0b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-text span {
+      font-size: 0.75rem;
+      color: var(--accent-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ========== BUTTONS ========== */
+    .btn-premium {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-glow));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(255, 69, 85, 0.2);
+      transition: var(--transition-bounce);
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn-premium:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(255, 69, 85, 0.35);
+    }
+
+    .btn-glass {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-highlight);
+      color: var(--text-main);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-3px);
+    }
+
+    /* ========== BADGES (Free, Paid, HD) ========== */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge-free {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-paid {
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--paid-gold);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .badge-hd {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+    }
+    /* ========== SEARCH & CATEGORY CONTROLS ========== */
+    .store-controls {
+      padding: 60px 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+    }
+
+    /* Premium Search Bar */
+    .search-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 18px 24px 18px 56px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      font-size: 1.1rem;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .search-input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 122, 24, 0.5);
+      box-shadow: 0 0 25px rgba(255, 122, 24, 0.15), 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Category Pills (Filters) */
+    .category-filters {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition-bounce);
+      letter-spacing: 0.02em;
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-glow));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 10px 25px rgba(255, 69, 85, 0.3);
+      transform: translateY(-2px);
+    }
+    /* ========== WALLPAPER GRID ========== */
+    .wallpaper-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+      padding-bottom: 80px;
+      min-height: 400px; /* Taki search khali hone par height na bigde */
+    }
+
+    /* ========== WALLPAPER CARD (Glassmorphism 3D) ========== */
+    .wall-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-bounce);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+    }
+
+    .wall-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-card), 0 0 20px rgba(255, 69, 85, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Image Wrapper (9:16 Aspect Ratio) */
+    .wall-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 135%; /* Standard mobile wallpaper ratio */
+      overflow: hidden;
+      background: #070a0e;
+    }
+
+    .wall-img-wrap img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+      filter: brightness(0.9) contrast(1.05);
+    }
+
+    .wall-card:hover .wall-img-wrap img {
+      transform: scale(1.06);
+      filter: brightness(1.05) contrast(1.05);
+    }
+
+    /* Card Info Area */
+    .wall-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 12px;
+    }
+
+    .wall-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .wall-title {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .wall-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Card Action Row */
+    .wall-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Watermark inside card (Subtle) */
+    .card-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+    
+    .wall-card:hover .card-watermark {
+      opacity: 1;
+    }
+
+    .card-watermark span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.15);
+      transform: rotate(-20deg);
+      letter-spacing: 0.1em;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    /* ========== PREVIEW MODAL (Glassy Overlay) ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 4, 6, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      position: relative;
+      max-width: 480px;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      border: 1px solid var(--border-highlight);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+      transform: translateY(40px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-img-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 150%; /* 2:3 aspect ratio approx */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* Huge Watermark for HD Preview Modal */
+    .modal-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .modal-watermark span {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 8vw, 4rem);
+      color: rgba(255, 255, 255, 0.15);
+      transform: rotate(-30deg);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      transition: var(--transition-bounce);
+    }
+
+    .close-modal-btn:hover {
+      background: var(--accent-primary);
+      transform: scale(1.1);
+      border-color: var(--accent-primary);
+    }
+
+    /* ========== EMPTY STATE (No Search Results) ========== */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      display: none; /* JS isko handle karega */
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      grid-column: 1 / -1;
+    }
+
+    .empty-icon {
+      font-size: 3.5rem;
+      opacity: 0.4;
+      margin-bottom: 8px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.6rem;
+      color: #fff;
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 600px) {
+      .modal-content { max-width: 100%; border-radius: 12px; }
+      .wallpaper-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    }
+  </style>
 </head>
-
 <body>
+    <header class="site-header">
+    <div class="container nav-container">
+      
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="INDUS Logo" width="48" height="48" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); object-fit: cover;" onerror="this.src='assets/hero-dark.jpg'">
+        <div class="brand-text">
+          <h1>INDUS</h1>
+          <span>Digital Store</span>
+        </div>
+      </a>
 
-<div class="top">INDUS Wallpapers</div>
+      <nav class="nav-links" style="display: flex; gap: 32px; font-size: 0.95rem; font-weight: 600; align-items: center;">
+        <a href="index.html" style="color: var(--text-muted); transition: var(--transition-smooth);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Home</a>
+        <a href="content.html" style="color: var(--text-muted); transition: var(--transition-smooth);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Content</a>
+        
+        <a href="wallpaper.html" style="color: #fff; position: relative;">
+          Wallpapers
+          <div style="position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow)); border-radius: 2px;"></div>
+        </a>
+        
+        <a href="contact.html" style="color: var(--text-muted); transition: var(--transition-smooth);" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'">Contact</a>
+      </nav>
 
-<div class="search">
-<input type="text" id="search" placeholder="Search wallpapers..." onkeyup="searchWall()">
-</div>
+    </div>
+  </header>
+  <main class="container" style="min-height: 80vh;">
+    
+    <div style="text-align: center; margin-top: 60px;">
+      <h2 style="font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 16px; text-shadow: 0 10px 30px rgba(0,0,0,0.5);">Curated Visuals</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+        Premium wallpapers crafted for focus and inspiration. Search your mood or explore our exclusive collections.
+      </p>
+    </div>
 
-<div class="grid" id="grid">
+    <section class="store-controls">
+      
+      <div class="search-wrapper">
+        <div class="search-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search wallpapers (e.g., dark, lonely, street)..." autocomplete="off" spellcheck="false">
+      </div>
 
-<a class="wall" href="view.html?img=tree.jpg">
-<img src="wallpapers/tree.jpg">
-<div class="name">Lonely Tree (Free)</div>
-</a>
+      <div class="category-filters" id="categoryFilters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="nature">Nature</button>
+        <button class="filter-btn" data-filter="motivational">Motivational</button>
+        <button class="filter-btn" data-filter="minimal">Minimal</button>
+        <button class="filter-btn" data-filter="cars">Cars</button>
+        <button class="filter-btn" data-filter="spiritual">Spiritual</button>
+      </div>
 
-<a class="wall" href="view.html?img=beige.jpg">
-<img src="wallpapers/beige.jpg">
-<div class="name">Smooth Beige (Free)</div>
-</a>
+    </section>
+    <div class="wallpaper-grid" id="wallpaperGrid">
+      
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🏜️</div>
+        <h3>No wallpapers found</h3>
+        <p>We couldn't find anything matching your search. Try a different keyword or category.</p>
+        <button class="btn-glass" onclick="resetFilters()" style="margin-top: 12px; padding: 10px 20px;">
+          Clear Search
+        </button>
+      </div>
+<article class="wall-card" data-category="nature" data-title="lonely tree quiet morning nature landscape green">
+        <div class="wall-img-wrap">
+          <img loading="lazy" src="assets/tree.jpg" alt="Lonely Tree" onerror="this.src='assets/hero-dark.jpg'">
+          <div class="card-watermark"><span>INDUS</span></div>
+          <div style="position: absolute; top: 12px; left: 12px; z-index: 5;">
+            <span class="badge badge-hd">4K HD</span>
+          </div>
+        </div>
+        
+        <div class="wall-info">
+          <div class="wall-title-row">
+            <h3 class="wall-title">Lonely Tree</h3>
+            <span class="badge badge-free">Free</span>
+          </div>
+          <p class="wall-desc">A quiet morning observation of a lone tree against a breathtaking landscape. Perfect for a calm lock screen.</p>
+          
+          <div class="wall-actions">
+            <a href="assets/hd/tree.jpg" download class="btn-glass" style="flex: 1; padding: 10px; font-size: 0.85rem;">Download HD</a>
+            <button class="btn-glass preview-trigger" data-img="assets/tree.jpg" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button>
+          </div>
+        </div>
+      </article>
 
-<a class="wall" href="view.html?img=room.jpg">
-<img src="wallpapers/room.jpg">
-<div class="name">Empty Room (Free)</div>
-</a>
+      <article class="wall-card" data-category="minimal" data-title="smooth beige minimal clean aesthetic simple light">
+        <div class="wall-img-wrap">
+          <img loading="lazy" src="assets/beige.jpg" alt="Smooth Beige" onerror="this.src='assets/hero-dark.jpg'">
+          <div class="card-watermark"><span>INDUS</span></div>
+          <div style="position: absolute; top: 12px; left: 12px; z-index: 5;">
+            <span class="badge badge-hd">4K HD</span>
+          </div>
+        </div>
+        
+        <div class="wall-info">
+          <div class="wall-title-row">
+            <h3 class="wall-title">Smooth Beige</h3>
+            <span class="badge badge-free">Free</span>
+          </div>
+          <p class="wall-desc">Clean, warm, and distraction-free minimal aesthetic. Keeps your home screen icons popping without the clutter.</p>
+          
+          <div class="wall-actions">
+            <a href="assets/hd/beige.jpg" download class="btn-glass" style="flex: 1; padding: 10px; font-size: 0.85rem;">Download HD</a>
+            <button class="btn-glass preview-trigger" data-img="assets/beige.jpg" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button>
+          </div>
+        </div>
+      </article>
+      <article class="wall-card" data-category="spiritual" data-title="moon night dark space spiritual quiet peace universe">
+        <div class="wall-img-wrap">
+          <img loading="lazy" src="assets/moon.jpg" alt="Moon Night" onerror="this.src='assets/hero-dark.jpg'">
+          <div class="card-watermark"><span>INDUS</span></div>
+          <div style="position: absolute; top: 12px; left: 12px; z-index: 5;">
+            <span class="badge badge-hd">8K Ultra HD</span>
+          </div>
+        </div>
+        
+        <div class="wall-info">
+          <div class="wall-title-row">
+            <h3 class="wall-title">Moon Night</h3>
+            <span class="badge badge-paid">₹79</span>
+          </div>
+          <p class="wall-desc">A deeply spiritual and calming view of the moon. Perfect for late-night focus and finding stillness within.</p>
+          
+          <div class="wall-actions">
+            <a href="https://indus.gumroad.com/l/asndjt" target="_blank" rel="noopener" class="btn-premium" style="flex: 1; padding: 10px; font-size: 0.85rem;">Buy HD - ₹79</a>
+            <button class="btn-glass preview-trigger" data-img="assets/moon.jpg" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button>
+          </div>
+        </div>
+      </article>
 
-<a class="wall" href="view.html?img=moon.jpg">
-<img src="wallpapers/moon.jpg">
-<div class="name">Moon Night (₹79)</div>
-</a>
+      <article class="wall-card" data-category="motivational" data-title="night street lamp dark moody lonely motivational focus hustle">
+        <div class="wall-img-wrap">
+          <img loading="lazy" src="assets/street.jpg" alt="Night Street Lamp" onerror="this.src='assets/hero-dark.jpg'">
+          <div class="card-watermark"><span>INDUS</span></div>
+          <div style="position: absolute; top: 12px; left: 12px; z-index: 5;">
+            <span class="badge badge-hd">8K Ultra HD</span>
+          </div>
+        </div>
+        
+        <div class="wall-info">
+          <div class="wall-title-row">
+            <h3 class="wall-title">Night Street Lamp</h3>
+            <span class="badge badge-paid">₹99</span>
+          </div>
+          <p class="wall-desc">Moody, cinematic street lamp glowing in the dark. A reminder to keep hustling even when the path is lonely.</p>
+          
+          <div class="wall-actions">
+            <a href="https://gumroad.com" target="_blank" rel="noopener" class="btn-premium" style="flex: 1; padding: 10px; font-size: 0.85rem;">Buy HD - ₹99</a>
+            <button class="btn-glass preview-trigger" data-img="assets/street.jpg" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button>
+          </div>
+        </div>
+      </article>
+      <article class="wall-card" data-category="nature" data-title="milky way stars night sky space universe nature">
+        <div class="wall-img-wrap">
+          <img loading="lazy" src="assets/milkyway.jpg" alt="Milky Way" onerror="this.src='assets/hero-dark.jpg'">
+          <div class="card-watermark"><span>INDUS</span></div>
+          <div style="position: absolute; top: 12px; left: 12px; z-index: 5;">
+            <span class="badge badge-hd">8K Ultra HD</span>
+          </div>
+        </div>
+        
+        <div class="wall-info">
+          <div class="wall-title-row">
+            <h3 class="wall-title">Milky Way</h3>
+            <span class="badge badge-paid">₹15</span>
+          </div>
+          <p class="wall-desc">Vast, infinite, and mesmerizing. A breathtaking view of our galaxy to remind you of the bigger picture.</p>
+          
+          <div class="wall-actions">
+            <a href="https://gumroad.com" target="_blank" rel="noopener" class="btn-premium" style="flex: 1; padding: 10px; font-size: 0.85rem;">Buy HD - ₹15</a>
+            <button class="btn-glass preview-trigger" data-img="assets/milkyway.jpg" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button>
+          </div>
+        </div>
+      </article>
 
-<a class="wall" href="view.html?img=milkyway.jpg">
-<img src="wallpapers/milkyway.jpg">
-<div class="name">Milky Way (₹15)</div>
-</a>
+      <article class="wall-card" data-category="minimal" data-title="empty room sunlight clean minimal morning peace">
+        <div class="wall-img-wrap">
+          <img loading="lazy" src="assets/room.jpg" alt="Empty Room Sunlight" onerror="this.src='assets/hero-dark.jpg'">
+          <div class="card-watermark"><span>INDUS</span></div>
+          <div style="position: absolute; top: 12px; left: 12px; z-index: 5;">
+            <span class="badge badge-hd">4K HD</span>
+          </div>
+        </div>
+        
+        <div class="wall-info">
+          <div class="wall-title-row">
+            <h3 class="wall-title">Empty Room Sunlight</h3>
+            <span class="badge badge-free">Free</span>
+          </div>
+          <p class="wall-desc">The quiet comfort of morning light pouring into an empty space. A visual breath of fresh air.</p>
+          
+          <div class="wall-actions">
+            <a href="assets/hd/room.jpg" download class="btn-glass" style="flex: 1; padding: 10px; font-size: 0.85rem;">Download HD</a>
+            <button class="btn-glass preview-trigger" data-img="assets/room.jpg" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button>
+          </div>
+        </div>
+      </article>
 
-<a class="wall" href="view.html?img=street.jpg">
-<img src="wallpapers/street.jpg">
-<div class="name">Night Street Lamp (₹99)</div>
-</a>
-<!-- ===== CATEGORIES SECTION ===== -->
-<!-- ===== INDUS CATEGORIES ===== -->
+      <article class="wall-card" data-category="cars" data-title="cars sports vintage machine speed dark aesthetic">
+        <div class="wall-img-wrap">
+          <img loading="lazy" src="assets/cars.jpg" alt="Cinematic Car" onerror="this.src='assets/hero-dark.jpg'">
+          <div class="card-watermark"><span>INDUS</span></div>
+          <div style="position: absolute; top: 12px; left: 12px; z-index: 5;">
+            <span class="badge badge-hd">4K HD</span>
+          </div>
+        </div>
+        
+        <div class="wall-info">
+          <div class="wall-title-row">
+            <h3 class="wall-title">Cinematic Car</h3>
+            <span class="badge badge-free">Free</span>
+          </div>
+          <p class="wall-desc">Sleek, powerful, and moody. The perfect dark aesthetic for automotive enthusiasts.</p>
+          
+          <div class="wall-actions">
+            <a href="assets/hd/cars.jpg" download class="btn-glass" style="flex: 1; padding: 10px; font-size: 0.85rem;">Download HD</a>
+            <button class="btn-glass preview-trigger" data-img="assets/cars.jpg" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button>
+          </div>
+        </div>
+      </article>
 
-<section class="category-wrap">
+    </div> </main> 
+<div class="modal-overlay" id="previewModal">
+    <div class="modal-content">
+      <button class="close-modal-btn" id="closeModal" title="Close Preview">✕</button>
+      
+      <div class="modal-img-wrapper">
+        <img id="modalImage" class="modal-img" src="" alt="HD Preview">
+        
+        <div class="modal-watermark">
+          <span>INDUS</span>
+        </div>
+      </div>
+      
+      <div style="padding: 16px; text-align: center; background: #070a0e; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0;">Preview is watermarked. Download or Buy to get the high-resolution clean version.</p>
+      </div>
+    </div>
+  </div>
 
-<div class="category-title">
-Discover Wallpaper Collections
-</div>
+  <footer style="background: #030406; border-top: 1px solid var(--border-subtle); padding: 40px 0 20px; text-align: center; margin-top: auto;">
+    <div class="container">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin-bottom: 8px;">INDUS</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">Making the impossible... Possible.</p>
+      <div style="color: rgba(255,255,255,0.3); font-size: 0.8rem;">
+        &copy; 2026 INDUS. All rights reserved.
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. DOM Elements (HTML ke elements ko JS me lana)
+      const searchInput = document.getElementById('searchInput');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const wallCards = document.querySelectorAll('.wall-card');
+      const emptyState = document.getElementById('emptyState');
+      
+      // Modal Elements
+      const previewModal = document.getElementById('previewModal');
+      const modalImage = document.getElementById('modalImage');
+      const closeModalBtn = document.getElementById('closeModal');
+      const previewTriggers = document.querySelectorAll('.preview-trigger');
 
-<div class="category-grid">
+      // Current Active Category (Default: all)
+      let currentCategory = 'all';
+      // 2. Main Filter Function (Check Search & Category)
+      function filterWallpapers() {
+        const searchText = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
 
-<a href="cars.html" class="category-card">
-<img src="assets/cars.jpg">
-<div class="category-name">Cars</div>
-</a>
+        wallCards.forEach(card => {
+          // Card ki details nikaalna (data-category aur data-title se)
+          const cardCategory = card.getAttribute('data-category');
+          const cardTitleInfo = card.getAttribute('data-title').toLowerCase();
 
-<a href="nature.html" class="category-card">
-<img src="assets/nature.jpg">
-<div class="category-name">Nature</div>
-</a>
+          // Category Check
+          const matchCategory = (currentCategory === 'all' || currentCategory === cardCategory);
+          
+          // Search Check
+          const matchSearch = cardTitleInfo.includes(searchText);
 
-<a href="minimal.html" class="category-card">
-<img src="assets/minimal.jpg">
-<div class="category-name">Minimal</div>
-</a>
+          // Dono conditions true hain toh dikhao, warna chupao
+          if (matchCategory && matchSearch) {
+            card.style.display = 'flex';
+            // Smooth reveal animation reset
+            card.style.animation = 'none';
+            card.offsetHeight; /* Trigger reflow */
+            card.style.animation = 'fadeUp 0.5s ease forwards';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
 
-<a href="motivational.html" class="category-card">
-<img src="assets/motivation.jpg">
-<div class="category-name">Motivation</div>
-</a>
+        // Agar ek bhi wallpaper nahi mila, toh "Empty State" dikhao
+        if (visibleCount === 0) {
+          emptyState.style.display = 'flex';
+        } else {
+          emptyState.style.display = 'none';
+        }
+      }
+      // 3. Search Bar Event (Jaise hi type hoga, engine chalega)
+      searchInput.addEventListener('input', filterWallpapers);
 
-<a href="spiritual.html" class="category-card">
-<img src="assets/spiritual.jpg">
-<div class="category-name">Spiritual</div>
-</a>
+      // 4. Category Buttons Event (Click karne par active category change karna)
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          
+          // Sabhi buttons se 'active' class hatao
+          filterBtns.forEach(b => b.classList.remove('active'));
+          
+          // Jis button par click kiya, usko 'active' glow do
+          btn.classList.add('active');
 
-</div>
-</section>
+          // Current category ko update karo aur engine (filter) chalao
+          currentCategory = btn.getAttribute('data-filter');
+          filterWallpapers();
+        });
+      });
 
-<div style="margin-top:80px; text-align:center;">
-<h2 style="font-size:34px; margin-bottom:35px; letter-spacing:1px;">
-Explore Categories
-</h2>
-</div>
+      // 5. Reset Filters (Empty State ke "Clear Search" button ke liye)
+      window.resetFilters = function() {
+        searchInput.value = '';         // Search box khali karo
+        currentCategory = 'all';        // Category ko 'all' par set karo
+        
+        // Buttons ka glow reset karo
+        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns[0].classList.add('active'); // Sirf 'All' wale par glow lagao
+        
+        // Engine ko wapas fresh start do
+        filterWallpapers();
+      };
+      // 6. Modal Open Logic (Eye Icon Par Click)
+      previewTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault(); // Link ka default kaam roko
+          
+          // Button se image ka link nikalo
+          const imgSrc = trigger.getAttribute('data-img');
+          
+          // Modal ke andar wo image set karo
+          modalImage.src = imgSrc;
+          
+          // Modal ko screen par lao (active class add karke)
+          previewModal.classList.add('active');
+          
+          // Scroll rok do taaki background move na ho
+          document.body.style.overflow = 'hidden'; 
+        });
+      });
 
-<div style="
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:28px;
-padding:20px;
-">
+      // 7. Modal Close Logic (Close "✕" button par click)
+      closeModalBtn.addEventListener('click', () => {
+        previewModal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Scroll wapas chalu karo
+        
+        // Animation khatam hone ke baad image source hata do
+        setTimeout(() => { modalImage.src = ''; }, 400); 
+      });
 
-<a href="cars.html" style="text-decoration:none; position:relative;">
-<img src="assets/cars.jpg" style="width:100%; height:220px; object-fit:cover; border-radius:18px; filter:brightness(.75);">
-<div style="
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:18px;
-font-size:20px;
-font-weight:600;
-background:linear-gradient(transparent,rgba(0,0,0,.85));
-color:white;
-text-align:center;">
-Cars Wallpapers
-</div>
-</a>
+      // 8. Modal Close Logic (Background/Glass overlay par click)
+      previewModal.addEventListener('click', (e) => {
+        // Agar click modal ke bahar wale dark area par hua hai tabhi band karo
+        if (e.target === previewModal) {
+          previewModal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+          setTimeout(() => { modalImage.src = ''; }, 400);
+        }
+      });
+      // 9. Close Modal on 'Escape' Key Press
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && previewModal.classList.contains('active')) {
+          previewModal.classList.remove('active');
+          document.body.style.overflow = 'auto'; // Scroll wapas chalu
+          setTimeout(() => { modalImage.src = ''; }, 400);
+        }
+      });
 
-<a href="nature.html" style="text-decoration:none; position:relative;">
-<img src="assets/nature.jpg" style="width:100%; height:220px; object-fit:cover; border-radius:18px; filter:brightness(.75);">
-<div style="position:absolute;bottom:0;left:0;right:0;padding:18px;font-size:20px;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.85));color:white;text-align:center;">
-Nature Wallpapers
-</div>
-</a>
+      // 10. Basic Anti-Theft Protection (Disable Right-Click & Drag)
+      // Modal wali badi image ke liye:
+      modalImage.addEventListener('contextmenu', (e) => e.preventDefault());
+      modalImage.addEventListener('dragstart', (e) => e.preventDefault());
+      
+      // Grid wali saari choti images ke liye:
+      document.querySelectorAll('.wall-img-wrap img').forEach(img => {
+        img.addEventListener('contextmenu', (e) => e.preventDefault());
+        img.addEventListener('dragstart', (e) => e.preventDefault());
+      });
+      
+      // Filter ko pehli baar chalana taaki default 'All' set ho jaye
+      filterWallpapers();
 
-<a href="minimal.html" style="text-decoration:none; position:relative;">
-<img src="assets/minimal.jpg" style="width:100%; height:220px; object-fit:cover; border-radius:18px; filter:brightness(.75);">
-<div style="position:absolute;bottom:0;left:0;right:0;padding:18px;font-size:20px;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.85));color:white;text-align:center;">
-Minimal Wallpapers
-</div>
-</a>
-
-<a href="motivational.html" style="text-decoration:none; position:relative;">
-<img src="assets/motivation.jpg" style="width:100%; height:220px; object-fit:cover; border-radius:18px; filter:brightness(.75);">
-<div style="position:absolute;bottom:0;left:0;right:0;padding:18px;font-size:20px;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.85));color:white;text-align:center;">
-Motivational Wallpapers
-</div>
-</a>
-
-<a href="spiritual.html" style="text-decoration:none; position:relative;">
-<img src="assets/spiritual.jpg" style="width:100%; height:220px; object-fit:cover; border-radius:18px; filter:brightness(.75);">
-<div style="position:absolute;bottom:0;left:0;right:0;padding:18px;font-size:20px;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.85));color:white;text-align:center;">
-Spiritual Wallpapers
-</div>
-</a>
-
-</div>
-
-</section>
-
-</div>
-
-<script>
-function searchWall(){
-let input=document.getElementById("search").value.toLowerCase();
-let items=document.querySelectorAll(".wall");
-
-items.forEach(item=>{
-let text=item.innerText.toLowerCase();
-item.style.display=text.includes(input)?"block":"none";
-});
-}
-</script>
-
-</body>
+    }); // Yeh bracket 'DOMContentLoaded' event ko close karta hai
+  </script>
+  <style>
+    /* ========== SMOOTH REVEAL ANIMATION (For Filtered Cards) ========== */
+    @keyframes fadeUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+  </body>
 </html>
