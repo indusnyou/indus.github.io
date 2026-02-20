@@ -27,6 +27,7 @@
   <link rel="icon" href="assets/logo.png" type="image/png">
 
   <!-- === CRITICAL STYLES: paste entire block === -->
+  
   <style>
   /* ---------- ROOT VARIABLES ---------- */
   :root{
@@ -226,31 +227,40 @@
 
   <!-- ========== HERO (responsive picture with fallbacks) ========== -->
   <section class="hero" aria-label="Hero">
-    <!-- using picture for responsive sizes -->
-    <picture class="hero-bg" role="img" aria-hidden="true">
-      <source srcset="assets/hero-1600.jpg" media="(min-width:1000px)">
-      <source srcset="assets/hero-1200.jpg" media="(min-width:600px)">
-      <img src="assets/hero-800.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'">
-    </picture>
-    <div class="hero-overlay" aria-hidden="true"></div>
 
-    <div class="hero-inner container">
-      <div class="eyebrow">INDUS — visual stories</div>
-      <h2>INDUS</h2>
-      <p class="lead">Cinematic shorts, quiet observations, and minimal wallpapers made for focus. New visuals and short films every month.</p>
+  <!-- VIDEO BACKGROUND -->
+  <video class="hero-bg" autoplay muted loop playsinline preload="auto">
+    <source src="assets/hero-video.mp4" type="video/mp4">
+  </video>
 
-      <div class="cta-row" role="group" aria-label="Primary actions">
-        <a class="btn btn-primary" href="https://youtu.be/kkyywowKCiw" target="_blank" rel="noopener">▶ Watch Latest</a>
-        <a class="btn btn-ghost" href="/indus.github.io/content.html">Explore Content</a>
-      </div>
+  <!-- DARK OVERLAY -->
+  <div class="hero-overlay"></div>
 
-      <div class="hero-meta" aria-hidden="true">
-        <div class="meta-item">New drops — monthly</div>
-        <div class="meta-item">Curated wallpapers</div>
-        <div class="meta-item">Quiet storytelling</div>
-      </div>
+  <!-- TEXT CONTENT -->
+  <div class="hero-inner container">
+
+    <div class="eyebrow">INDUS — visual stories</div>
+
+    <h2>INDUS</h2>
+
+    <p class="lead">
+      Cinematic shorts, quiet observations, and minimal wallpapers made for focus.
+      New visuals and short films every month.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://youtu.be/kkyywowKCiw" target="_blank">▶ Watch Latest</a>
+      <a class="btn btn-ghost" href="/indus.github.io/content.html">Explore Content</a>
     </div>
-  </section>
+
+    <div class="hero-meta">
+      <div class="meta-item">New drops — monthly</div>
+      <div class="meta-item">Curated wallpapers</div>
+      <div class="meta-item">Quiet storytelling</div>
+    </div>
+
+  </div>
+</section>
 
   <!-- ========== WALLPAPER PREVIEW STRIP (IMMEDIATELY BELOW HERO) ========== -->
   <section class="wall-preview" aria-labelledby="wall-title">
