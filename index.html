@@ -190,6 +190,159 @@
 
   /* accessibility tiny helper */
   :focus{outline:2px solid rgba(255,255,255,0.06);outline-offset:3px}
+  /* ================= IMPROVEMENTS: HERO TEXT, BUTTONS & NAV ICONS ================= */
+
+/* make hero fill and text more legible over video */
+.hero{
+  /* ensure full-screen hero on large screens */
+  height:100vh;        /* full viewport height */
+  min-height:76vh;
+  display:grid;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+/* stronger soft overlay (keeps cinematic colour but improves contrast) */
+.hero-overlay{
+  background:
+    linear-gradient(180deg, rgba(6,8,10,0.45) 0%, rgba(6,8,10,0.35) 35%, rgba(6,8,10,0.55) 100%),
+    linear-gradient(0deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.0) 40%);
+  z-index:1;
+}
+
+/* HERO TEXT: eyebrow, subtitle, spacing, readability */
+.hero-inner{
+  position:relative;
+  z-index:2;
+  text-align:center;
+  padding:36px 22px;
+  max-width:980px;
+  margin:0 auto;
+}
+.hero .eyebrow{
+  color: rgba(255,255,255,0.78);
+  font-weight:700;
+  letter-spacing:0.6px;
+  font-size:13px;
+  background: rgba(255,255,255,0.02);
+  padding:8px 12px;
+  border-radius:999px;
+  display:inline-block;
+  margin-bottom:12px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.45);
+}
+
+/* the main title remains large, keep that */
+.hero h2{
+  font-size:92px;
+  line-height:0.95;
+  margin:6px 0 6px;
+  color: #fff;
+  text-shadow: 0 18px 60px rgba(0,0,0,0.6);
+  letter-spacing:1px;
+}
+
+/* subtitle / lead — make more readable & visible */
+.hero p.lead{
+  color: rgba(243,247,249,0.92);     /* brighter, more legible */
+  font-size:18px;
+  max-width:820px;
+  margin: 8px auto 12px;
+  line-height:1.7;
+  text-shadow: 0 6px 22px rgba(0,0,0,0.55);
+  opacity:0.96;
+}
+
+/* CTA buttons — bolder, more glassy & lifted */
+.cta-row{ display:flex; gap:14px; justify-content:center; align-items:center; margin-top:18px; flex-wrap:wrap; }
+.btn{
+  padding:14px 22px; border-radius:14px; font-weight:800; font-size:15px; cursor:pointer; display:inline-flex; gap:10px; align-items:center;
+  transition: transform .26s cubic-bezier(.2,.9,.2,1), box-shadow .26s;
+  border:0;
+}
+.btn-primary{
+  background: linear-gradient(90deg,#ff4d5a,#ff7a18);
+  color:#fff;
+  box-shadow: 0 22px 70px rgba(255,90,110,0.12), 0 6px 24px rgba(0,0,0,0.45);
+}
+.btn-primary:hover{ transform: translateY(-6px) scale(1.02); box-shadow:0 30px 90px rgba(255,90,110,0.14) }
+.btn-ghost{
+  background: rgba(255,255,255,0.03);
+  color: #e8f3f7;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+}
+.btn-ghost:hover{ transform: translateY(-4px) }
+
+/* hero meta (small tags under buttons) */
+.hero-meta{ margin-top:18px; color: rgba(255,255,255,0.6); display:flex; gap:18px; justify-content:center; font-size:14px; opacity:0.95; }
+
+/* ================= NAV ICONS: circular floating feel ================= */
+
+/* make the small thumbnails circular and floating */
+.nav-item{
+  background: rgba(255,255,255,0.02);
+  border-radius:12px;
+  padding:8px 12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  transition: transform .28s, box-shadow .28s, background .28s;
+}
+
+/* circular icon */
+.nav-item .thumb{
+  width:44px; height:44px; border-radius:50%; overflow:hidden; display:inline-flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.04));
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+  flex-shrink:0;
+}
+
+/* inside the circular thumb, center img and shrink a bit */
+.nav-item .thumb img{
+  width:78%; height:78%; object-fit:contain; display:block; filter: none;
+  border-radius:8px;
+}
+
+/* label text styling */
+.nav-item span{ color: #e9f7fb; font-weight:700; font-size:14px; }
+
+/* hover lift */
+.nav-item:hover{ transform: translateY(-6px); background: rgba(255,255,255,0.03); box-shadow: 0 26px 72px rgba(0,0,0,0.55) }
+
+/* header right (email + social) make compact and icon-first */
+.header-right{ gap:10px; align-items:center; display:flex; }
+
+/* make social pills subtle, circular icon then text */
+.social-pill, .email-pill{
+  background: rgba(255,255,255,0.02);
+  padding:8px 10px;
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1px solid rgba(255,255,255,0.03);
+  box-shadow:0 8px 22px rgba(0,0,0,0.45);
+}
+
+/* reduce prominence of text on tiny screens, keep icon */
+@media (max-width:760px){
+  .hero h2{ font-size:34px; }
+  .hero p.lead{ font-size:15px; max-width:92%; padding:0 6px; }
+  .cta-row{ flex-direction:column; gap:10px; }
+  .nav-item span{ display:none; }            /* hide text labels in nav on mobile (icon-only nav) */
+  .social-pill, .email-pill{ padding:8px; font-size:0; min-width:44px; justify-content:center } /* show only icons */
+  .header-right .social-pill span, .header-right .email-pill span{ font-size:18px } /* keep glyph visible */
+  nav.main-nav{ right:10px; top:60px; } /* keep menu overlay position */
+}
+
+/* ensure wall preview and content don't move up under header on small screens */
+@media (max-width:420px){
+  .hero-inner{ padding:20px 14px; }
+  .hero h2{ font-size:30px; }
+}
   </style>
 
   <!-- End Critical Styles -->
