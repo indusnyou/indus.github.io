@@ -10,16 +10,19 @@
 
 <style>
 :root{
-  --bg:#07090b;
+  --bg:#050607;
   --panel:#0f1418;
   --muted:#9aa3a8;
   --accent:#ff4d5a;
-  --maxw:1160px;
+  --accent-2:#ff7a18;
   --glass: rgba(255,255,255,0.03);
   --soft: rgba(255,255,255,0.02);
+  --maxw:1160px;
+  --radius:14px;
+  --ease:cubic-bezier(.2,.9,.2,1);
 }
 
-/* base */
+/* reset & base */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -28,177 +31,199 @@ body{
   background:linear-gradient(180deg,#050607 0%, #081015 100%);
   color:#e9f1f6;
   -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-font-feature-settings:"liga" on;
 }
 a{color:inherit;text-decoration:none}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
 
-/* header / nav */
+/* header */
 .site-header{
-  position:sticky; top:0; z-index:60;
-  background:linear-gradient(180deg, rgba(6,8,10,0.9), rgba(6,8,10,0.7));
+  position:sticky;
+  top:0;
+  z-index:80;
+  background:linear-gradient(180deg, rgba(6,8,10,0.92), rgba(6,8,10,0.7));
   border-bottom:1px solid rgba(255,255,255,0.02);
   backdrop-filter: blur(6px);
 }
-.nav-row{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;gap:12px}
-.brand{display:flex;align-items:center;gap:12px}
-.brand h1{font-family:'Playfair Display', serif; font-size:26px; margin:0}
-.brand small{display:block;color:var(--muted);font-size:12px;margin-top:-4px}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:14px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .logo{
+  width:56px;height:56px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#0b0f12,#0f1418);border:1px solid rgba(255,255,255,0.03);
+  box-shadow:0 6px 18px rgba(2,6,23,0.6);
+}
+.brand .logo img{width:42px;height:42px;object-fit:cover;display:block}
+.brand h1{font-family:'Playfair Display', serif; font-size:18px; margin:0;letter-spacing:0.6px}
+.brand small{display:block;color:var(--muted);font-size:11px;margin-top:0}
 
-/* styled social icons (pill) */
-.main-nav{display:flex;align-items:center;gap:10px}
-.main-nav a{font-weight:700;padding:8px 12px;border-radius:10px;color:#dfe9ee;border:1px solid transparent}
-.main-nav a:hover{background:var(--glass);transform:translateY(-2px)}
+/* nav menu */
+.main-nav{display:flex;align-items:center;gap:12px}
+.nav-item{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:transparent;
+  transition:transform .25s var(--ease), background .25s var(--ease);
+  position:relative;overflow:visible;
+}
+.nav-item .thumb{
+  width:34px;height:34px;border-radius:8px;background:#0c1114;border:1px solid rgba(255,255,255,0.03);overflow:hidden;
+  display:inline-block;flex-shrink:0;
+  transform-origin:center;transition:transform .35s var(--ease);
+}
+.nav-item .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.nav-item span{font-weight:700;font-size:13px;color:#e5eef2}
+.nav-item:hover{transform:translateY(-4px);background:var(--glass)}
+.nav-item:hover .thumb{transform:scale(1.06) rotate(-1deg)}
 
-/* compact icon buttons (for social links) */
+/* social pills (right) */
+.socials{display:flex;gap:10px;align-items:center}
 .social-pill{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);font-weight:700}
 .social-pill span{display:inline-block;min-width:20px;text-align:center;font-weight:800}
 
+/* mobile menu button */
+#menuBtn{display:none;background:none;border:none;color:white;font-size:24px;padding:6px;cursor:pointer}
+
 /* hero */
-.hero{min-height:72vh;display:grid;align-items:center;position:relative;overflow:hidden}
+.hero{min-height:72vh;display:grid;align-items:center;position:relative;overflow:hidden;margin-bottom:8px}
 .hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;filter:brightness(.46) saturate(.95);z-index:0}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(9,11,13,0.2), rgba(6,7,9,0.6));z-index:1}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(9,11,13,0.12), rgba(6,7,9,0.6));z-index:1}
 .hero-inner{position:relative;z-index:2;padding:60px 20px;text-align:center;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center}
-.hero h2{font-family:'Playfair Display', serif;font-size:64px;margin:0;line-height:1}
-.hero .tag{color:var(--muted);font-size:18px;margin:0}
-.cta-row{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:12px}
+.hero h2{font-family:'Playfair Display', serif;font-size:76px;margin:0;line-height:1;letter-spacing:1px;animation:fadeUp .9s both}
+.hero .tag{color:var(--muted);font-size:18px;margin:0;animation:fadeUp .9s .08s both}
+.cta-row{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px;animation:fadeUp .9s .15s both}
 .btn{padding:14px 18px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;display:inline-block}
-.btn-primary{background:linear-gradient(90deg,var(--accent), #e11d48);color:white;box-shadow:0 10px 30px rgba(225,29,72,0.14)}
+.btn-primary{background:linear-gradient(90deg,var(--accent), var(--accent-2));color:white;box-shadow:0 12px 32px rgba(255,70,95,0.16)}
 .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:#dbe7eb}
 
-/* main layout */
-main{padding:48px 0 90px}
-.grid-2{display:grid;grid-template-columns:1fr 370px;gap:32px;align-items:start}
+/* wallpaper hero-preview (immediately below hero) */
+.wall-preview{
+  padding:40px 20px 36px;
+  background:linear-gradient(180deg, transparent, rgba(4,6,8,0.35));
+  z-index:10;
+  margin-bottom:20px;
+}
+.wall-preview .wrap{max-width:1100px;margin:0 auto}
+.wall-title{
+  font-family:'Playfair Display', serif;font-size:34px;margin:0 0 8px;letter-spacing:0.6px;
+  display:flex;align-items:center;gap:12px;justify-content:center;
+}
+.wall-sub{color:var(--muted);margin:0 auto 18px;text-align:center;max-width:760px}
+
+/* CTA */
+.wall-cta{text-align:center;margin-bottom:18px}
+.wall-btn{
+  display:inline-block;padding:12px 34px;border-radius:40px;font-weight:700;letter-spacing:0.4px;background:linear-gradient(135deg,#ff3b5c,#ff7a18);color:white;box-shadow:0 12px 38px rgba(255,70,90,0.18);transition:transform .28s var(--ease), box-shadow .28s var(--ease)
+}
+.wall-btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 24px 60px rgba(255,70,90,0.28)}
+
+/* wall strip gallery */
+.wall-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;align-items:start}
+.wall-tile{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));transition:transform .35s var(--ease), box-shadow .35s var(--ease)}
+.wall-tile img{width:100%;height:320px;object-fit:cover;display:block}
+.wall-tile .meta{padding:10px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.wall-tile:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+
+/* main content */
+main{padding:28px 0 90px}
+.grid-2{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
 .card{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:20px;border-radius:12px;border:1px solid var(--soft)}
 .lead{color:var(--muted);margin:0 0 12px;font-size:15px}
 .h3{font-family:'Playfair Display', serif;font-size:20px;margin:0 0 10px}
 
-/* Featured video block */
+/* heartwarming letter (large friendly paragraph) */
+.letter{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);color:#e8f1f5;margin-top:20px;line-height:1.6}
+
+/* video & socials */
 .feature-video{margin-top:18px;border-radius:12px; overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
-.feature-video .player{width:100%;height:340px;border:0;display:block}
-.video-row{display:flex;gap:12px;align-items:center;margin-top:12px}
+.feature-video .player{width:100%;height:360px;border:0;display:block}
+.follow-row{display:flex;gap:10px;align-items:center;margin-top:12px}
+.social-card{display:flex;align-items:center;gap:12px;background:var(--soft);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
 
-/* wallpaper preview row (small strip) */
-.wall-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:18px}
-.wall-tile{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));transition:transform .25s, box-shadow .25s}
-.wall-tile img{width:100%;height:320px;object-fit:cover;display:block}
-.wall-tile .meta{padding:10px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.wall-tile:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(2,6,23,0.6)}
+/* contact CTA */
+.get-touch{text-align:center;margin-top:18px}
+.get-touch .contact-btn{display:inline-block;padding:12px 26px;border-radius:12px;background:linear-gradient(90deg,#3db6ff,#6b7cff);color:white;font-weight:700;box-shadow:0 12px 32px rgba(60,140,255,0.14);transition:transform .28s var(--ease), box-shadow .28s var(--ease)}
+.get-touch .contact-btn:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(60,140,255,0.26)}
 
-/* footer */
-.site-footer{border-top:1px solid rgba(255,255,255,0.02);padding:28px 0;color:var(--muted)}
+/* back to top */
+#backTop{position:fixed;right:22px;bottom:22px;background:linear-gradient(135deg,#111417,#171a1f);border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.6);opacity:0;transform:translateY(10px);transition:all .28s var(--ease);z-index:90}
+#backTop.show{opacity:1;transform:translateY(0)}
+#backTop svg{width:18px;height:18px;fill:#f3f7fa}
+
+/* small helpers */
+.kicker{color:var(--muted);font-size:13px}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:none}}
 
 /* responsive */
-@media (max-width:980px){.grid-2{grid-template-columns:1fr;}.hero h2{font-size:44px}.hero .tag{font-size:16px}}
-@media (max-width:520px){.main-nav{display:none}.hero h2{font-size:30px}.wall-tile img{height:420px}}
-/* MOBILE FIX */
-
-#menuBtn{
-display:none;
-background:none;
-border:none;
-color:white;
-font-size:24px;
-padding:6px;
-cursor:pointer;
+@media (max-width:980px){
+  .grid-2{grid-template-columns:1fr}
+  .feature-video .player{height:260px}
+  .hero h2{font-size:52px}
+  .wall-tile img{height:380px}
+  .brand h1{font-size:16px}
 }
-
-/* phone screens */
-@media (max-width: 600px){
-
-#menuBtn{
-display:block;
+@media (max-width:640px){
+  #menuBtn{display:block}
+  .main-nav{display:none;position:absolute;top:62px;right:14px;background:#0f1418;padding:12px;border-radius:10px;flex-direction:column;gap:8px;width:220px;box-shadow:0 12px 40px rgba(2,6,23,0.7)}
+  .main-nav.open{display:flex}
+  .nav-item{padding:8px}
+  .hero h2{font-size:34px}
+  .hero-inner{padding:24px 14px}
+  .wall-strip{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  .wall-tile img{height:320px}
+  .brand .logo{width:46px;height:46px}
 }
-
-.main-nav{
-position:absolute;
-top:60px;
-right:10px;
-background:#0f1418;
-padding:10px;
-border-radius:10px;
-flex-direction:column;
-display:none;
-}
-
-.main-nav a{
-display:block;
-padding:10px;
-font-size:16px;
-}
-
-.main-nav.open{
-display:flex;
-}
-
-/* hero fix */
-.hero h2{
-font-size:32px;
-}
-
-.hero .tag{
-font-size:14px;
-}
-
-.cta-row{
-flex-direction:column;
-}
-
-.btn{
-width:100%;
-}
-
-/* video fix */
-.feature-video .player{
-height:220px;
-}
-
-/* wallpaper preview */
-.wall-tile img{
-height:360px;
-}
-
-/* column layout fix */
-.grid-2{
-grid-template-columns:1fr;
-}
-
-}
-
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="nav-row container">
-    <div class="brand">
-      <h1>INDUS</h1>
-      <small>Just for you.</small>
+    <div style="display:flex;align-items:center;gap:14px">
+      <div class="brand" aria-label="INDUS brand">
+        <div class="logo" title="INDUS">
+          <!-- use an image in assets/logo.png if available -->
+          <img src="assets/logo.png" alt="INDUS logo" onerror="this.style.display='block';this.src='assets/hero.jpg'">
+        </div>
+        <div>
+          <h1>INDUS</h1>
+          <small>Just for you.</small>
+        </div>
+      </div>
     </div>
-<button id="menuBtn">☰</button>
 
-    <nav class="main-nav" aria-label="Main navigation">
-      <!-- use absolute path that matches your repository path if needed -->
-      <a href="/indus.github.io/index.html">Home</a>
-      <a href="/indus.github.io/content.html">Content</a>
-      <a href="/indus.github.io/wallpaper.html">Wallpapers</a>
-      <a href="/indus.github.io/contact.html">Contact</a>
+    <button id="menuBtn" aria-expanded="false" aria-label="Open menu">☰</button>
+
+    <nav class="main-nav" aria-label="Main navigation" role="navigation">
+      <a class="nav-item" href="/indus.github.io/index.html" title="Home">
+        <span class="thumb"><img src="assets/menu-home.jpg" alt="home thumb" onerror="this.style.opacity=.18"></span>
+        <span>Home</span>
+      </a>
+      <a class="nav-item" href="/indus.github.io/content.html" title="Content">
+        <span class="thumb"><img src="assets/menu-content.jpg" alt="content thumb" onerror="this.style.opacity=.18"></span>
+        <span>Content</span>
+      </a>
+      <a class="nav-item" href="/indus.github.io/wallpaper.html" title="Wallpapers">
+        <span class="thumb"><img src="assets/menu-wall.jpg" alt="wall thumb" onerror="this.style.opacity=.18"></span>
+        <span>Wallpapers</span>
+      </a>
+      <a class="nav-item" href="/indus.github.io/contact.html" title="Contact">
+        <span class="thumb"><img src="assets/menu-contact.jpg" alt="contact thumb" onerror="this.style.opacity=.18"></span>
+        <span>Contact</span>
+      </a>
     </nav>
 
-    <div style="display:flex;gap:10px;align-items:center">
-      <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener">
-        <span>▶</span> YouTube
-      </a>
-      <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener">
-        <span>•</span> Instagram
-      </a>
-      <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener">
-        <span>@</span> X
-      </a>
+    <div class="socials">
+      <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener"><span>▶</span> YouTube</a>
+      <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener"><span>•</span> Instagram</a>
+      <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener"><span>@</span> X</a>
     </div>
   </div>
 </header>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
   <div class="hero-bg" style="background-image:url('assets/hero.jpg');"></div>
   <div class="hero-overlay"></div>
 
@@ -213,7 +238,46 @@ grid-template-columns:1fr;
   </div>
 </section>
 
-<main class="container">
+<!-- WALLPAPER PREVIEW (placed immediately under hero) -->
+<section class="wall-preview" aria-label="Explore wallpapers">
+  <div class="wrap">
+    <div class="container">
+      <div class="wall-title"><svg width="22" height="22" viewBox="0 0 24 24" style="opacity:.9;margin-right:6px"><path d="M12 2L3 5v6c0 5 3.6 9.8 9 11 5.4-1.2 9-6 9-11V5l-9-3z" fill="rgba(255,255,255,0.06)"/></svg>
+        Explore Wallpapers
+      </div>
+      <p class="wall-sub">A small curated collection — free previews here, full-resolution available on the store. Click any preview to explore more.</p>
+
+      <div class="wall-cta">
+        <a class="wall-btn" href="/indus.github.io/wallpaper.html">Explore Wallpapers For Free</a>
+      </div>
+
+      <div class="wall-strip">
+        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Lonely Tree">
+          <img src="assets/wall-prev-1.jpg" alt="Lonely Tree">
+          <div class="meta"><div>Lonely Tree</div><div style="color:var(--accent);font-weight:700">Free</div></div>
+        </a>
+
+        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Smooth Beige">
+          <img src="assets/wall-prev-2.jpg" alt="Smooth Beige">
+          <div class="meta"><div>Smooth Beige</div><div style="color:var(--accent);font-weight:700">Free</div></div>
+        </a>
+
+        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Empty Room">
+          <img src="assets/wall-prev-3.jpg" alt="Empty Room">
+          <div class="meta"><div>Empty Room</div><div style="color:#ffd28a;font-weight:700">₹79</div></div>
+        </a>
+
+        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Night Lamp">
+          <img src="assets/wall-prev-4.jpg" alt="Night Lamp">
+          <div class="meta"><div>Night Lamp</div><div style="color:#ffd28a;font-weight:700">₹99</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="container" role="main">
   <div class="grid-2">
 
     <div>
@@ -223,54 +287,37 @@ grid-template-columns:1fr;
 
         <h3 class="h3" style="margin-top:18px">Featured (one minute)</h3>
         <div class="feature-video">
-          <!-- embedded player for the featured video -->
           <iframe class="player" src="https://www.youtube.com/embed/kkyywowKCiw" title="Featured video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <h3 class="h3" style="margin-top:18px">Explore wallpapers</h3>
-        <p class="lead">A small curated collection — free previews here, full-resolution on the store.</p>
-
-        <div class="wall-strip">
-          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
-            <img src="assets/wall-prev-1.jpg" alt="preview 1">
-            <div class="meta"><div>Lonely Tree</div><div style="color:var(--accent);font-weight:700">Free</div></div>
+        <div class="kicker" style="margin-top:14px">Follow the visual journey</div>
+        <div class="follow-row">
+          <a class="social-card" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener">
+            <img src="assets/ig-preview.jpg" alt="ig" style="width:56px;height:56px;border-radius:8px;object-fit:cover">
+            <div>
+              <strong>Instagram</strong>
+              <div style="color:var(--muted);font-size:13px">Visuals, stories & behind-the-scenes</div>
+            </div>
           </a>
 
-          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
-            <img src="assets/wall-prev-2.jpg" alt="preview 2">
-            <div class="meta"><div>Smooth Beige</div><div style="color:var(--accent);font-weight:700">Free</div></div>
-          </a>
-
-          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
-            <img src="assets/wall-prev-3.jpg" alt="preview 3">
-            <div class="meta"><div>Empty Room</div><div style="color:#ffd28a;font-weight:700">₹79</div></div>
-          </a>
-
-          <a class="wall-tile" href="/indus.github.io/wallpaper.html">
-            <img src="assets/wall-prev-4.jpg" alt="preview 4">
-            <div class="meta"><div>Night Lamp</div><div style="color:#ffd28a;font-weight:700">₹99</div></div>
+          <a class="social-card" href="https://x.com/indusnyou" target="_blank" rel="noopener">
+            <img src="assets/x-preview.jpg" alt="x" style="width:56px;height:56px;border-radius:8px;object-fit:cover">
+            <div>
+              <strong>X</strong>
+              <div style="color:var(--muted);font-size:13px">Quick updates & thoughts</div>
+            </div>
           </a>
         </div>
-
       </section>
 
-      <section class="card" style="margin-top:20px">
-        <h3 class="h3">What you'll find</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:12px">
-          <div class="card" style="padding:12px">
-            <strong>Human Behaviour</strong>
-            <div style="color:var(--muted);margin-top:8px;font-size:13px">Short explanations and film essays about everyday psychology.</div>
-          </div>
-          <div class="card" style="padding:12px">
-            <strong>Hidden Lives</strong>
-            <div style="color:var(--muted);margin-top:8px;font-size:13px">Night workers, street stalls and quiet routines.</div>
-          </div>
-          <div class="card" style="padding:12px">
-            <strong>Visuals & Wallpapers</strong>
-            <div style="color:var(--muted);margin-top:8px;font-size:13px">Minimal, cinematic images for phones and walls.</div>
-          </div>
-        </div>
+      <!-- heartwarming letter -->
+      <section class="letter" aria-label="A letter from the creator">
+        <h3 class="h3" style="margin-top:0">A letter from INDUS</h3>
+        <p>Hi — I’m glad you’re here. INDUS started because I wanted to pay attention to the ordinary moments that quietly shape us: a stray conversation on a rainy evening, a morning walk that feels slightly different than usual, a face in a crowd that tells an untold story. I make short cinematic pieces and images not to answer questions, but to hold a small, still space — a place to notice, to breathe, and to feel less alone.</p>
+        <p style="margin-top:10px">If you like what you see, that’s wonderful. If you don’t, that’s part of the process too. Either way, thank you for letting these pieces share your time. The wallpapers and visuals on this site are made with care — freely available as previews here, and in higher resolution for those who want to support the work.</p>
+        <p style="margin-top:10px"><em>— with quiet curiosity,</em><br><strong>INDUS</strong></p>
       </section>
+
     </div>
 
     <aside>
@@ -282,11 +329,17 @@ grid-template-columns:1fr;
           <a class="btn btn-primary" href="/indus.github.io/wallpaper.html">Visit Store</a>
         </div>
 
-        <h3 class="h3" style="margin-top:16px">Follow</h3>
-        <div style="display:flex;gap:8px;margin-top:8px">
+        <h3 class="h3" style="margin-top:14px">Get social</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
           <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener"><span>▶</span> YouTube</a>
           <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener"><span>•</span> Instagram</a>
           <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener"><span>@</span> X</a>
+          <a class="social-pill" href="https://facebook.com/" target="_blank" rel="noopener"><span>f</span> Facebook</a>
+        </div>
+
+        <div style="margin-top:16px" class="get-touch">
+          <!-- using a sensible default email; change to your real address if different -->
+          <a class="contact-btn" href="mailto:hello@indusnyou.com?subject=Hello%20INDUS" title="Get in touch with INDUS">Get in touch — hello@indusnyou.com</a>
         </div>
       </div>
 
@@ -303,24 +356,67 @@ grid-template-columns:1fr;
   </div>
 </main>
 
+<!-- footer -->
 <footer class="site-footer">
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
     <div>
-      <strong>INDUS</strong><div style="color:var(--muted);font-size:13px;margin-top:6px">Stories. Visuals. Small projects.</div>
+      <strong>INDUS</strong>
+      <div style="color:var(--muted);font-size:13px;margin-top:6px">Stories. Visuals. Small projects.</div>
     </div>
+
     <div style="text-align:right;color:var(--muted);font-size:13px">
       © INDUS — 2026
     </div>
   </div>
 </footer>
+
+<!-- back to top -->
+<div id="backTop" aria-hidden="true" title="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 5l-7 7h4v7h6v-7h4z"/></svg>
+</div>
+
 <script>
-const btn = document.getElementById("menuBtn");
-const nav = document.querySelector(".main-nav");
+/* menu toggle (mobile) */
+const menuBtn = document.getElementById('menuBtn');
+const nav = document.querySelector('.main-nav');
+menuBtn.addEventListener('click', ()=> {
+  const expanded = nav.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+});
 
-btn.onclick = () => {
-nav.classList.toggle("open");
-};
+/* back to top */
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', ()=> {
+  if(window.scrollY > 500) backTop.classList.add('show'); else backTop.classList.remove('show');
+});
+backTop.addEventListener('click', ()=> {
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* small accessibility: keyboard open menu */
+document.addEventListener('keydown', (e)=> {
+  if(e.key === 'm' || e.key === 'M') {
+    nav.classList.toggle('open');
+  }
+});
+
+/* micro appearance: gently animate thumbnails */
+const thumbs = document.querySelectorAll('.thumb img');
+thumbs.forEach((t,i)=> {
+  t.style.transition = 'transform .6s var(--ease), opacity .6s var(--ease)';
+  // slight staggered float
+  t.style.animation = `floaty 4s ${i*0.12}s ease-in-out infinite`;
+});
+
+/* fallback lazy image handling: if hero not found, set background to a neutral gradient */
+(function(){
+  const hb = document.querySelector('.hero-bg');
+  const img = new Image();
+  img.src = hb.style.backgroundImage.replace(/url\(['"]?(.+)['"]?\)/,'$1');
+  img.onerror = ()=> {
+    hb.style.backgroundImage = 'linear-gradient(180deg,#072027,#07131a)';
+  };
+})();
 </script>
-
 </body>
 </html>
