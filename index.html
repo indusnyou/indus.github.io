@@ -1,824 +1,1124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>INDUS — Cinematic Short Stories & Wallpapers</title>
+  <meta name="description" content="Cinematic short stories, human behaviour and curated wallpapers by INDUS.">
+  <meta name="theme-color" content="#030507">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&display=swap" rel="stylesheet">
 
-<title>INDUS — Visual Stories</title>
-<meta name="description" content="INDUS — cinematic visuals, human behaviour and minimal wallpapers.">
+  <style>
+    /* ========== ROOT VARIABLES (Ultra Premium Dark Theme) ========== */
+    :root {
+      /* Deep Cinematic Backgrounds */
+      --bg-base: #030406;
+      --bg-surface: #0a0d12;
+      --bg-glass: rgba(10, 13, 18, 0.4);
+      
+      /* Glowing Accents */
+      --accent-primary: #ff4555;
+      --accent-glow: #ff7a18;
+      
+      /* Text Colors */
+      --text-main: #f3f7f9;
+      --text-muted: #8b99a4;
+      
+      /* Borders & Shadows */
+      --border-subtle: rgba(255, 255, 255, 0.04);
+      --border-highlight: rgba(255, 255, 255, 0.08);
+      --shadow-premium: 0 30px 60px rgba(0, 0, 0, 0.6);
+      
+      /* Smooth Animations */
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    /* ========== BASE RESET ========== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+    html {
+      scroll-behavior: smooth;
+    }
 
-<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      
+      /* Subtle noise texture & ambient glow for that premium feel */
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(255, 69, 85, 0.03), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 122, 24, 0.03), transparent 25%);
+    }
 
-/* ---------------- RESET ---------------- */
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+    /* Custom Scrollbar for a polished look */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f252b;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
 
-html,body{
-width:100%;
-height:100%;
-font-family:Inter,system-ui;
-background:#070b0e;
-color:#eaf2f6;
-overflow-x:hidden;
-}
+    /* Typography Upgrades */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
-/* Smooth scrolling */
-html{
-scroll-behavior:smooth;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-/* container */
-.container{
-max-width:1200px;
-margin:auto;
-padding:0 20px;
-}
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
 
-/* ---------------- NAVBAR ---------------- */
+    /* Premium Button Styles */
+    .btn-premium {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-glow));
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: var(--transition-bounce);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(255, 69, 85, 0.2);
+      cursor: pointer;
+    }
 
-.header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-z-index:1000;
-background:rgba(7,11,14,0.75);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(255,255,255,0.05);
-}
+    .btn-premium::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, var(--accent-glow), var(--accent-primary));
+      z-index: -1;
+      transition: opacity 0.4s ease;
+      opacity: 0;
+    }
 
-.nav{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:14px 20px;
-}
+    .btn-premium:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(255, 69, 85, 0.3);
+    }
+    
+    .btn-premium:hover::before {
+      opacity: 1;
+    }
 
-/* logo */
-.logo{
-display:flex;
-align-items:center;
-gap:12px;
-}
+    .btn-glass {
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-highlight);
+      color: var(--text-main);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-weight: 500;
+      transition: var(--transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.logo img{
-width:44px;
-height:44px;
-border-radius:10px;
-object-fit:cover;
-}
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+    }
+    /* ========== HEADER / NAVBAR (Glassmorphism) ========== */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(3, 4, 6, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: var(--transition-smooth);
+      padding: 12px 0;
+    }
 
-.logo h1{
-font-family:'Playfair Display',serif;
-font-size:20px;
-letter-spacing:1px;
-}
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-/* desktop menu */
-.menu{
-display:flex;
-gap:26px;
-}
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: var(--transition-bounce);
+    }
 
-.menu a{
-text-decoration:none;
-color:#cfe0e7;
-font-weight:600;
-font-size:15px;
-position:relative;
-}
+    .brand-logo:hover {
+      transform: scale(1.05);
+    }
 
-.menu a::after{
-content:"";
-position:absolute;
-left:0;
-bottom:-6px;
-width:0%;
-height:2px;
-background:linear-gradient(90deg,#ff4d5a,#ff7a18);
-transition:.35s;
-}
+    .brand-logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
 
-.menu a:hover::after{
-width:100%;
-}
+    .brand-text h1 {
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      margin: 0;
+      background: linear-gradient(180deg, #fff, #a1b0b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-/* hamburger */
-.hamburger{
-display:none;
-font-size:26px;
-cursor:pointer;
-}
+    .brand-text span {
+      font-size: 0.7rem;
+      color: var(--accent-glow);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+    }
 
-/* ---------------- HERO ---------------- */
+    /* Desktop Nav */
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
 
-.hero{
-position:relative;
-height:100svh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-overflow:hidden;
-}
+    .nav-item {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      position: relative;
+      padding: 8px 0;
+      transition: var(--transition-smooth);
+    }
 
-/* video background */
-.hero video{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-top:0;
-left:0;
-z-index:-2;
-}
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow));
+      transition: var(--transition-smooth);
+      border-radius: 2px;
+    }
 
-/* overlay */
-.hero::after{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,.75));
-z-index:-1;
-}
+    .nav-item:hover {
+      color: #fff;
+    }
+    
+    .nav-item:hover::after {
+      width: 100%;
+    }
 
-/* hero text */
-.hero-content{
-max-width:820px;
-padding:20px;
-}
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
 
-.hero h2{
-font-family:'Playfair Display',serif;
-font-size:84px;
-letter-spacing:3px;
-margin-bottom:14px;
-text-shadow:0 10px 40px rgba(0,0,0,.8);
-}
+    .mobile-menu-btn:active {
+      transform: scale(0.9);
+    }
 
-.hero p{
-font-size:18px;
-color:#d2dde3;
-line-height:1.7;
-margin-bottom:26px;
-}
-
-/* buttons */
-.btns{
-display:flex;
-gap:14px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
-.btn{
-padding:14px 24px;
-border-radius:12px;
-font-weight:700;
-text-decoration:none;
-}
-
-.primary{
-background:linear-gradient(90deg,#ff4d5a,#ff7a18);
-color:white;
-}
-
-.secondary{
-border:1px solid rgba(255,255,255,.25);
-color:white;
-}
-
-/* ---------------- MOBILE ---------------- */
-
-@media(max-width:768px){
-
-.menu{
-display:none;
-}
-
-.hamburger{
-display:block;
-}
-
-.hero h2{
-font-size:42px;
-}
-
-.hero p{
-font-size:15px;
-}
-
-}
-/* ===== HERO CINEMATIC LETTER REVEAL ===== */
-
-.indus-title span{
-display:inline-block;
-opacity:0;
-transform:translateY(80px);
-transition:all .8s cubic-bezier(.16,1,.3,1);
-}
-
-.hero.show .indus-title span{
-opacity:1;
-transform:translateY(0);
-}
-
-.hero.show .indus-title span:nth-child(1){ transition-delay:.2s; }
-.hero.show .indus-title span:nth-child(2){ transition-delay:.35s; }
-.hero.show .indus-title span:nth-child(3){ transition-delay:.5s; }
-.hero.show .indus-title span:nth-child(4){ transition-delay:.65s; }
-.hero.show .indus-title span:nth-child(5){ transition-delay:.8s; }
-
-.hero .lead{
-opacity:0;
-transform:translateY(40px);
-transition:all 1.2s ease;
-}
-
-.hero.show .lead{
-opacity:1;
-transform:translateY(0);
-transition-delay:1s;
-}
-
-.cta-row{
-opacity:0;
-transform:translateY(40px);
-transition:all 1.2s ease;
-}
-
-.hero.show .cta-row{
-opacity:1;
-transform:translateY(0);
-transition-delay:1.3s;
-}
-/* ===== PARALLAX EFFECT ===== */
-
-.parallax{
-perspective:1200px;
-}
-
-.hero-bg{
-transition:transform .2s linear;
-will-change:transform;
-}
-
-.hero-inner{
-transition:transform .25s ease-out;
-will-change:transform;
-}
-
-/* mobile me disable (important) */
-@media (max-width:768px){
-.parallax .hero-bg,
-.parallax .hero-inner{
-transform:none !important;
-}
-}
-</style>
+    @media (max-width: 768px) {
+      .nav-links { display: none; } /* Hum aage iska mobile menu banayenge */
+      .mobile-menu-btn { display: block; }
+    }
+  </style>
 </head>
-
 <body>
+    <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="INDUS Logo" onerror="this.src='assets/hero-dark.jpg'">
+        <div class="brand-text">
+          <h1>INDUS</h1>
+          <span>Just for you.</span>
+        </div>
+      </a>
 
-<!-- NAVBAR -->
-<header class="header">
-<div class="nav container">
+      <nav class="nav-links">
+        <a href="index.html" class="nav-item">Home</a>
+        <a href="content.html" class="nav-item">Content</a>
+        <a href="wallpaper.html" class="nav-item">Wallpapers</a>
+        <a href="contact.html" class="nav-item">Contact</a>
+      </nav>
 
-<div class="logo">
-<img src="assets/logo.png">
-<h1>INDUS</h1>
-</div>
+      <button class="mobile-menu-btn" aria-label="Open Menu">☰</button>
+    </div>
+  </header>
 
-<div class="menu">
-<a href="#">Home</a>
-<a href="#">Content</a>
-<a href="#">Wallpapers</a>
-<a href="#">Contact</a>
-</div>
+  <style>
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-<div class="hamburger" id="menuBtn">☰</div>
+    .hero-video {
+      position: absolute;
+      top: 50%; left: 50%;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -2;
+      filter: brightness(0.8) contrast(1.1); /* Video ko cinematic look deta hai */
+    }
 
-</div>
-</header>
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(3,4,6,0.2) 0%, rgba(3,4,6,0.6) 70%, var(--bg-base) 100%);
+      z-index: -1;
+    }
 
-<!-- HERO -->
-<section class="hero parallax"></section>
+    .hero-content {
+      text-align: center;
+      max-width: 900px;
+      padding: 0 20px;
+      z-index: 1;
+      animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(40px);
+    }
 
-<video autoplay muted loop playsinline>
-<source src="assets/hero-video.mp4" type="video/mp4">
-</video>
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-highlight);
+      color: var(--accent-glow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
 
-<div class="hero-content">
-<h2 class="indus-title">
-  <span>I</span>
-  <span>N</span>
-  <span>D</span>
-  <span>U</span>
-  <span>S</span>
-</h2>
-<p>Cinematic short films, quiet human observations and carefully crafted wallpapers.</p>
+    .hero-content h2 {
+      font-size: clamp(3rem, 8vw, 6rem); /* Screen ke hisaab se size adjust hoga */
+      line-height: 1.05;
+      margin-bottom: 24px;
+      text-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
 
-<div class="btns">
-<a class="btn primary indus-main-cta" href="https://youtu.be/kkyywowKCiw" target="_blank">
-  <span class="cta-text">▶ Watch Latest</span>
-  <span class="cta-ripple"></span>
-</a>
-<a href="#" class="btn secondary">Explore Content</a>
-</div>
-</div>
+    .hero-content p {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
 
-</section>
-<!-- ========= INDUS ADVANCED MOBILE MENU ========= -->
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <section class="hero-section">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content container">
+      <div class="hero-badge">Visuals & Storytelling</div>
+      
+      <h2>Making the impossible...<br>Possible!</h2>
+      
+      <p>Cinematic stories, quiet observations, and premium wallpapers designed for true focus. Step into a world built just for you.</p>
+      
+      <div class="hero-buttons">
+        <a href="https://youtu.be/kkyywowKCiw" target="_blank" class="btn-premium">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Watch Latest Film
+        </a>
+        <a href="wallpaper.html" class="btn-glass">
+          Explore Wallpapers
+        </a>
+      </div>
+    </div>
+  </section>
+  <style>
+    /* Wallpaper Section Premium Styling */
+    .wallpaper-section {
+      padding: 100px 0 60px;
+      background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-surface) 100%);
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h3 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #fff, var(--text-muted));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .wallpaper-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    /* 3D Glass Card Effect */
+    .wall-card {
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 12px;
+      transition: var(--transition-bounce);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .wall-card:hover {
+      transform: translateY(-12px);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 69, 85, 0.1);
+    }
+
+    .wall-image-wrapper {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .wall-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: saturate(0.9);
+    }
+
+    .wall-card:hover img {
+      transform: scale(1.08);
+      filter: saturate(1.1);
+    }
+
+    .wall-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8px 8px;
+    }
+
+    .wall-title {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .wall-price {
+      background: rgba(255, 122, 24, 0.1);
+      color: var(--accent-glow);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(255, 122, 24, 0.2);
+    }
+
+    .wall-price.free {
+      background: rgba(255, 69, 85, 0.1);
+      color: var(--accent-primary);
+      border-color: rgba(255, 69, 85, 0.2);
+    }
+  </style>
+
+  <section class="wallpaper-section">
+    <div class="container">
+      <div class="section-header">
+        <h3>Explore Wallpapers</h3>
+        <p>A small curated collection — free previews here, full-resolution packs on Gumroad.</p>
+      </div>
+
+      <div class="wallpaper-grid">
+        <a href="wallpaper.html" class="wall-card">
+          <div class="wall-image-wrapper">
+            <img loading="lazy" src="assets/wall-prev-1.jpg" alt="Lonely Tree" onerror="this.src='assets/hero-dark.jpg'">
+          </div>
+          <div class="wall-info">
+            <span class="wall-title">Lonely Tree</span>
+            <span class="wall-price free">Free</span>
+          </div>
+        </a>
+
+        <a href="wallpaper.html" class="wall-card">
+          <div class="wall-image-wrapper">
+            <img loading="lazy" src="assets/wall-prev-2.jpg" alt="Smooth Beige" onerror="this.src='assets/hero-dark.jpg'">
+          </div>
+          <div class="wall-info">
+            <span class="wall-title">Smooth Beige</span>
+            <span class="wall-price free">Free</span>
+          </div>
+        </a>
+
+        <a href="wallpaper.html" class="wall-card">
+          <div class="wall-image-wrapper">
+            <img loading="lazy" src="assets/wall-prev-3.jpg" alt="Empty Room" onerror="this.src='assets/hero-dark.jpg'">
+          </div>
+          <div class="wall-info">
+            <span class="wall-title">Empty Room</span>
+            <span class="wall-price">₹79</span>
+          </div>
+        </a>
+
+        <a href="wallpaper.html" class="wall-card">
+          <div class="wall-image-wrapper">
+            <img loading="lazy" src="assets/wall-prev-4.jpg" alt="Night Lamp" onerror="this.src='assets/hero-dark.jpg'">
+          </div>
+          <div class="wall-info">
+            <span class="wall-title">Night Lamp</span>
+            <span class="wall-price">₹99</span>
+          </div>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 50px;">
+        <a href="wallpaper.html" class="btn-premium">Explore Full Collection</a>
+      </div>
+    </div>
+  </section>
+  <style>
+    .main-layout {
+      padding: 60px 0 120px;
+      background: var(--bg-surface);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 40px;
+    }
+
+    @media (max-width: 992px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Premium Glass Container */
+    .glass-panel {
+      background: linear-gradient(145deg, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0.4) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow-premium);
+    }
+
+    .panel-title {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .panel-text {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    /* Cinematic Video Embed */
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      background: #000;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+  </style>
+
+  <main class="main-layout container">
+    <div class="content-grid">
+      
+      <div class="left-column">
+        <section class="glass-panel">
+          <h3 class="panel-title">Why INDUS exists</h3>
+          <p class="panel-text">
+            Short, cinematic stories about ordinary people and quiet places. I make video essays and visual pieces that look calm on the surface — but reveal something human underneath.
+          </p>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <h4 style="font-family: 'Inter', sans-serif; font-size: 1.2rem; font-weight: 600;">Featured (One Minute)</h4>
+            <div style="height: 1px; flex: 1; background: var(--border-highlight); margin-left: 16px;"></div>
+          </div>
+
+          <div class="video-frame">
+            <iframe src="https://www.youtube.com/embed/kkyywowKCiw" title="Featured video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </section>
+      </div>
+      <style>
+        .bottom-left-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+          margin-top: 32px; /* Video aur iske beech ki spacing */
+        }
+
+        .letter-card {
+          background: rgba(255, 255, 255, 0.015);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid var(--border-subtle);
+          border-radius: 24px;
+          padding: 24px;
+          display: flex;
+          gap: 24px;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+          transition: var(--transition-smooth);
+        }
+
+        .letter-card:hover {
+          border-color: rgba(255, 255, 255, 0.08);
+          transform: translateY(-5px);
+          box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .letter-img {
+          flex: 0 0 220px;
+          border-radius: 16px;
+          overflow: hidden;
+        }
+
+        .letter-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.8s ease;
+        }
+        
+        .letter-card:hover .letter-img img {
+          transform: scale(1.05);
+        }
+
+        .letter-content h4 {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.8rem;
+          margin-bottom: 12px;
+          color: #fff;
+        }
+
+        .letter-content p {
+          color: var(--text-muted);
+          font-size: 1.05rem;
+          line-height: 1.7;
+          margin-bottom: 16px;
+        }
+
+        .social-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+
+        .social-card {
+          background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.005) 100%);
+          border: 1px solid var(--border-subtle);
+          border-radius: 16px;
+          padding: 12px;
+          transition: var(--transition-bounce);
+          text-align: center;
+        }
+
+        .social-card:hover {
+          background: rgba(255,255,255,0.04);
+          transform: translateY(-8px);
+          border-color: var(--accent-glow);
+        }
+
+        .social-thumb {
+          width: 100%;
+          height: 140px;
+          border-radius: 12px;
+          overflow: hidden;
+          margin-bottom: 14px;
+        }
+
+        .social-thumb img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: brightness(0.9);
+        }
+
+        .social-name {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #fff;
+          margin-bottom: 8px;
+        }
+
+        .social-link {
+          display: inline-block;
+          font-size: 0.8rem;
+          color: var(--accent-glow);
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+          .letter-card { flex-direction: column; }
+          .letter-img { height: 220px; }
+          .social-grid { grid-template-columns: 1fr; }
+        }
+      </style>
+
+      <div class="bottom-left-stack">
+        
+        <article class="letter-card">
+          <div class="letter-img">
+            <img loading="lazy" src="assets/letter-hero.jpg" alt="Quiet room" onerror="this.src='assets/hero-dark.jpg'">
+          </div>
+          <div class="letter-content">
+            <h4>A small letter to you</h4>
+            <p>If you are reading this, thank you for being curious. INDUS started as a slow experiment — a camera, a few ideas, and the stubborn belief that small, careful observations of ordinary life are worth sharing.</p>
+            <p>I make short films and quiet visuals to remind myself that the ordinary can be beautiful. If a scene moves you for even a second, I've done my job.</p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;">
+              <a href="content.html" class="btn-glass" style="padding: 10px 24px; font-size: 0.9rem;">Explore Content</a>
+            </div>
+          </div>
+        </article>
+
+        <div class="social-grid">
+          <div class="social-card">
+            <div class="social-thumb"><img loading="lazy" src="assets/yt-preview.jpg" alt="YouTube" onerror="this.src='assets/hero-dark.jpg'"></div>
+            <div class="social-name">YouTube</div>
+            <a href="https://www.youtube.com/@indusnyou" target="_blank" class="social-link">Visual Essays</a>
+          </div>
+          <div class="social-card">
+            <div class="social-thumb"><img loading="lazy" src="assets/ig-preview.jpg" alt="Instagram" onerror="this.src='assets/hero-dark.jpg'"></div>
+            <div class="social-name">Instagram</div>
+            <a href="https://www.instagram.com/indusnyou/" target="_blank" class="social-link">Visuals & BTS</a>
+          </div>
+          <div class="social-card">
+            <div class="social-thumb"><img loading="lazy" src="assets/x-preview.jpg" alt="X" onerror="this.src='assets/hero-dark.jpg'"></div>
+            <div class="social-name">X (Twitter)</div>
+            <a href="https://x.com/indusnyou" target="_blank" class="social-link">Quick Updates</a>
+          </div>
+        </div>
+
+      </div> ```
+
+***
+
+### Part 8/10: Sidebar / Right Column & Closing Grid
+Isme aapki profile aur upcoming ideas hain.
+
+```html
 <style>
-
-/* Sliding mobile menu */
-.mobile-menu{
-position:fixed;
-top:0;
-right:-280px;
-width:260px;
-height:100vh;
-background:rgba(10,15,20,0.95);
-backdrop-filter:blur(18px);
-box-shadow:-20px 0 60px rgba(0,0,0,0.8);
-padding:100px 24px 24px 24px;
-display:flex;
-flex-direction:column;
-gap:22px;
-transition:right .45s cubic-bezier(.2,.9,.2,1);
-z-index:2000;
-}
-
-.mobile-menu.open{
-right:0;
-}
-
-.mobile-menu a{
-color:#e8f3f7;
-text-decoration:none;
-font-size:18px;
-font-weight:700;
-padding:12px 16px;
-border-radius:12px;
-background:rgba(255,255,255,0.03);
-transition:.3s;
-}
-
-.mobile-menu a:hover{
-background:linear-gradient(90deg,#ff4d5a,#ff7a18);
-transform:translateX(6px);
-}
-
-/* overlay */
-.menu-overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.45);
-backdrop-filter:blur(4px);
-opacity:0;
-pointer-events:none;
-transition:.35s;
-z-index:1500;
-}
-
-.menu-overlay.show{
-opacity:1;
-pointer-events:auto;
-}
-
-/* animated hamburger */
-.hamburger{
-transition:.3s ease;
-}
-
-.hamburger.active{
-transform:rotate(90deg);
-}
-
-</style>
-
-<div class="menu-overlay" id="overlay"></div>
-
-<div class="mobile-menu" id="mobileMenu">
-<a href="#">Home</a>
-<a href="#">Content</a>
-<a href="#">Wallpapers</a>
-<a href="#">Contact</a>
-</div>
-
-<script>
-
-const hamburger = document.getElementById("menuBtn");
-const mobileMenu = document.getElementById("mobileMenu");
-const overlay = document.getElementById("overlay");
-
-function openMenu(){
-mobileMenu.classList.add("open");
-overlay.classList.add("show");
-hamburger.classList.add("active");
-document.body.style.overflow="hidden";
-}
-
-function closeMenu(){
-mobileMenu.classList.remove("open");
-overlay.classList.remove("show");
-hamburger.classList.remove("active");
-document.body.style.overflow="";
-}
-
-hamburger.addEventListener("click", ()=>{
-if(mobileMenu.classList.contains("open")){
-closeMenu();
-}else{
-openMenu();
-}
-});
-
-overlay.addEventListener("click", closeMenu);
-
-document.addEventListener("keydown", e=>{
-if(e.key==="Escape") closeMenu();
-});
-
-</script>
-<!-- ========= INDUS HERO CINEMATIC ANIMATION ========= -->
-
-<style>
-
-/* hero starting invisible */
-.hero-inner{
-opacity:0;
-transform:translateY(40px) scale(.96);
-transition:all 1.4s cubic-bezier(.16,1,.3,1);
-}
-
-/* after load */
-.hero-inner.show{
-opacity:1;
-transform:translateY(0) scale(1);
-}
-
-/* INDUS title animation */
-.hero h2{
-opacity:0;
-transform:translateY(60px);
-transition:all 1.6s cubic-bezier(.16,1,.3,1);
-}
-
-.hero.show h2{
-opacity:1;
-transform:translateY(0);
-}
-
-/* subtitle fade */
-.hero .lead{
-opacity:0;
-transition:opacity 2s ease;
-}
-
-.hero.show .lead{
-opacity:.95;
-}
-
-/* button glow */
-.btn-primary{
-position:relative;
-overflow:hidden;
-}
-
-.btn-primary::after{
-content:"";
-position:absolute;
-inset:-40%;
-background:radial-gradient(circle, rgba(255,120,120,.35), transparent 60%);
-opacity:0;
-transition:.6s;
-}
-
-.btn-primary:hover::after{
-opacity:1;
-}
-
-/* navbar shrink on scroll */
-.site-header{
-transition:all .4s ease;
-}
-
-.site-header.scrolled{
-padding-top:4px;
-padding-bottom:4px;
-background:rgba(5,7,10,.88);
-backdrop-filter:blur(14px);
-box-shadow:0 10px 30px rgba(0,0,0,.45);
-}
-
-</style>
-
-<script>
-
-/* hero animation on load */
-window.addEventListener("load", ()=>{
-const hero = document.querySelector(".hero");
-const inner = document.querySelector(".hero-inner");
-
-setTimeout(()=>{
-hero.classList.add("show");
-inner.classList.add("show");
-}, 350);
-});
-
-/* navbar shrink */
-window.addEventListener("scroll", ()=>{
-const header = document.querySelector(".site-header");
-if(window.scrollY > 80){
-header.classList.add("scrolled");
-}else{
-header.classList.remove("scrolled");
-}
-});
-
-</script>
-<!-- ========= INDUS 3D INTERACTIVE CARD SYSTEM ========= -->
-
-<style>
-
-/* make cards 3D capable */
-.wall-tile,
-.social-card,
-.letter-card,
-.aside-card{
-transition: transform .25s ease, box-shadow .25s ease;
-transform-style: preserve-3d;
-will-change: transform;
-}
-
-/* lighting reflection layer */
-.wall-tile::before,
-.social-card::before,
-.letter-card::before,
-.aside-card::before{
-content:"";
-position:absolute;
-inset:0;
-border-radius:inherit;
-background:radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,.15), transparent 45%);
-opacity:0;
-transition:opacity .25s ease;
-pointer-events:none;
-}
-
-/* when hovering */
-.wall-tile.active::before,
-.social-card.active::before,
-.letter-card.active::before,
-.aside-card.active::before{
-opacity:1;
-}
-
-.wall-tile:hover,
-.social-card:hover,
-.letter-card:hover,
-.aside-card:hover{
-box-shadow:0 40px 100px rgba(0,0,0,.7);
-}
-
-</style>
-
-<script>
-
-function activate3D(selector){
-
-const cards = document.querySelectorAll(selector);
-
-cards.forEach(card=>{
-
-card.addEventListener("mousemove",(e)=>{
-
-const rect = card.getBoundingClientRect();
-const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
-
-const centerX = rect.width/2;
-const centerY = rect.height/2;
-
-const rotateX = -(y - centerY)/18;
-const rotateY = (x - centerX)/18;
-
-card.style.transform =
-`perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
-
-card.style.setProperty("--x", x+"px");
-card.style.setProperty("--y", y+"px");
-
-card.classList.add("active");
-
-});
-
-card.addEventListener("mouseleave",()=>{
-card.style.transform="perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
-card.classList.remove("active");
-});
-
-/* mobile touch support */
-card.addEventListener("touchmove",(e)=>{
-const touch = e.touches[0];
-const rect = card.getBoundingClientRect();
-
-const x = touch.clientX - rect.left;
-const y = touch.clientY - rect.top;
-
-const rotateX = -(y - rect.height/2)/22;
-const rotateY = (x - rect.width/2)/22;
-
-card.style.transform =
-`perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-
-card.style.setProperty("--x", x+"px");
-card.style.setProperty("--y", y+"px");
-card.classList.add("active");
-
-},{passive:true});
-
-card.addEventListener("touchend",()=>{
-card.style.transform="perspective(900px) rotateX(0deg) rotateY(0deg) scale(1)";
-card.classList.remove("active");
-});
-
-});
-
-}
-
-/* activate on all main cards */
-window.addEventListener("load",()=>{
-activate3D(".wall-tile");
-activate3D(".social-card");
-activate3D(".letter-card");
-activate3D(".aside-card");
-});
-
-</script>
-<!-- ========= INDUS CINEMATIC ATMOSPHERE SYSTEM ========= -->
-
-<style>
-
-/* container that sits above video but below text */
-.indus-atmosphere{
-position:absolute;
-inset:0;
-pointer-events:none;
-z-index:1;
-overflow:hidden;
-}
-
-/* floating particles */
-.indus-particle{
-position:absolute;
-width:3px;
-height:3px;
-background:rgba(255,255,255,.8);
-border-radius:50%;
-opacity:.35;
-animation:floatUp linear infinite;
-}
-
-/* slow light fog */
-.indus-fog{
-position:absolute;
-width:120%;
-height:120%;
-left:-10%;
-top:-10%;
-background:
-radial-gradient(circle at 20% 40%, rgba(255,120,80,.15), transparent 50%),
-radial-gradient(circle at 80% 70%, rgba(100,160,255,.18), transparent 50%);
-filter:blur(60px);
-opacity:.55;
-animation:fogMove 28s ease-in-out infinite alternate;
-}
-
-/* animations */
-@keyframes floatUp{
-0%{ transform:translateY(0px) scale(1); opacity:.2; }
-50%{ opacity:.5; }
-100%{ transform:translateY(-900px) scale(1.4); opacity:0; }
-}
-
-@keyframes fogMove{
-0%{ transform:translateX(-60px) translateY(0px); }
-100%{ transform:translateX(60px) translateY(40px); }
-}
-
-/* stronger cinematic darkness */
-.hero-overlay{
-background:
-linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55)),
-linear-gradient(0deg, rgba(0,0,0,.2), transparent);
-}
-
-</style>
-
-<script>
-
-/* create particles */
-window.addEventListener("load",()=>{
-
-const hero = document.querySelector(".hero");
-if(!hero) return;
-
-/* atmosphere layer */
-const layer = document.createElement("div");
-layer.className="indus-atmosphere";
-
-/* fog */
-const fog = document.createElement("div");
-fog.className="indus-fog";
-layer.appendChild(fog);
-
-/* particles */
-for(let i=0;i<60;i++){
-
-const p=document.createElement("div");
-p.className="indus-particle";
-
-/* random position */
-p.style.left=Math.random()*100+"%";
-p.style.bottom=(-Math.random()*200)+"px";
-
-/* random speed */
-const duration=12+Math.random()*18;
-p.style.animationDuration=duration+"s";
-
-/* random size */
-const size=2+Math.random()*3;
-p.style.width=size+"px";
-p.style.height=size+"px";
-
-/* random delay */
-p.style.animationDelay=(Math.random()*20)+"s";
-
-layer.appendChild(p);
-}
-
-hero.appendChild(layer);
-
-});
-
-</script>
-<script>
-
-/* ripple position */
-document.querySelectorAll(".indus-main-cta").forEach(btn=>{
-btn.addEventListener("click",function(e){
-
-const ripple=this.querySelector(".cta-ripple");
-
-const rect=this.getBoundingClientRect();
-const x=e.clientX-rect.left;
-const y=e.clientY-rect.top;
-
-ripple.style.left=x+"px";
-ripple.style.top=y+"px";
-ripple.style.animation="none";
-ripple.offsetHeight;
-ripple.style.animation="ripple .6s ease-out";
-
-});
-});
-
-</script>
-<script>
-window.addEventListener("load", ()=>{
-const hero = document.querySelector(".hero");
-setTimeout(()=>{
-hero.classList.add("show");
-},300);
-});
-</script>
-<script>
-
-/* PARALLAX MOVEMENT */
-
-const hero = document.querySelector(".parallax");
-const bg = document.querySelector(".hero-bg");
-const content = document.querySelector(".hero-inner");
-
-document.addEventListener("mousemove",(e)=>{
-
-const x = (window.innerWidth/2 - e.clientX)/40;
-const y = (window.innerHeight/2 - e.clientY)/40;
-
-bg.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
-content.style.transform = `translate(${x/2}px, ${y/2}px)`;
-
-});
-
-</script>
+        .sidebar {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .sidebar-widget {
+          background: rgba(255,255,255,0.015);
+          border: 1px solid var(--border-subtle);
+          border-radius: 24px;
+          padding: 28px 24px;
+          backdrop-filter: blur(12px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .creator-header {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
+        .creator-avatar {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          border: 2px solid var(--accent-primary);
+          padding: 3px;
+        }
+
+        .creator-avatar img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+
+        .creator-info h5 {
+          font-size: 1.3rem;
+          color: #fff;
+          margin-bottom: 4px;
+          font-family: 'Playfair Display', serif;
+        }
+
+        .creator-info span {
+          font-size: 0.8rem;
+          color: var(--accent-glow);
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+        }
+
+        .widget-text {
+          color: var(--text-muted);
+          font-size: 1rem;
+          line-height: 1.7;
+          margin-bottom: 24px;
+        }
+
+        .upcoming-list {
+          list-style: none;
+        }
+
+        .upcoming-list li {
+          padding: 14px;
+          background: rgba(0,0,0,0.4);
+          border-radius: 12px;
+          margin-bottom: 10px;
+          font-size: 0.95rem;
+          color: #dbe7eb;
+          border-left: 3px solid var(--accent-glow);
+        }
+
+        /* Special Contact Box */
+        .contact-box {
+          background: linear-gradient(135deg, rgba(255,69,85,0.08), rgba(255,122,24,0.05));
+          border: 1px solid rgba(255,69,85,0.2);
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .contact-box::before {
+          content: '';
+          position: absolute;
+          top: -50%; left: -50%; width: 200%; height: 200%;
+          background: radial-gradient(circle, rgba(255,69,85,0.1) 0%, transparent 60%);
+          z-index: -1;
+        }
+      </style>
+
+      <aside class="sidebar">
+        
+        <div class="sidebar-widget">
+          <div class="creator-header">
+            <div class="creator-avatar">
+              <img src="assets/about-creator.jpg" alt="INDUS Creator" onerror="this.src='assets/hero-dark.jpg'">
+            </div>
+            <div class="creator-info">
+              <h5>INDUS</h5>
+              <span>Visual Artist</span>
+            </div>
+          </div>
+          <p class="widget-text">I make short, observational films and visuals. I care about craft, quiet moods and clear storytelling.</p>
+          <div style="display: flex; gap: 10px;">
+            <a href="contact.html" class="btn-glass" style="flex: 1; justify-content: center; padding: 12px; font-size: 0.9rem;">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h5 style="font-size: 1.2rem; color: #fff; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Upcoming Projects</h5>
+          <ul class="upcoming-list">
+            <li>24 hours as a night vendor — short film</li>
+            <li>7 days with a Himalayan monk — visuals</li>
+            <li>A small, empty hotel — photographic study</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget contact-box">
+          <h5 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px; font-family: 'Playfair Display', serif;">Work With Me</h5>
+          <p class="widget-text" style="margin-bottom: 20px; font-size: 0.95rem;">For challenging projects, collaborations, or philanthropic ideas, let's connect.</p>
+          <a href="mailto:indusnme@outlook.com" class="btn-premium" style="width: 100%; justify-content: center;">Email Me</a>
+        </div>
+
+      </aside>
+
+    </div> </main>
+    <style>
+        .site-footer {
+          background: #030406;
+          border-top: 1px solid var(--border-subtle);
+          padding: 60px 0 30px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 40px;
+          align-items: center;
+          margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+          font-family: 'Playfair Display', serif;
+          font-size: 2rem;
+          color: #fff;
+          margin-bottom: 8px;
+        }
+
+        .footer-brand p {
+          color: var(--text-muted);
+          font-size: 0.95rem;
+        }
+
+        .footer-links {
+          display: flex;
+          gap: 24px;
+        }
+
+        .footer-link {
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          font-weight: 500;
+          transition: var(--transition-smooth);
+        }
+
+        .footer-link:hover {
+          color: var(--accent-glow);
+        }
+
+        .footer-bottom {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 30px;
+          border-top: 1px solid rgba(255,255,255,0.02);
+          color: var(--text-muted);
+          font-size: 0.85rem;
+        }
+
+        #backToTop {
+          background: rgba(255,255,255,0.05);
+          border: 1px solid var(--border-subtle);
+          color: #fff;
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: var(--transition-bounce);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(20px);
+        }
+
+        #backToTop.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        #backToTop:hover {
+          background: var(--accent-primary);
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(255,69,85,0.3);
+        }
+
+        @media (max-width: 768px) {
+          .footer-grid { grid-template-columns: 1fr; text-align: center; }
+          .footer-links { justify-content: center; flex-wrap: wrap; }
+          .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+      </style>
+
+      <footer class="site-footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <h2>INDUS</h2>
+              <p>Making the impossible... Possible.</p>
+            </div>
+            <div class="footer-links">
+              <a href="index.html" class="footer-link">Home</a>
+              <a href="content.html" class="footer-link">Content</a>
+              <a href="wallpaper.html" class="footer-link">Wallpapers</a>
+              <a href="contact.html" class="footer-link">Contact</a>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <div>&copy; 2026 INDUS. All rights reserved.</div>
+            <button id="backToTop" aria-label="Back to top">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </footer>
+      <style>
+        /* Mobile Menu Active State */
+        @media (max-width: 768px) {
+          .nav-links {
+            position: fixed;
+            top: 70px;
+            right: -100%;
+            width: 260px;
+            height: calc(100vh - 70px);
+            background: rgba(10, 13, 18, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            flex-direction: column;
+            padding: 40px 24px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid var(--border-subtle);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.6);
+            display: flex;
+          }
+
+          .nav-links.active {
+            right: 0;
+          }
+
+          .nav-item {
+            font-size: 1.2rem;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+          }
+        }
+      </style>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          
+          // 1. Mobile Menu Toggle
+          const menuBtn = document.querySelector('.mobile-menu-btn');
+          const navLinks = document.querySelector('.nav-links');
+          
+          menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Change icon from Hamburger to Close
+            menuBtn.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
+          });
+
+          // 2. Back to Top Button & Navbar Blur Effect
+          const backToTop = document.getElementById('backToTop');
+          const header = document.querySelector('.site-header');
+
+          window.addEventListener('scroll', () => {
+            // Show Back to Top
+            if (window.scrollY > 400) {
+              backToTop.classList.add('show');
+              header.style.background = 'rgba(3, 4, 6, 0.85)';
+              header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+            } else {
+              backToTop.classList.remove('show');
+              header.style.background = 'rgba(3, 4, 6, 0.6)';
+              header.style.boxShadow = 'none';
+            }
+          });
+
+          backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+
+          // 3. Smooth Intersection Observer (Fade-up Animations on Scroll)
+          const revealElements = document.querySelectorAll('.wall-card, .glass-panel, .letter-card, .social-card, .sidebar-widget');
+          
+          const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+          revealElements.forEach(el => {
+            // Set initial state for JS animation
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            revealObserver.observe(el);
+          });
+        });
+      </script>
 </body>
 </html>
