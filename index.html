@@ -645,6 +645,69 @@ iframe{
   .letter-body p{font-size:15px}
   .aside-portrait{height:160px}
 }
+/* ===== MOBILE HERO FIX (MOST IMPORTANT) ===== */
+
+/* fix 100vh mobile bug */
+.hero{
+  height:100dvh;
+  min-height:100dvh;
+}
+
+/* video fill properly */
+.hero-bg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  top:0;
+  left:0;
+  transform:none;
+}
+
+/* stop video cropping on phone */
+@media (max-width:768px){
+
+  .hero{
+    height:100svh;
+    min-height:100svh;
+  }
+
+  .hero-inner{
+    padding-top:90px;
+    padding-bottom:60px;
+  }
+
+  /* keep full video visible */
+  .hero-bg{
+    object-position:center center;
+  }
+
+  /* fix big title cutting */
+  .hero h2{
+    font-size:38px;
+    line-height:1.15;
+  }
+
+  /* buttons spacing */
+  .cta-row{
+    width:100%;
+    padding:0 10px;
+  }
+
+}
+
+/* iframe video responsive */
+.feature-video{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+}
+
+.feature-video iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
 </style>
 
 <!-- ================= HEARTWARMING LETTER ================= -->
