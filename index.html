@@ -1,422 +1,564 @@
+<!-- ================= PART 1 of 4 =================
+     HEAD + GLOBAL CSS + HEADER/NAV + HERO + PREVIEW STRIP
+     Paste Part 2 immediately after the <!-- PART 1 / END --> comment below.
+     Make sure /assets/* files exist (names listed in the comment above).
+================================================= -->
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>INDUS — Just for you.</title>
-<meta name="description" content="INDUS — cinematic short stories, human behaviour and visual projects." />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>INDUS — Just for you.</title>
+  <meta name="description" content="INDUS — cinematic short stories, human behaviour and curated wallpapers. New visuals and short films." />
+  <meta name="theme-color" content="#07121a" />
 
-<style>
-:root{
-  --bg:#050607;
-  --panel:#0f1418;
-  --muted:#9aa3a8;
-  --accent:#ff4d5a;
-  --accent-2:#ff7a18;
-  --glass: rgba(255,255,255,0.03);
-  --soft: rgba(255,255,255,0.02);
-  --maxw:1160px;
-  --radius:14px;
-  --ease:cubic-bezier(.2,.9,.2,1);
-}
+  <!-- SEO / OG -->
+  <meta property="og:title" content="INDUS — Just for you." />
+  <meta property="og:description" content="Cinematic short stories, human behaviour & wallpapers." />
+  <meta property="og:image" content="https://yourdomain.com/assets/hero-1200.jpg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-/* reset & base */
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-  background:linear-gradient(180deg,#050607 0%, #081015 100%);
-  color:#e9f1f6;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  -webkit-font-feature-settings:"liga" on;
-}
-a{color:inherit;text-decoration:none}
-.container{max-width:var(--maxw);margin:0 auto;padding:0 20px;}
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
 
-/* header */
-.site-header{
-  position:sticky;
-  top:0;
-  z-index:80;
-  background:linear-gradient(180deg, rgba(6,8,10,0.92), rgba(6,8,10,0.7));
-  border-bottom:1px solid rgba(255,255,255,0.02);
-  backdrop-filter: blur(6px);
-}
-.nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;gap:14px}
-.brand{display:flex;align-items:center;gap:14px}
-.brand .logo{
-  width:56px;height:56px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,#0b0f12,#0f1418);border:1px solid rgba(255,255,255,0.03);
-  box-shadow:0 6px 18px rgba(2,6,23,0.6);
-}
-.brand .logo img{width:42px;height:42px;object-fit:cover;display:block}
-.brand h1{font-family:'Playfair Display', serif; font-size:18px; margin:0;letter-spacing:0.6px}
-.brand small{display:block;color:var(--muted);font-size:11px;margin-top:0}
+  <!-- FAVICON (optional) -->
+  <link rel="icon" href="assets/logo.png" type="image/png">
 
-/* nav menu */
-.main-nav{display:flex;align-items:center;gap:12px}
-.nav-item{
-  display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:transparent;
-  transition:transform .25s var(--ease), background .25s var(--ease);
-  position:relative;overflow:visible;
-}
-.nav-item .thumb{
-  width:34px;height:34px;border-radius:8px;background:#0c1114;border:1px solid rgba(255,255,255,0.03);overflow:hidden;
-  display:inline-block;flex-shrink:0;
-  transform-origin:center;transition:transform .35s var(--ease);
-}
-.nav-item .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.nav-item span{font-weight:700;font-size:13px;color:#e5eef2}
-.nav-item:hover{transform:translateY(-4px);background:var(--glass)}
-.nav-item:hover .thumb{transform:scale(1.06) rotate(-1deg)}
+  <!-- === CRITICAL STYLES: paste entire block === -->
+  <style>
+  /* ---------- ROOT VARIABLES ---------- */
+  :root{
+    --bg-1:#050607;
+    --bg-2:#081015;
+    --panel:#0f1418;
+    --muted:#9ca8ad;
+    --muted-2:#c7d7db;
+    --accent:#ff4d5a;
+    --accent-2:#ff7a18;
+    --glass: rgba(255,255,255,0.03);
+    --card: rgba(255,255,255,0.015);
+    --maxw:1180px;
+    --radius:14px;
+    --shadow-lg: 0 18px 60px rgba(2,6,23,0.55);
+    --ease: cubic-bezier(.2,.9,.2,1);
+  }
 
-/* social pills (right) */
-.socials{display:flex;gap:10px;align-items:center}
-.social-pill{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);font-weight:700}
-.social-pill span{display:inline-block;min-width:20px;text-align:center;font-weight:800}
+  /* ---------- BASE ---------- */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color:#eef6fb;
+    background:
+      radial-gradient(900px 500px at 12% 8%, rgba(9,20,28,0.28), transparent),
+      linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
-/* mobile menu button */
-#menuBtn{display:none;background:none;border:none;color:white;font-size:24px;padding:6px;cursor:pointer}
+  /* Utility */
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
-/* hero */
-.hero{min-height:72vh;display:grid;align-items:center;position:relative;overflow:hidden;margin-bottom:8px}
-.hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;filter:brightness(.46) saturate(.95);z-index:0}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(9,11,13,0.12), rgba(6,7,9,0.6));z-index:1}
-.hero-inner{position:relative;z-index:2;padding:60px 20px;text-align:center;display:flex;flex-direction:column;gap:18px;align-items:center;justify-content:center}
-.hero h2{font-family:'Playfair Display', serif;font-size:76px;margin:0;line-height:1;letter-spacing:1px;animation:fadeUp .9s both}
-.hero .tag{color:var(--muted);font-size:18px;margin:0;animation:fadeUp .9s .08s both}
-.cta-row{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px;animation:fadeUp .9s .15s both}
-.btn{padding:14px 18px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;display:inline-block}
-.btn-primary{background:linear-gradient(90deg,var(--accent), var(--accent-2));color:white;box-shadow:0 12px 32px rgba(255,70,95,0.16)}
-.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:#dbe7eb}
+  /* ---------- HEADER / NAV ---------- */
+  header.site-header{
+    position:sticky;top:0;z-index:120;
+    background:linear-gradient(180deg, rgba(6,8,10,0.96), rgba(6,8,10,0.78));
+    border-bottom:1px solid rgba(255,255,255,0.02);
+    backdrop-filter: blur(8px);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 20px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .logo{
+    width:72px;height:72px;border-radius:12px;overflow:hidden;flex-shrink:0;
+    background:linear-gradient(180deg,#071016,#0f1418);border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow-lg);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .brand .logo img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+  .brand .title h1{font-family:'Playfair Display',serif;font-size:18px;margin:0;letter-spacing:0.6px}
+  .brand .title small{display:block;color:var(--muted);font-size:12px;margin-top:1px}
 
-/* wallpaper hero-preview (immediately below hero) */
-.wall-preview{
-  padding:40px 20px 36px;
-  background:linear-gradient(180deg, transparent, rgba(4,6,8,0.35));
-  z-index:10;
-  margin-bottom:20px;
-}
-.wall-preview .wrap{max-width:1100px;margin:0 auto}
-.wall-title{
-  font-family:'Playfair Display', serif;font-size:34px;margin:0 0 8px;letter-spacing:0.6px;
-  display:flex;align-items:center;gap:12px;justify-content:center;
-}
-.wall-sub{color:var(--muted);margin:0 auto 18px;text-align:center;max-width:760px}
+  nav.main-nav{display:flex;align-items:center;gap:10px}
+  .nav-item{
+    display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:transparent;border:1px solid transparent;color:var(--muted-2);font-weight:700;font-size:14px;transition:transform .28s var(--ease), background .28s var(--ease)
+  }
+  .nav-item:hover{transform:translateY(-5px);background:var(--glass);color:#f2fbff}
+  .nav-item .thumb{width:42px;height:42px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:#0b1114;flex-shrink:0}
+  .nav-item .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(.98)}
 
-/* CTA */
-.wall-cta{text-align:center;margin-bottom:18px}
-.wall-btn{
-  display:inline-block;padding:12px 34px;border-radius:40px;font-weight:700;letter-spacing:0.4px;background:linear-gradient(135deg,#ff3b5c,#ff7a18);color:white;box-shadow:0 12px 38px rgba(255,70,90,0.18);transition:transform .28s var(--ease), box-shadow .28s var(--ease)
-}
-.wall-btn:hover{transform:translateY(-5px) scale(1.02);box-shadow:0 24px 60px rgba(255,70,90,0.28)}
+  .header-right{display:flex;align-items:center;gap:8px}
+  .social-pill, .email-pill{
+    display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--muted);font-weight:700;font-size:13px
+  }
+  .social-pill span, .email-pill span{min-width:18px;text-align:center;display:inline-block}
 
-/* wall strip gallery */
-.wall-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;align-items:start}
-.wall-tile{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));transition:transform .35s var(--ease), box-shadow .35s var(--ease)}
-.wall-tile img{width:100%;height:320px;object-fit:cover;display:block}
-.wall-tile .meta{padding:10px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
-.wall-tile:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+  #menuBtn{display:none;background:none;border:none;color:white;font-size:22px;padding:6px;cursor:pointer}
 
-/* main content */
-main{padding:28px 0 90px}
-.grid-2{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
-.card{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:20px;border-radius:12px;border:1px solid var(--soft)}
-.lead{color:var(--muted);margin:0 0 12px;font-size:15px}
-.h3{font-family:'Playfair Display', serif;font-size:20px;margin:0 0 10px}
+  /* ---------- HERO (large cinematic) ---------- */
+  .hero{
+    min-height:76vh;display:grid;align-items:center;position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.02)
+  }
+  .hero-bg{position:absolute;inset:0;background-position:center;background-size:cover;filter:brightness(.46) saturate(.96) contrast(.98);z-index:0;transition:filter .4s}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(6,9,12,0.06), rgba(3,5,6,0.6));z-index:1}
+  .hero-inner{position:relative;z-index:2;padding:64px 20px;text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;max-width:980px;margin:0 auto}
+  .hero .eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.02);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-weight:700}
+  .hero h2{font-family:'Playfair Display', serif;font-size:92px;line-height:0.96;margin:0;letter-spacing:1px;text-shadow:0 12px 44px rgba(0,0,0,0.6)}
+  .hero p.lead{color:var(--muted);max-width:760px;margin:0;font-size:18px}
+  .cta-row{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .btn{padding:14px 18px;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;display:inline-block}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;box-shadow:0 20px 64px rgba(255,70,90,0.14)}
+  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:#dbe7eb}
 
-/* heartwarming letter (large friendly paragraph) */
-.letter{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:22px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);color:#e8f1f5;margin-top:20px;line-height:1.6}
+  /* small hero details */
+  .hero-meta{display:flex;gap:18px;align-items:center;margin-top:18px;color:var(--muted);font-size:14px}
+  .hero-meta .meta-item{display:flex;gap:10px;align-items:center}
 
-/* video & socials */
-.feature-video{margin-top:18px;border-radius:12px; overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
-.feature-video .player{width:100%;height:360px;border:0;display:block}
-.follow-row{display:flex;gap:10px;align-items:center;margin-top:12px}
-.social-card{display:flex;align-items:center;gap:12px;background:var(--soft);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  /* ---------- WALLPAPER PREVIEW (immediately visible) ---------- */
+  .wall-preview{
+    padding:44px 20px 48px;background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(4,6,8,0.36));z-index:10
+  }
+  .wall-preview .wrap{max-width:1100px;margin:0 auto}
+  .wall-title{font-family:'Playfair Display',serif;font-size:34px;margin:0 0 6px;text-align:center}
+  .wall-sub{color:var(--muted);margin:0 auto 18px;max-width:740px;text-align:center}
+  .wall-cta{text-align:center;margin-bottom:20px}
+  .wall-btn{display:inline-block;padding:12px 34px;border-radius:40px;font-weight:800;letter-spacing:0.4px;background:linear-gradient(135deg,#ff3b5c,#ff7a18);color:white;box-shadow:0 18px 60px rgba(255,70,90,0.16);transition:transform .28s var(--ease)}
+  .wall-btn:hover{transform:translateY(-6px) scale(1.02)}
 
-/* contact CTA */
-.get-touch{text-align:center;margin-top:18px}
-.get-touch .contact-btn{display:inline-block;padding:12px 26px;border-radius:12px;background:linear-gradient(90deg,#3db6ff,#6b7cff);color:white;font-weight:700;box-shadow:0 12px 32px rgba(60,140,255,0.14);transition:transform .28s var(--ease), box-shadow .28s var(--ease)}
-.get-touch .contact-btn:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(60,140,255,0.26)}
+  .wall-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;align-items:start}
+  .wall-tile{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03);background:var(--card);transition:transform .35s var(--ease), box-shadow .35s var(--ease)}
+  .wall-tile img{width:100%;height:320px;object-fit:cover;display:block;filter:saturate(.98) contrast(.98)}
+  .wall-meta{padding:10px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+  .wall-tile:hover{transform:translateY(-10px);box-shadow:0 28px 80px rgba(0,0,0,0.6)}
 
-/* back to top */
-#backTop{position:fixed;right:22px;bottom:22px;background:linear-gradient(135deg,#111417,#171a1f);border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.6);opacity:0;transform:translateY(10px);transition:all .28s var(--ease);z-index:90}
-#backTop.show{opacity:1;transform:translateY(0)}
-#backTop svg{width:18px;height:18px;fill:#f3f7fa}
+  /* ========== MAIN START ========== */
+  main{padding:28px 0 120px}
+  .grid-2{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+  .card{background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .lead{color:var(--muted);margin:0 0 12px;font-size:15px}
+  .h3{font-family:'Playfair Display',serif;font-size:20px;margin:0 0 10px}
 
-/* small helpers */
-.kicker{color:var(--muted);font-size:13px}
+  /* contact CTA */
+  .contact-btn{display:inline-block;padding:12px 20px;border-radius:12px;background:linear-gradient(90deg,#3db6ff,#6b7cff);color:white;font-weight:800;box-shadow:0 12px 34px rgba(60,140,255,0.12);transition:transform .28s var(--ease)}
+  .contact-btn:hover{transform:translateY(-6px)}
 
-/* animations */
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:none}}
+  /* back-to-top */
+  #backTop{position:fixed;right:18px;bottom:18px;background:linear-gradient(120deg,#0d1116,#121417);border-radius:12px;padding:10px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,0.6);opacity:0;transform:translateY(12px);transition:all .28s var(--ease);z-index:90}
+  #backTop.show{opacity:1;transform:translateY(0)}
+  #backTop svg{width:18px;height:18px;fill:#f3f7fa}
 
-/* responsive */
-@media (max-width:980px){
-  .grid-2{grid-template-columns:1fr}
-  .feature-video .player{height:260px}
-  .hero h2{font-size:52px}
-  .wall-tile img{height:380px}
-  .brand h1{font-size:16px}
-}
-@media (max-width:640px){
-  #menuBtn{display:block}
-  .main-nav{display:none;position:absolute;top:62px;right:14px;background:#0f1418;padding:12px;border-radius:10px;flex-direction:column;gap:8px;width:220px;box-shadow:0 12px 40px rgba(2,6,23,0.7)}
-  .main-nav.open{display:flex}
-  .nav-item{padding:8px}
-  .hero h2{font-size:34px}
-  .hero-inner{padding:24px 14px}
-  .wall-strip{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-  .wall-tile img{height:320px}
-  .brand .logo{width:46px;height:46px}
-}
-</style>
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:1024px){
+    .hero h2{font-size:64px}
+    .grid-2{grid-template-columns:1fr 320px}
+    .brand .logo{width:60px;height:60px}
+  }
+  @media (max-width:760px){
+    #menuBtn{display:block}
+    nav.main-nav{display:none;position:absolute;top:68px;right:12px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#0f1418,#0b0f12);flex-direction:column;gap:8px;box-shadow:0 18px 48px rgba(2,6,23,0.7);width:230px}
+    nav.main-nav.open{display:flex}
+    .hero h2{font-size:34px}
+    .hero-inner{padding:28px 14px}
+    .wall-tile img{height:300px}
+    .grid-2{grid-template-columns:1fr}
+  }
+
+  /* accessibility tiny helper */
+  :focus{outline:2px solid rgba(255,255,255,0.06);outline-offset:3px}
+  </style>
+
+  <!-- End Critical Styles -->
 </head>
 <body>
 
-<header class="site-header">
-  <div class="nav-row container">
-    <div style="display:flex;align-items:center;gap:14px">
-      <div class="brand" aria-label="INDUS brand">
-        <div class="logo" title="INDUS">
-          <!-- use an image in assets/logo.png if available -->
-          <img src="assets/logo.png" alt="INDUS logo" onerror="this.style.display='block';this.src='assets/hero.jpg'">
+  <!-- ========== HEADER ========== -->
+  <header class="site-header" role="banner">
+    <div class="nav-row container" aria-label="Primary navigation">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="brand" aria-label="INDUS">
+          <div class="logo" title="INDUS">
+            <!-- logo.png fallback: hero-dark.jpg (if logo missing) -->
+            <img src="assets/logo.png" alt="INDUS logo" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'; this.style.objectFit='cover'">
+          </div>
+          <div class="title">
+            <h1>INDUS</h1>
+            <small>Just for you.</small>
+          </div>
         </div>
-        <div>
-          <h1>INDUS</h1>
-          <small>Just for you.</small>
+      </div>
+
+      <button id="menuBtn" aria-expanded="false" aria-label="Open menu">☰</button>
+
+      <nav class="main-nav" aria-label="Main navigation" role="navigation">
+        <a class="nav-item" href="/indus.github.io/index.html" title="Home">
+          <span class="thumb"><img src="assets/menu-home.jpg" alt="home thumbnail" onerror="this.style.opacity=0.2"></span>
+          <span>Home</span>
+        </a>
+        <a class="nav-item" href="/indus.github.io/content.html" title="Content">
+          <span class="thumb"><img src="assets/menu-content.jpg" alt="content thumbnail" onerror="this.style.opacity=0.2"></span>
+          <span>Content</span>
+        </a>
+        <a class="nav-item" href="/indus.github.io/wallpaper.html" title="Wallpapers">
+          <span class="thumb"><img src="assets/menu-wall.jpg" alt="wall thumbnail" onerror="this.style.opacity=0.2"></span>
+          <span>Wallpapers</span>
+        </a>
+        <a class="nav-item" href="/indus.github.io/contact.html" title="Contact">
+          <span class="thumb"><img src="assets/menu-contact.jpg" alt="contact thumbnail" onerror="this.style.opacity=0.2"></span>
+          <span>Contact</span>
+        </a>
+      </nav>
+
+      <div class="header-right" role="region" aria-label="Contact and social links">
+        <!-- Email — correct per your request -->
+        <a class="email-pill" href="mailto:indusnme@outlook.com"><span>✉</span> indusnme@outlook.com</a>
+        <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener"><span>▶</span> YouTube</a>
+        <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener"><span>•</span> Instagram</a>
+        <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener"><span>@</span> X</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO (responsive picture with fallbacks) ========== -->
+  <section class="hero" aria-label="Hero">
+    <!-- using picture for responsive sizes -->
+    <picture class="hero-bg" role="img" aria-hidden="true">
+      <source srcset="assets/hero-1600.jpg" media="(min-width:1000px)">
+      <source srcset="assets/hero-1200.jpg" media="(min-width:600px)">
+      <img src="assets/hero-800.jpg" alt="" style="width:100%;height:100%;object-fit:cover" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'">
+    </picture>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-inner container">
+      <div class="eyebrow">INDUS — visual stories</div>
+      <h2>INDUS</h2>
+      <p class="lead">Cinematic shorts, quiet observations, and minimal wallpapers made for focus. New visuals and short films every month.</p>
+
+      <div class="cta-row" role="group" aria-label="Primary actions">
+        <a class="btn btn-primary" href="https://youtu.be/kkyywowKCiw" target="_blank" rel="noopener">▶ Watch Latest</a>
+        <a class="btn btn-ghost" href="/indus.github.io/content.html">Explore Content</a>
+      </div>
+
+      <div class="hero-meta" aria-hidden="true">
+        <div class="meta-item">New drops — monthly</div>
+        <div class="meta-item">Curated wallpapers</div>
+        <div class="meta-item">Quiet storytelling</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WALLPAPER PREVIEW STRIP (IMMEDIATELY BELOW HERO) ========== -->
+  <section class="wall-preview" aria-labelledby="wall-title">
+    <div class="wrap">
+      <div class="container">
+        <h3 id="wall-title" class="wall-title">Explore Wallpapers</h3>
+        <p class="wall-sub">A small curated collection — free previews here, full-resolution packs on Gumroad.</p>
+
+        <div class="wall-cta" style="text-align:center;margin-bottom:22px">
+          <a class="wall-btn" href="/indus.github.io/wallpaper.html" title="Explore wallpapers">Explore Wallpapers — Free preview</a>
+        </div>
+
+        <div class="wall-strip" aria-live="polite">
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Lonely Tree – preview">
+            <img loading="lazy" src="assets/wall-prev-1.jpg" alt="Lonely Tree" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'">
+            <div class="wall-meta"><div>Lonely Tree</div><div style="color:var(--accent);font-weight:800">Free</div></div>
+          </a>
+
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Smooth Beige – preview">
+            <img loading="lazy" src="assets/wall-prev-2.jpg" alt="Smooth Beige" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'">
+            <div class="wall-meta"><div>Smooth Beige</div><div style="color:var(--accent);font-weight:800">Free</div></div>
+          </a>
+
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Empty Room – preview">
+            <img loading="lazy" src="assets/wall-prev-3.jpg" alt="Empty Room" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'">
+            <div class="wall-meta"><div>Empty Room</div><div style="color:#ffd28a;font-weight:800">₹79</div></div>
+          </a>
+
+          <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Night Lamp – preview">
+            <img loading="lazy" src="assets/wall-prev-4.jpg" alt="Night Lamp" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'">
+            <div class="wall-meta"><div>Night Lamp</div><div style="color:#ffd28a;font-weight:800">₹99</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MAIN (start) — Part 2 will continue after this ========== -->
+  <main class="container" role="main">
+    <div class="grid-2">
+      <div>
+        <section class="card">
+          <h3 class="h3">Why INDUS exists</h3>
+          <p class="lead">Short, cinematic stories about ordinary people and quiet places. I make video essays and visual pieces that look calm on the surface — but reveal something human underneath.</p>
+
+          <h3 class="h3" style="margin-top:16px">Featured (one minute)</h3>
+          <div class="feature-video" style="margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)">
+            <iframe class="player" src="https://www.youtube.com/embed/kkyywowKCiw" title="Featured video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:360px;border:0;display:block"></iframe>
+          </div>
+        </section>
+
+<!-- PART 1 / END -->
+ <!-- ================= PART 2 of 4 =================
+     HEARTWARMING LETTER, FEATURED EXPANSION, SOCIAL CARDS,
+     ABOUT SIDEBAR, UPCOMING IDEAS, CONTACT CTA
+     Paste immediately after <!-- PART 1 / END --> 
+================================================= -->
+
+<!-- scoped styles for part-2 (paste here so part1 + part2 work together) -->
+<style>
+/* -------- Part-2 styles (letter, socials, sidebar) -------- */
+
+.letter-section{
+  margin-top:26px;
+  display:flex;
+  gap:20px;
+  align-items:stretch;
+  flex-direction:column;
+}
+
+/* letter card */
+.letter-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.02);
+  padding:22px;
+  box-shadow:0 14px 40px rgba(2,6,23,0.45);
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  overflow:hidden;
+}
+.letter-visual{
+  flex:0 0 220px;
+  border-radius:10px;
+  overflow:hidden;
+  background:#081015;
+}
+.letter-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.letter-body{flex:1}
+.letter-body h3{font-family:'Playfair Display',serif;margin:0 0 8px;font-size:22px}
+.letter-body p{margin:0;color:var(--muted);line-height:1.9;font-size:15px}
+.letter-cta{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap}
+
+/* social / explore row */
+.social-explore{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:22px;
+}
+.social-card{
+  border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.02);
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  display:flex;flex-direction:column;gap:12px;padding:12px;align-items:flex-start;
+  transition:transform .28s var(--ease), box-shadow .28s var(--ease);
+}
+.social-card:hover{transform:translateY(-8px);box-shadow:0 26px 80px rgba(2,6,23,0.55)}
+.social-thumb{width:100%;height:140px;border-radius:8px;overflow:hidden}
+.social-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.social-meta{display:flex;justify-content:space-between;align-items:center;width:100%}
+.social-meta h4{margin:0;font-size:15px}
+.social-meta a{font-weight:800;padding:8px 10px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-size:13px}
+
+/* about / sidebar styles */
+.aside-card{
+  display:flex;flex-direction:column;gap:12px;padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)
+}
+.aside-portrait{width:100%;height:180px;border-radius:10px;overflow:hidden}
+.aside-portrait img{width:100%;height:100%;object-fit:cover}
+.aside-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.aside-cta .btn{flex:1}
+
+/* upcoming ideas list */
+.upcoming-list{display:flex;flex-direction:column;gap:8px}
+.upcoming-item{background:var(--card);padding:10px;border-radius:8px;font-size:14px;color:var(--muted)}
+
+/* contact big CTA */
+.contact-block{
+  margin-top:18px;background:linear-gradient(180deg,#07111b,#07121a);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+  display:flex;flex-direction:column;gap:12px;align-items:flex-start;
+}
+.contact-block .contact-btn{
+  padding:12px 20px;border-radius:12px;font-weight:900;background:linear-gradient(90deg,#ff5a6b,#ff8a39);color:white;border:none;cursor:pointer;transition:transform .25s}
+.contact-block .contact-btn:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(255,110,120,0.12)}
+
+/* subtle utilities */
+.kicker{color:var(--muted);font-size:13px}
+
+/* responsive */
+@media (max-width:980px){
+  .social-explore{grid-template-columns:repeat(2,1fr)}
+  .letter-card{flex-direction:column}
+  .letter-visual{width:100%;height:240px;flex:0 0 auto}
+}
+@media (max-width:640px){
+  .social-explore{grid-template-columns:1fr}
+  .letter-body p{font-size:15px}
+  .aside-portrait{height:160px}
+}
+</style>
+
+<!-- ================= HEARTWARMING LETTER ================= -->
+<section class="letter-section" aria-labelledby="letter-heading">
+  <article class="letter-card" role="article">
+    <div class="letter-visual" aria-hidden="true">
+      <img src="assets/letter-hero.jpg" alt="Quiet room with light" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'">
+    </div>
+
+    <div class="letter-body">
+      <h3 id="letter-heading">A small letter to you</h3>
+      <p>
+        If you are reading this, thank you for being curious. INDUS started as a slow experiment — a camera, a few ideas, and the stubborn belief that small, careful observations of ordinary life are worth sharing.
+      </p>
+
+      <p style="margin-top:12px">
+        I make short films and quiet visuals to remind myself that the ordinary can be beautiful. Sometimes that beauty is a lonely street at dusk; sometimes it's the light in a kitchen at 6am. My goal is simple: make something that feels human. If a scene moves you for even a second, I've done my job.
+      </p>
+
+      <div class="letter-cta">
+        <a class="btn btn-primary" href="/indus.github.io/content.html">Explore content</a>
+        <a class="btn btn-ghost" href="/indus.github.io/wallpaper.html">See full wallpaper collection</a>
+        <a class="btn" href="/indus.github.io/contact.html" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)">Get in touch</a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ================= FEATURED / SOCIAL EXPLORE ================= -->
+<section style="margin-top:22px">
+  <div style="display:flex;gap:18px;align-items:stretch;flex-wrap:wrap">
+    <!-- Left: longer featured / explanation -->
+    <div style="flex:1;min-width:320px">
+      <div class="card" style="padding:18px">
+        <h3 class="h3">Featured video</h3>
+        <p class="lead">A short piece — calm on the surface. Watch the latest and see how I approach everyday stories.</p>
+
+        <div style="margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)">
+          <iframe class="player" src="https://www.youtube.com/embed/kkyywowKCiw" title="Featured video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:320px;border:0;display:block"></iframe>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+          <a class="btn btn-primary" href="https://youtu.be/kkyywowKCiw" target="_blank" rel="noopener">▶ Watch on YouTube</a>
+          <a class="btn btn-ghost" href="/indus.github.io/content.html">More videos</a>
         </div>
       </div>
     </div>
 
-    <button id="menuBtn" aria-expanded="false" aria-label="Open menu">☰</button>
+    <!-- Right: Social cards -->
+    <div style="flex:0 0 360px;min-width:260px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="social-card">
+          <div class="social-thumb"><img src="assets/yt-preview.jpg" alt="YouTube preview" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'"></div>
+          <div class="social-meta">
+            <h4>YouTube — visual essays</h4>
+            <a href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener">Follow</a>
+          </div>
+        </div>
 
-    <nav class="main-nav" aria-label="Main navigation" role="navigation">
-      <a class="nav-item" href="/indus.github.io/index.html" title="Home">
-        <span class="thumb"><img src="assets/menu-home.jpg" alt="home thumb" onerror="this.style.opacity=.18"></span>
-        <span>Home</span>
-      </a>
-      <a class="nav-item" href="/indus.github.io/content.html" title="Content">
-        <span class="thumb"><img src="assets/menu-content.jpg" alt="content thumb" onerror="this.style.opacity=.18"></span>
-        <span>Content</span>
-      </a>
-      <a class="nav-item" href="/indus.github.io/wallpaper.html" title="Wallpapers">
-        <span class="thumb"><img src="assets/menu-wall.jpg" alt="wall thumb" onerror="this.style.opacity=.18"></span>
-        <span>Wallpapers</span>
-      </a>
-      <a class="nav-item" href="/indus.github.io/contact.html" title="Contact">
-        <span class="thumb"><img src="assets/menu-contact.jpg" alt="contact thumb" onerror="this.style.opacity=.18"></span>
-        <span>Contact</span>
-      </a>
-    </nav>
+        <div class="social-card">
+          <div class="social-thumb"><img src="assets/ig-preview.jpg" alt="Instagram preview" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'"></div>
+          <div class="social-meta">
+            <h4>Instagram — visuals & BTS</h4>
+            <a href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener">Explore</a>
+          </div>
+        </div>
 
-    <div class="socials">
-      <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener"><span>▶</span> YouTube</a>
-      <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener"><span>•</span> Instagram</a>
-      <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener"><span>@</span> X</a>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero" aria-label="Hero">
-  <div class="hero-bg" style="background-image:url('assets/hero.jpg');"></div>
-  <div class="hero-overlay"></div>
-
-  <div class="hero-inner container">
-    <h2>INDUS</h2>
-    <p class="tag">Just for you.</p>
-
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://youtu.be/kkyywowKCiw" target="_blank" rel="noopener">▶ Watch Latest</a>
-      <a class="btn btn-ghost" href="/indus.github.io/content.html">Explore Content</a>
+        <div class="social-card">
+          <div class="social-thumb"><img src="assets/x-preview.jpg" alt="X preview" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'"></div>
+          <div class="social-meta">
+            <h4>X — quick updates</h4>
+            <a href="https://x.com/indusnyou" target="_blank" rel="noopener">Follow</a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WALLPAPER PREVIEW (placed immediately under hero) -->
-<section class="wall-preview" aria-label="Explore wallpapers">
-  <div class="wrap">
-    <div class="container">
-      <div class="wall-title"><svg width="22" height="22" viewBox="0 0 24 24" style="opacity:.9;margin-right:6px"><path d="M12 2L3 5v6c0 5 3.6 9.8 9 11 5.4-1.2 9-6 9-11V5l-9-3z" fill="rgba(255,255,255,0.06)"/></svg>
-        Explore Wallpapers
+<!-- ================= SIDE COLUMN (ASIDE) ================= -->
+</div> <!-- close left column (was opened in Part-1) -->
+
+<aside>
+  <div class="aside-card">
+    <div style="display:flex;gap:12px;align-items:center">
+      <div style="flex:0 0 88px">
+        <div class="aside-portrait"><img src="assets/about-creator.jpg" alt="Creator portrait" onerror="this.onerror=null; this.src='assets/hero-dark.jpg'"></div>
       </div>
-      <p class="wall-sub">A small curated collection — free previews here, full-resolution available on the store. Click any preview to explore more.</p>
+      <div>
+        <strong style="display:block;font-size:15px">About the creator</strong>
+        <div style="color:var(--muted);font-size:13px;margin-top:6px">I make short, observational films and visuals. I care about craft, quiet moods and clear storytelling.</div>
+      </div>
+    </div>
 
-      <div class="wall-cta">
-        <a class="wall-btn" href="/indus.github.io/wallpaper.html">Explore Wallpapers For Free</a>
+    <div style="display:flex;gap:8px;margin-top:12px" class="aside-cta">
+      <a class="btn btn-ghost" href="/indus.github.io/contact.html">Get in touch</a>
+      <a class="btn btn-primary" href="/indus.github.io/wallpaper.html">Visit store</a>
+    </div>
+
+    <h4 style="margin-top:12px;margin-bottom:6px">Upcoming ideas</h4>
+    <div class="upcoming-list">
+      <div class="upcoming-item">24 hours as a night vendor — short film</div>
+      <div class="upcoming-item">7 days with a Himalayan monk — visuals</div>
+      <div class="upcoming-item">A small, empty hotel — photographic study</div>
+    </div>
+
+    <div class="contact-block" style="width:100%">
+      <div style="display:flex;gap:10px;align-items:center">
+        <div style="flex:1">
+          <div style="font-weight:800">Work with me</div>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">For commissions, partnerships or licensing, email me.</div>
+        </div>
       </div>
 
-      <div class="wall-strip">
-        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Lonely Tree">
-          <img src="assets/wall-prev-1.jpg" alt="Lonely Tree">
-          <div class="meta"><div>Lonely Tree</div><div style="color:var(--accent);font-weight:700">Free</div></div>
-        </a>
-
-        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Smooth Beige">
-          <img src="assets/wall-prev-2.jpg" alt="Smooth Beige">
-          <div class="meta"><div>Smooth Beige</div><div style="color:var(--accent);font-weight:700">Free</div></div>
-        </a>
-
-        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Empty Room">
-          <img src="assets/wall-prev-3.jpg" alt="Empty Room">
-          <div class="meta"><div>Empty Room</div><div style="color:#ffd28a;font-weight:700">₹79</div></div>
-        </a>
-
-        <a class="wall-tile" href="/indus.github.io/wallpaper.html" title="Night Lamp">
-          <img src="assets/wall-prev-4.jpg" alt="Night Lamp">
-          <div class="meta"><div>Night Lamp</div><div style="color:#ffd28a;font-weight:700">₹99</div></div>
-        </a>
+      <div style="display:flex;gap:8px;width:100%;flex-wrap:wrap;margin-top:6px">
+        <a class="contact-btn" href="mailto:indusnme@outlook.com" id="contactMail">Email — indusnme@outlook.com</a>
+        <a class="btn" href="/indus.github.io/contact.html" style="border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);padding:11px 14px;border-radius:10px">More contact</a>
       </div>
     </div>
   </div>
-</section>
+</aside>
 
-<!-- MAIN -->
-<main class="container" role="main">
-  <div class="grid-2">
+    </div> <!-- close grid-2 -->
+  </main>
 
-    <div>
-      <section class="card">
-        <h3 class="h3">Why INDUS exists</h3>
-        <p class="lead">Short, cinematic stories about ordinary people and quiet places. I make video essays and visual pieces that look calm on the surface — but reveal something human underneath.</p>
-
-        <h3 class="h3" style="margin-top:18px">Featured (one minute)</h3>
-        <div class="feature-video">
-          <iframe class="player" src="https://www.youtube.com/embed/kkyywowKCiw" title="Featured video" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <div class="kicker" style="margin-top:14px">Follow the visual journey</div>
-        <div class="follow-row">
-          <a class="social-card" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener">
-            <img src="assets/ig-preview.jpg" alt="ig" style="width:56px;height:56px;border-radius:8px;object-fit:cover">
-            <div>
-              <strong>Instagram</strong>
-              <div style="color:var(--muted);font-size:13px">Visuals, stories & behind-the-scenes</div>
-            </div>
-          </a>
-
-          <a class="social-card" href="https://x.com/indusnyou" target="_blank" rel="noopener">
-            <img src="assets/x-preview.jpg" alt="x" style="width:56px;height:56px;border-radius:8px;object-fit:cover">
-            <div>
-              <strong>X</strong>
-              <div style="color:var(--muted);font-size:13px">Quick updates & thoughts</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- heartwarming letter -->
-      <section class="letter" aria-label="A letter from the creator">
-        <h3 class="h3" style="margin-top:0">A letter from INDUS</h3>
-        <p>Hi — I’m glad you’re here. INDUS started because I wanted to pay attention to the ordinary moments that quietly shape us: a stray conversation on a rainy evening, a morning walk that feels slightly different than usual, a face in a crowd that tells an untold story. I make short cinematic pieces and images not to answer questions, but to hold a small, still space — a place to notice, to breathe, and to feel less alone.</p>
-        <p style="margin-top:10px">If you like what you see, that’s wonderful. If you don’t, that’s part of the process too. Either way, thank you for letting these pieces share your time. The wallpapers and visuals on this site are made with care — freely available as previews here, and in higher resolution for those who want to support the work.</p>
-        <p style="margin-top:10px"><em>— with quiet curiosity,</em><br><strong>INDUS</strong></p>
-      </section>
-
-    </div>
-
-    <aside>
-      <div class="card">
-        <h3 class="h3">About the creator</h3>
-        <p style="color:var(--muted);margin:0 0 12px">From confusion to small wins — building cinematic videos with limited gear. I focus on storytelling and consistent craft.</p>
-        <div style="display:flex;gap:10px;margin-top:12px">
-          <a class="btn btn-ghost" href="/indus.github.io/contact.html">Get in touch</a>
-          <a class="btn btn-primary" href="/indus.github.io/wallpaper.html">Visit Store</a>
-        </div>
-
-        <h3 class="h3" style="margin-top:14px">Get social</h3>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
-          <a class="social-pill" href="https://www.youtube.com/@indusnyou" target="_blank" rel="noopener"><span>▶</span> YouTube</a>
-          <a class="social-pill" href="https://www.instagram.com/indusnyou/" target="_blank" rel="noopener"><span>•</span> Instagram</a>
-          <a class="social-pill" href="https://x.com/indusnyou" target="_blank" rel="noopener"><span>@</span> X</a>
-          <a class="social-pill" href="https://facebook.com/" target="_blank" rel="noopener"><span>f</span> Facebook</a>
-        </div>
-
-        <div style="margin-top:16px" class="get-touch">
-          <!-- using a sensible default email; change to your real address if different -->
-          <a class="contact-btn" href="mailto:hello@indusnyou.com?subject=Hello%20INDUS" title="Get in touch with INDUS">Get in touch — hello@indusnyou.com</a>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:18px">
-        <h3 class="h3">Upcoming ideas</h3>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
-          <div style="background:var(--soft);padding:10px;border-radius:8px">24 hours as a homeless person</div>
-          <div style="background:var(--soft);padding:10px;border-radius:8px">7 days with Himalayan monk</div>
-          <div style="background:var(--soft);padding:10px;border-radius:8px">Haunted village</div>
-        </div>
-      </div>
-    </aside>
-
-  </div>
-</main>
-
-<!-- footer -->
-<footer class="site-footer">
-  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
-    <div>
-      <strong>INDUS</strong>
-      <div style="color:var(--muted);font-size:13px;margin-top:6px">Stories. Visuals. Small projects.</div>
-    </div>
-
-    <div style="text-align:right;color:var(--muted);font-size:13px">
-      © INDUS — 2026
-    </div>
-  </div>
-</footer>
-
-<!-- back to top -->
-<div id="backTop" aria-hidden="true" title="Back to top">
-  <svg viewBox="0 0 24 24"><path d="M12 5l-7 7h4v7h6v-7h4z"/></svg>
-</div>
-
+<!-- ================= END PART 2 ================= -->
+<!-- Next: Part 3 will add the gallery modal, filters JS, and wallpaper download integration. -->
 <script>
-/* menu toggle (mobile) */
-const menuBtn = document.getElementById('menuBtn');
-const nav = document.querySelector('.main-nav');
-menuBtn.addEventListener('click', ()=> {
-  const expanded = nav.classList.toggle('open');
-  menuBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-});
-
-/* back to top */
-const backTop = document.getElementById('backTop');
-window.addEventListener('scroll', ()=> {
-  if(window.scrollY > 500) backTop.classList.add('show'); else backTop.classList.remove('show');
-});
-backTop.addEventListener('click', ()=> {
-  window.scrollTo({top:0,behavior:'smooth'});
-});
-
-/* small accessibility: keyboard open menu */
-document.addEventListener('keydown', (e)=> {
-  if(e.key === 'm' || e.key === 'M') {
-    nav.classList.toggle('open');
-  }
-});
-
-/* micro appearance: gently animate thumbnails */
-const thumbs = document.querySelectorAll('.thumb img');
-thumbs.forEach((t,i)=> {
-  t.style.transition = 'transform .6s var(--ease), opacity .6s var(--ease)';
-  // slight staggered float
-  t.style.animation = `floaty 4s ${i*0.12}s ease-in-out infinite`;
-});
-
-/* fallback lazy image handling: if hero not found, set background to a neutral gradient */
+/* Small interactive touches for Part-2 */
 (function(){
-  const hb = document.querySelector('.hero-bg');
-  const img = new Image();
-  img.src = hb.style.backgroundImage.replace(/url\(['"]?(.+)['"]?\)/,'$1');
-  img.onerror = ()=> {
-    hb.style.backgroundImage = 'linear-gradient(180deg,#072027,#07131a)';
-  };
+  // subtle reveal on scroll for letter + social cards
+  const revealItems = document.querySelectorAll('.letter-card, .social-card, .aside-card');
+  if('IntersectionObserver' in window){
+    const obs = new IntersectionObserver((entries, o)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.style.transform = 'translateY(0)';
+          e.target.style.opacity = '1';
+          o.unobserve(e.target);
+        }
+      });
+    }, {threshold: 0.12});
+    revealItems.forEach(el=>{
+      el.style.transform = 'translateY(10px)';
+      el.style.opacity = '0';
+      el.style.transition = 'all .6s var(--ease)';
+      obs.observe(el);
+    });
+  } else {
+    revealItems.forEach(el=>{ el.style.opacity='1'; el.style.transform='none';});
+  }
+
+  // hover micro animation for contact button
+  const contact = document.getElementById('contactMail');
+  if(contact){
+    contact.addEventListener('mouseenter', ()=> contact.style.transform='translateY(-3px)');
+    contact.addEventListener('mouseleave', ()=> contact.style.transform='translateY(0)');
+  }
+
 })();
 </script>
-</body>
-</html>
