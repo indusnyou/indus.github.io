@@ -831,6 +831,291 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
+        // ================= YAHAN SE PASTE KARIYE =================
+      const allWallpapers = [
+
+        // 👇👇 BHAII, YAHAN PAR APNE 9 PARTS (1 SE 91 GAADIYAN) PASTE KARIYE 👇👇
+        
+        // 1
+        { file: "car-drawn-in-monoline.jpg", title: "Monoline Sketch", category: "cars", keywords: "cars drawn monoline sketch minimal clean white", type: "free", price: "Free", desc: "A clean and minimal monoline car sketch for a distraction-free aesthetic." },
+        
+        // 2
+        { file: "driving-away.jpg", title: "Driving Away", category: "cars", keywords: "cars driving away road travel journey minimal cinematic", type: "free", price: "Free", desc: "A cinematic, quiet view of a car driving away into the distance." },
+        
+        // 3
+        { file: "empty-highway.jpg", title: "Empty Highway", category: "cars", keywords: "cars empty highway road travel speed lonely", type: "free", price: "Free", desc: "The quiet thrill and endless possibilities of an empty highway." },
+        
+        // 4
+        { file: "car-parked.jpg", title: "Quiet Parking", category: "cars", keywords: "cars parked calm static street dark aesthetic", type: "free", price: "Free", desc: "A beautifully parked car resting in a calm, aesthetic setting." },
+        
+        // 5
+        { file: "A-car-parked.jpg", title: "Solitary Stance", category: "cars", keywords: "cars parked solitary urban lonely street", type: "free", price: "Free", desc: "A solitary car parked perfectly, capturing a peaceful, quiet moment." },
+        
+        // 6
+        { file: "open-field-at-night.jpg", title: "Field at Night", category: "cars", keywords: "cars open field night dark stars nature landscape", type: "free", price: "Free", desc: "A majestic car parked in an open field under the deep night sky." },
+        
+        // 7
+        { file: "bright-starry-sky.jpg", title: "Starry Drive", category: "cars", keywords: "cars bright starry sky space night universe spiritual", type: "free", price: "Free", desc: "A breathtaking starry sky illuminating the dark car beneath it." },
+        
+        // 8
+        { file: "car-park-sky.jpg", title: "Skyline Park", category: "cars", keywords: "cars park sky open clouds horizon aesthetic cinematic", type: "free", price: "Free", desc: "A cinematic shot of a car parked against a stunning, expansive sky." },
+        
+        // 9
+        { file: "open-star.jpg", title: "Galaxy Ride", category: "cars", keywords: "cars open star space galaxy night spiritual infinite", type: "free", price: "Free", desc: "A mesmerizing view combining a beautiful machine with a starry backdrop." },
+        
+        // 10
+        { file: "light-rain-car.jpg", title: "Rainy Night", category: "cars", keywords: "cars light rain wet moody dark weather aesthetic", type: "free", price: "Free", desc: "A moody, cinematic aesthetic of a car parked under gentle night rain." },
+        // 11
+        { file: "street-light-car.jpg", title: "Street Light Glow", category: "cars", keywords: "cars street light urban night glow dark city lonely", type: "free", price: "Free", desc: "A sleek car illuminated by the warm, lonely glow of a street lamp." },
+        
+        // 12
+        { file: "campfire-car.jpg", title: "Campfire Escape", category: "cars", keywords: "cars campfire woods nature night travel warm offroad", type: "free", price: "Free", desc: "Off the grid: A beautiful machine resting next to a warm campfire." },
+        
+        // 13
+        { file: "ocean-car.jpg", title: "Ocean Breeze", category: "cars", keywords: "cars ocean sea beach coast travel calm water peace", type: "free", price: "Free", desc: "A calming view of a car parked by the vast, peaceful ocean." },
+        
+        // 14
+        { file: "headlights.jpg", title: "Piercing Headlights", category: "cars", keywords: "cars headlights dark night front view aggressive light", type: "free", price: "Free", desc: "Aggressive and piercing headlights cutting through the pure darkness." },
+        
+        // 15
+        { file: "cafe-car.jpg", title: "Midnight Cafe", category: "cars", keywords: "cars cafe coffee urban street night chill neon", type: "free", price: "Free", desc: "A late-night chill vibe with a car parked outside a glowing urban cafe." },
+        
+        // 16
+        { file: "cold-fog-car.jpg", title: "Cold Fog", category: "cars", keywords: "cars cold fog mist winter dark mysterious moody", type: "free", price: "Free", desc: "A mysterious and cold aesthetic of a car hidden in thick fog." },
+        
+        // 17
+        { file: "headlight-glowing.jpg", title: "Glowing Beam", category: "cars", keywords: "cars headlight glowing beam night light cinematic focus", type: "free", price: "Free", desc: "A cinematic close-up of a car's glowing headlight in the dark." },
+        
+        // 18
+        { file: "bugatti.jpg", title: "Bugatti Super-sport", category: "cars", keywords: "cars bugatti supercar fast luxury premium speed hypercar", type: "free", price: "Free", desc: "The ultimate symbol of speed and luxury. Pure automotive perfection." },
+        
+        // 19
+        { file: "red-car.jpg", title: "Crimson Red", category: "cars", keywords: "cars red vibrant sport clean daylight fast bright", type: "free", price: "Free", desc: "A vibrant and clean shot of a striking red sports car." },
+        
+        // 20
+        { file: "cartoon-car.jpg", title: "Toon Ride", category: "cars", keywords: "cars cartoon art illustration cute fun 2d drawn", type: "free", price: "Free", desc: "A fun, artistic 2D cartoon illustration of a cool car." },
+        // 21
+        { file: "night-sky-car.jpg", title: "Skyline Cruiser", category: "cars", keywords: "cars night sky dark clouds stars horizon aesthetic", type: "free", price: "Free", desc: "A gorgeous vehicle set against a breathtaking dark night sky." },
+        
+        // 22
+        { file: "soft-car.jpg", title: "Soft Aesthetic", category: "cars", keywords: "cars soft light smooth minimal pastel calm peaceful", type: "free", price: "Free", desc: "A smooth, minimal car wallpaper with soft lighting and calm vibes." },
+        
+        // 23 (🔴 PAID: ₹79)
+        { file: "vintage-roadside.jpg", title: "Vintage Roadside", category: "cars", keywords: "cars vintage classic roadside retro nostalgia old luxury", type: "paid", price: "₹79", desc: "A beautifully captured classic vintage car parked by the roadside. Pure nostalgia." },
+        
+        // 24
+        { file: "cute-sticker.jpg", title: "Cute Decal", category: "cars", keywords: "cars cute sticker decal graphic fun minimal cartoon", type: "free", price: "Free", desc: "A minimal and playful cute car sticker aesthetic." },
+        
+        // 25
+        { file: "cute-sticker-car.jpg", title: "Sticker Car Art", category: "cars", keywords: "cars cute sticker illustration graphic art flat 2d", type: "free", price: "Free", desc: "Flat graphic illustration of a fun, stylized car." },
+        
+        // 26
+        { file: "hilltop-car.jpg", title: "Hilltop View", category: "cars", keywords: "cars hilltop mountain nature view high top scenic", type: "free", price: "Free", desc: "A stunning view from the top of the world. Car parked on a serene hilltop." },
+        
+        // 27 (🔴 PAID: ₹99)
+        { file: "red-ferrari.jpg", title: "Rosso Ferrari", category: "cars", keywords: "cars red ferrari supercar luxury speed race premium", type: "paid", price: "₹99", desc: "The legendary red Ferrari. A masterpiece of engineering, speed, and passion." },
+        
+        // 28
+        { file: "showroom.jpg", title: "Showroom Shine", category: "cars", keywords: "cars showroom light reflections pristine clean luxury premium", type: "free", price: "Free", desc: "Pristine, glowing, and luxurious. A car shining beautifully under showroom lights." },
+        
+        // 29
+        { file: "sports-car.jpg", title: "Pure Sports", category: "cars", keywords: "cars sports speed performance race track fast aggressive", type: "free", price: "Free", desc: "Built for speed. A sleek sports car ready to hit the tarmac." },
+        
+        // 30
+        { file: "lamborghini-aventador.jpg", title: "Aventador Vibe", category: "cars", keywords: "cars lamborghini aventador supercar aggressive sharp luxury fast", type: "free", price: "Free", desc: "The aggressive and iconic lines of the incredible Lamborghini Aventador." },
+        // 31
+        { file: "rooftop-parking.jpg", title: "Rooftop Vibe", category: "cars", keywords: "cars rooftop parking urban city top concrete aesthetic", type: "free", price: "Free", desc: "Urban aesthetics: A car parked alone on a concrete city rooftop." },
+        
+        // 32
+        { file: "empty-desert-car.jpg", title: "Desert Heat", category: "cars", keywords: "cars empty desert sand heat dry isolated travel wide", type: "free", price: "Free", desc: "An isolated ride through an endless, beautiful dry desert." },
+        
+        // 33
+        { file: "black-car.jpg", title: "Pitch Black", category: "cars", keywords: "cars black dark stealth sleek minimal pure shadow", type: "free", price: "Free", desc: "Pure stealth. A sleek, minimal black car blending into the shadows." },
+        
+        // 34
+        { file: "dark-car.jpg", title: "Dark Aesthetic", category: "cars", keywords: "cars dark shadows moody cinematic mysterious night", type: "free", price: "Free", desc: "Moody, cinematic, and mysterious. The perfect dark aesthetic for your screen." },
+        
+        // 35
+        { file: "supercar-black.jpg", title: "Black Supercar", category: "cars", keywords: "cars supercar black dark performance aggressive hyper fast", type: "free", price: "Free", desc: "An aggressively styled black supercar built for ultimate performance." },
+        
+        // 36
+        { file: "dark-supercar.jpg", title: "Shadow Hypercar", category: "cars", keywords: "cars dark supercar shadow light premium elite luxury", type: "free", price: "Free", desc: "An elite hypercar emerging beautifully from the dark shadows." },
+        
+        // 37
+        { file: "dark-studio.jpg", title: "Studio Shadows", category: "cars", keywords: "cars dark studio lighting professional sleek minimal premium", type: "free", price: "Free", desc: "Professional studio lighting highlighting the sleek curves of a dark car." },
+        
+        // 38
+        { file: "car-showcase.jpg", title: "Premium Showcase", category: "cars", keywords: "cars showcase display premium luxury clean modern sleek", type: "free", price: "Free", desc: "A modern and clean display of a premium luxury vehicle." },
+        
+        // 39
+        { file: "dark-vibe.jpg", title: "Night Vibe", category: "cars", keywords: "cars dark vibe moody aesthetic chill late night shadow", type: "free", price: "Free", desc: "A chill, late-night dark vibe perfect for a sleek home screen." },
+        
+        // 40
+        { file: "ghost-car.jpg", title: "Ghost Ride", category: "cars", keywords: "cars ghost mysterious fog mist ethereal aesthetic pale", type: "free", price: "Free", desc: "An ethereal, mysterious ghost car aesthetic that looks out of this world." },
+        // 41
+        { file: "ghost-supercar.jpg", title: "Ghost Supercar", category: "cars", keywords: "cars ghost supercar white minimal pale sleek fast hypercar", type: "free", price: "Free", desc: "An ethereal and minimal white supercar cutting through the mist." },
+        
+        // 42
+        { file: "mclaren-warm.jpg", title: "Warm McLaren", category: "cars", keywords: "cars mclaren warm tone orange yellow aesthetic sport luxury", type: "free", price: "Free", desc: "A stunning McLaren bathed in warm, aesthetic tones." },
+        
+        // 43
+        { file: "warm-sunset-mclaren.jpg", title: "Sunset McLaren", category: "cars", keywords: "cars mclaren sunset warm golden hour evening drive aesthetic", type: "free", price: "Free", desc: "A beautiful McLaren glowing under the warm evening sunset." },
+        
+        // 44
+        { file: "sunset-color-car.jpg", title: "Sunset Colors", category: "cars", keywords: "cars sunset color colorful evening sky aesthetic horizon calm", type: "free", price: "Free", desc: "Vibrant sunset colors reflecting perfectly off a sleek sports car." },
+        
+        // 45
+        { file: "bold-mclaren.jpg", title: "Bold McLaren", category: "cars", keywords: "cars mclaren bold aggressive design supercar luxury premium", type: "free", price: "Free", desc: "The bold and aggressive design of a premium McLaren." },
+        
+        // 46
+        { file: "dynamic-mclaren.jpg", title: "Dynamic Action", category: "cars", keywords: "cars mclaren dynamic motion speed fast track action race", type: "free", price: "Free", desc: "A dynamic and fast-paced shot of a McLaren in pure action." },
+        
+        // 47
+        { file: "mclaren-illustration.jpg", title: "McLaren Art", category: "cars", keywords: "cars mclaren illustration art digital drawing graphic 2d", type: "free", price: "Free", desc: "A clean, digital illustration of the iconic McLaren aesthetic." },
+        
+        // 48
+        { file: "pure-white-car.jpg", title: "Pure White", category: "cars", keywords: "cars pure white clean minimal elegant luxury bright aesthetic", type: "free", price: "Free", desc: "A pure white aesthetic car, exuding elegance and minimalism." },
+        
+        // 49
+        { file: "pure-white-studio-car.jpg", title: "White Studio", category: "cars", keywords: "cars pure white studio professional clean crisp modern", type: "free", price: "Free", desc: "A crisp and modern professional studio shot of a pristine white car." },
+        
+        // 50
+        { file: "neon-lights-car.jpg", title: "Neon Glow", category: "cars", keywords: "cars neon lights cyberpunk glow night city futuristic purple", type: "free", price: "Free", desc: "A futuristic car glowing under vibrant neon city lights." },
+        // 51
+        { file: "parked-sports-car.jpg", title: "Parked Sports Car", category: "cars", keywords: "cars parked sports aggressive stance urban waiting", type: "free", price: "Free", desc: "A sleek sports car parked beautifully, waiting for the next ride." },
+        
+        // 52
+        { file: "parked-rainy-car.jpg", title: "Rainy Stance", category: "cars", keywords: "cars parked rainy wet weather moody water drops dark", type: "free", price: "Free", desc: "A moody, atmospheric shot of a car resting under the rain." },
+        
+        // 53
+        { file: "racetrack-car.jpg", title: "Track Ready", category: "cars", keywords: "cars racetrack racing speed performance motorsport apex", type: "free", price: "Free", desc: "Built for the apex. A high-performance car ready for the racetrack." },
+        
+        // 54
+        { file: "performance-car.jpg", title: "Pure Performance", category: "cars", keywords: "cars performance engine fast power dynamic machine", type: "free", price: "Free", desc: "Raw power and pure performance wrapped in a stunning modern design." },
+        
+        // 55
+        { file: "mountain-road.jpg", title: "Mountain Pass", category: "cars", keywords: "cars mountain road twisty scenic drive landscape travel", type: "free", price: "Free", desc: "A thrilling and scenic drive through twisty mountain roads." },
+        
+        // 56
+        { file: "dim-garage.jpg", title: "Dim Garage", category: "cars", keywords: "cars dim garage underground parking shadow mysterious", type: "free", price: "Free", desc: "A beast resting in a dimly lit, atmospheric underground garage." },
+        
+        // 57 (Spelling Corrected)
+        { file: "premium-luxury-car.jpg", title: "Premium Luxury", category: "cars", keywords: "cars premium luxury expensive class elegant rich status", type: "free", price: "Free", desc: "The epitome of high-class automotive luxury and elegant design." },
+        
+        // 58
+        { file: "premium-luxury-sports-car.jpg", title: "Luxury Sports", category: "cars", keywords: "cars luxury sports elite exotic fast rich premium", type: "free", price: "Free", desc: "A perfect blend of exotic sports car performance and elite luxury." },
+        
+        // 59
+        { file: "quiet-city.jpg", title: "Quiet City", category: "cars", keywords: "cars quiet city urban lonely street architecture calm", type: "free", price: "Free", desc: "A peaceful moment with a car parked in a quiet, empty city street." },
+        
+        // 60
+        { file: "street-night-car.jpg", title: "Night Street", category: "cars", keywords: "cars street night dark urban city glow aesthetic", type: "free", price: "Free", desc: "A sleek ride standing out on the dark, illuminated streets at night." },
+        // 61
+        { file: "sports-car-minimal.jpg", title: "Minimal Sports Car", category: "cars", keywords: "cars sports minimal clean simple sleek fast aesthetic", type: "free", price: "Free", desc: "A clean and minimalistic aesthetic of a modern sports car." },
+        
+        // 62
+        { file: "red-sports-car.jpg", title: "Red Line", category: "cars", keywords: "cars red sports fast aggressive track racing vibrant", type: "free", price: "Free", desc: "A vibrant red sports car ready to tear up the asphalt." },
+        
+        // 63
+        { file: "minimal-sports-car.jpg", title: "Sleek & Minimal", category: "cars", keywords: "cars minimal sports clean white simple aesthetic pure", type: "free", price: "Free", desc: "Sleek, simple, and distraction-free sports car aesthetic." },
+        
+        // 64
+        { file: "compact-car.jpg", title: "Compact City", category: "cars", keywords: "cars compact urban small city commute efficient fun", type: "free", price: "Free", desc: "A stylish and practical compact car designed for the urban jungle." },
+        
+        // 65 (🔴 PAID: ₹79)
+        { file: "compact-car-pro.jpg", title: "Compact Pro", category: "cars", keywords: "cars compact pro premium urban aesthetic style exclusive", type: "paid", price: "₹79", desc: "Premium styling on a compact frame. Perfect for a clean home screen." },
+        
+        // 66
+        { file: "compact-car-wide.jpg", title: "Wide Stance", category: "cars", keywords: "cars compact wide stance aggressive modified tuning low", type: "free", price: "Free", desc: "A uniquely modified compact car with a wide and aggressive stance." },
+        
+        // 67
+        { file: "car-speeding.jpg", title: "Speed Demon", category: "cars", keywords: "cars speeding motion blur fast action race track blur", type: "free", price: "Free", desc: "A thrilling shot capturing the raw motion and blur of a speeding car." },
+        
+        // 68
+        { file: "chiron-plus.jpg", title: "Chiron Plus", category: "cars", keywords: "cars bugatti chiron hypercar premium ultimate luxury fast", type: "free", price: "Free", desc: "The legendary Bugatti Chiron, showcasing ultimate hypercar aesthetics." },
+        
+        // 69
+        { file: "chiron-wire.jpg", title: "Chiron Wireframe", category: "cars", keywords: "cars bugatti chiron wireframe 3d digital tech engineering grid", type: "free", price: "Free", desc: "A brilliant digital wireframe aesthetic of the iconic Chiron." },
+        
+        // 70
+        { file: "chiron-ultra.jpg", title: "Chiron Ultra", category: "cars", keywords: "cars bugatti chiron ultra elite hypercar premium top luxury", type: "free", price: "Free", desc: "Elite automotive perfection. The hypercar that defines a generation." },
+        // 71
+        { file: "subtle-car.jpg", title: "Subtle Aesthetic", category: "cars", keywords: "cars subtle clean minimal simple smooth elegant soft", type: "free", price: "Free", desc: "A smooth, elegantly subtle car wallpaper that feels incredibly peaceful." },
+        
+        // 72
+        { file: "subtle-wire.jpg", title: "Subtle Wireframe", category: "cars", keywords: "cars subtle wireframe digital art tech grid lines abstract", type: "free", price: "Free", desc: "A clean and tech-inspired wireframe aesthetic of a sleek car." },
+        
+        // 73
+        { file: "minimal-subtle.jpg", title: "Pure Minimal", category: "cars", keywords: "cars minimal subtle white clean empty space aesthetic pure", type: "free", price: "Free", desc: "A highly minimalistic approach to car photography for a clutter-free screen." },
+        
+        // 74 (🔴 PAID: ₹79)
+        { file: "pastel-lamborghini.jpg", title: "Pastel Lamborghini", category: "cars", keywords: "cars pastel lamborghini soft colors supercar luxury aesthetic premium", type: "paid", price: "₹79", desc: "A gorgeous Lamborghini wrapped in soft, aesthetic pastel colors. Pure premium vibes." },
+        
+        // 75
+        { file: "placed-lamborghini.jpg", title: "Perfect Stance", category: "cars", keywords: "cars lamborghini placed parked supercar stance low wide", type: "free", price: "Free", desc: "A stunning Lamborghini parked perfectly in a pristine environment." },
+        
+        // 76
+        { file: "aventador-placed.jpg", title: "Aventador Rest", category: "cars", keywords: "cars lamborghini aventador parked stance aggressive wide premium", type: "free", price: "Free", desc: "The aggressive, iconic stance of an Aventador resting beautifully." },
+        
+        // 77
+        { file: "pastel-pro.jpg", title: "Pastel Pro", category: "cars", keywords: "cars pastel soft gradient premium colors elegant smooth", type: "free", price: "Free", desc: "Premium soft pastel tones highlighting elegant automotive curves." },
+        
+        // 78
+        { file: "simple-car.jpg", title: "Simple Ride", category: "cars", keywords: "cars simple clean everyday basic minimal neat", type: "free", price: "Free", desc: "A clean, simple, and neat car aesthetic for an everyday look." },
+        
+        // 79
+        { file: "floating-car.jpg", title: "Floating Car", category: "cars", keywords: "cars floating surreal dream gravity magic art aesthetic", type: "free", price: "Free", desc: "A surreal, dream-like aesthetic of a car defying gravity." },
+        
+        // 80
+        { file: "floating-car-sticker.jpg", title: "Floating Sticker", category: "cars", keywords: "cars floating sticker decal fun cute graphic 2d illustration", type: "free", price: "Free", desc: "A fun, 2D graphic sticker style illustration of a floating car." },
+        // 81
+        { file: "minimal-sticker.jpg", title: "Minimal Sticker", category: "cars", keywords: "cars minimal sticker cute simple flat 2d graphic", type: "free", price: "Free", desc: "A perfectly minimal sticker graphic to keep your screen simple." },
+        
+        // 82
+        { file: "blueprint-car.jpg", title: "Blueprint Concept", category: "cars", keywords: "cars blueprint sketch technical drawing engineering draft", type: "free", price: "Free", desc: "A highly detailed engineering blueprint of a beautiful machine." },
+        
+        // 83
+        { file: "cartoon-car-top-view.jpg", title: "Toon Top View", category: "cars", keywords: "cars cartoon top view flat drone 2d illustration", type: "free", price: "Free", desc: "A fun and aesthetic top-down view of a cute cartoon car." },
+        
+        // 84
+        { file: "cartoon-car-icons.jpg", title: "Car Icons", category: "cars", keywords: "cars cartoon icons pattern cute fun graphic minimal", type: "free", price: "Free", desc: "A playful pattern of colorful cartoon car icons." },
+        
+        // 85
+        { file: "color-car-top-view.jpg", title: "Color Top View", category: "cars", keywords: "cars color top view drone aesthetic minimal vibrant", type: "free", price: "Free", desc: "A vibrant and clean top-down perspective of a colorful ride." },
+        
+        // 86
+        { file: "top-view-sticker.jpg", title: "Top View Sticker", category: "cars", keywords: "cars top view sticker flat fun minimal graphic 2d", type: "free", price: "Free", desc: "A neat and aesthetic flat sticker view from the top." },
+        
+        // 87
+        { file: "vintage-minimal.jpg", title: "Vintage Minimal", category: "cars", keywords: "cars vintage classic minimal clean retro old aesthetic", type: "free", price: "Free", desc: "The timeless charm of a classic car mixed with minimal aesthetics." },
+        
+        // 88
+        { file: "stunning-mclaren.jpg", title: "Stunning McLaren", category: "cars", keywords: "cars mclaren stunning supercar premium fast luxury exotic", type: "free", price: "Free", desc: "A breathtaking and stunning visual of an exotic McLaren." },
+        
+        // 89 (🔴 PAID: ₹79)
+        { file: "mclaren-placed.jpg", title: "McLaren Stance", category: "cars", keywords: "cars mclaren placed parked aggressive premium luxury stance", type: "paid", price: "₹79", desc: "The perfect aggressive stance of a premium McLaren parked beautifully." },
+        
+        // 90
+        { file: "mclaren-inside.jpg", title: "McLaren Interior", category: "cars", keywords: "cars mclaren inside interior steering luxury cockpit premium", type: "free", price: "Free", desc: "A high-class look inside the luxurious cockpit of a McLaren." },
+        
+        // 91
+        { file: "classic-car.jpg", title: "Timeless Classic", category: "cars", keywords: "cars classic vintage old timeless elegant luxury nostalgia", type: "free", price: "Free", desc: "A timeless and elegant classic car bringing pure automotive nostalgia." }
+
+        // 👆👆 91 GAADIYAN YAHAN TAK AAYENGI 👆👆
+
+      ];
+
+      // YEH ENGINE AAPKI 91 GAADIYON KE CARDS BANAYEGA
+      const myGrid = document.getElementById('wallpaperGrid');
+      if (myGrid) {
+        allWallpapers.forEach(wall => {
+          let badgeHtml = wall.type === 'paid' ? `<span class="badge badge-paid">${wall.price}</span>` : `<span class="badge badge-free">Free</span>`;
+          let btnHtml = wall.type === 'paid' ? `<a href="https://gumroad.com" target="_blank" rel="noopener" class="btn-premium" style="flex: 1; padding: 10px; font-size: 0.85rem; text-align:center;">Buy HD - ${wall.price}</a>` : `<a href="assets/hd/${wall.file}" download class="btn-glass" style="flex: 1; padding: 10px; font-size: 0.85rem; text-align:center;">Download HD</a>`;
+          let cardHTML = `<article class="wall-card" data-category="${wall.category}" data-title="${wall.keywords}"><div class="wall-img-wrap"><a href="view.html?img=${wall.file}"><img loading="lazy" src="assets/${wall.file}" alt="${wall.title}" onerror="this.src='assets/hero-dark.jpg'"></a><div class="card-watermark"><span>INDUS</span></div><div style="position: absolute; top: 12px; left: 12px; z-index: 5;"><span class="badge badge-hd">4K HD</span></div></div><div class="wall-info"><div class="wall-title-row"><h3 class="wall-title">${wall.title}</h3>${badgeHtml}</div><p class="wall-desc">${wall.desc}</p><div class="wall-actions">${btnHtml}<button class="btn-glass preview-trigger" data-img="assets/${wall.file}" style="padding: 10px; width: 44px; font-size: 1.1rem;" title="Preview">👁</button></div></div></article>`;
+          myGrid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+      }
+      // ================= YAHAN TAK PASTE KARIYE =================
       // 1. DOM Elements (HTML ke elements ko JS me lana)
       const searchInput = document.getElementById('searchInput');
       const filterBtns = document.querySelectorAll('.filter-btn');
@@ -989,3 +1274,4 @@
   </style>
   </body>
 </html>
+
