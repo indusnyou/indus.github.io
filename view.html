@@ -1,296 +1,117 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Wallpaper · INDUS</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#050609;
-    --panel:#0f1418;
-    --muted:#9aa3a8;
-    --accent:#ff5a64;
-    --success:#16a34a;
-    --glass: rgba(255,255,255,0.03);
-    --maxw:1120px;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;background:linear-gradient(180deg,#05060a,#071018);color:#eaf3f7;font-family:Inter,system-ui,Arial;-webkit-font-smoothing:antialiased}
-  .container{max-width:var(--maxw);margin:0 auto;padding:20px}
-  header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-  header h1{font-family:'Playfair Display',serif;margin:0;font-size:20px}
-  header small{color:var(--muted);display:block;font-size:12px;margin-top:4px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Wallpaper · INDUS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Premium Dark Theme */
+    body { margin: 0; font-family: 'Inter', sans-serif; background: #030406; color: #f3f7f9; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+    header { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    header h1 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 0; }
+    header a { color: #fff; text-decoration: none; }
+    
+    /* View Section */
+    .view-grid { display: grid; grid-template-columns: 1fr 350px; gap: 40px; margin-top: 40px; }
+    .main-image { background: #0a0d12; border-radius: 20px; padding: 20px; border: 1px solid rgba(255,255,255,0.05); }
+    .main-image img { width: 100%; height: 60vh; object-fit: contain; border-radius: 12px; }
+    
+    /* Details Section */
+    .details { padding-top: 20px; }
+    .title { font-family: 'Playfair Display', serif; font-size: 2rem; margin: 0 0 10px; }
+    .badge { display: inline-block; padding: 6px 12px; background: rgba(16, 185, 129, 0.15); color: #10b981; border-radius: 8px; font-weight: 700; font-size: 0.85rem; margin-bottom: 20px; }
+    .desc { color: #8b99a4; line-height: 1.6; margin-bottom: 30px; }
+    .btn-download { display: block; text-align: center; background: linear-gradient(135deg, #ff4555, #ff7a18); color: #fff; padding: 16px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(255,69,85,0.2); transition: 0.3s; }
+    .btn-download:hover { transform: translateY(-3px); }
 
-  /* main layout */
-  .wrap{display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:start;margin-top:6px}
-  @media (max-width:920px){ .wrap{grid-template-columns:1fr;gap:18px} }
+    /* Suggestions Grid (YouTube Style) */
+    .suggestions { margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .suggestions h2 { font-family: 'Playfair Display', serif; margin-bottom: 24px; }
+    .sugg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+    .sugg-card { background: #0a0d12; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; text-decoration: none; color: white; display: block;}
+    .sugg-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); }
+    .sugg-card img { width: 100%; height: 250px; object-fit: cover; }
+    .sugg-info { padding: 12px; font-weight: 600; font-size: 0.95rem; }
 
-  /* preview card */
-  .preview-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:14px;border-radius:14px;border:1px solid var(--glass);box-shadow:0 18px 50px rgba(2,6,20,0.6)}
-  .preview-inner{position:relative;overflow:hidden;border-radius:12px;background:#071018;display:flex;align-items:center;justify-content:center}
-  .preview-inner img{width:100%;height:70vh;max-height:820px;object-fit:contain;display:block;border-radius:8px;cursor:zoom-in}
-  .preview-meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}
-  .tags{display:flex;gap:8px;flex-wrap:wrap}
-  .tag{background:rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-weight:600;color:var(--muted);font-size:13px}
-
-  /* sidebar info */
-  .info{position:sticky;top:20px}
-  .info .card{background:transparent;padding:14px;border-radius:12px;border:1px solid var(--glass)}
-  .title-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .title{font-family:'Playfair Display',serif;font-size:20px;margin:0}
-  .price{font-weight:800;padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#df2d44);color:white}
-
-  .desc{color:var(--muted);margin-top:10px;font-size:14px}
-  .actions{display:flex;flex-direction:column;gap:10px;margin-top:14px}
-  .btn{display:inline-block;padding:12px 14px;border-radius:12px;text-align:center;font-weight:700;text-decoration:none}
-  .btn-download{background:linear-gradient(90deg,var(--success),#0ea46c);color:#07210f}
-  .btn-buy{background:linear-gradient(90deg,var(--accent),#df2d44);color:white}
-  .btn-preview{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
-
-  .hint{color:var(--muted);font-size:13px;margin-top:8px}
-
-  /* suggestions */
-  .suggest{margin-top:20px}
-  .suggest h3{margin:0 0 10px;font-size:15px}
-  .suggest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
-  .suggest-item{border-radius:10px;overflow:hidden;border:1px solid var(--glass);background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);transition:transform .28s ease,box-shadow .28s}
-  .suggest-item img{width:100%;height:110px;object-fit:cover;display:block;transition:transform .28s ease}
-  .suggest-item:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(2,6,20,0.6)}
-  .suggest-item:hover img{transform:scale(1.06)}
-
-  /* modal preview */
-  .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(0,0,0,0.65), rgba(0,0,0,0.85));z-index:9999;padding:18px}
-  .modal.open{display:flex}
-  .modal .box{max-width:1100px;width:100%;border-radius:12px;background:#071018;padding:12px;position:relative}
-  .modal img{width:100%;height:75vh;object-fit:contain;border-radius:8px;display:block}
-  .wm{position:absolute;left:18px;bottom:18px;color:rgba(255,255,255,0.12);font-weight:800;font-size:28px;transform:rotate(-18deg);pointer-events:none}
-  .close-modal{position:absolute;right:12px;top:12px;background:rgba(255,255,255,0.03);border:0;color:#fff;padding:8px 10px;border-radius:8px;cursor:pointer}
-
-  /* responsiveness tweaks */
-  @media (max-width:520px){
-    .preview-inner img{height:52vh}
-    .title{font-size:18px}
-    .suggest-item img{height:120px}
-    .info{position:static}
-  }.logo-link {
-  text-decoration: none;
-  color: white;
-  transition: 0.3s ease;
-}
-
-.logo-link:hover {
-  opacity: 0.7;
-}
-
-</style>
+    @media (max-width: 800px) { .view-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
   <div class="container">
-    <header>
-      <div>
-        <h1>
-  <a href="./index.html" class="logo-link">INDUS</a>
-</h1>
+    <header><h1><a href="wallpaper.html">INDUS</a> <span style="font-size: 0.8rem; color:#8b99a4; font-family:'Inter'">· Store</span></h1></header>
 
-        <small>Just for you.</small>
+    <div class="view-grid">
+      <div class="main-image">
+        <img id="mainImg" src="" alt="Wallpaper Preview">
       </div>
-      <div style="color:#9aa3a8;font-size:13px">Wallpapers store</div>
-    </header>
-
-    <div class="wrap">
-      <!-- PREVIEW COLUMN -->
-      <div class="preview-card">
-        <div class="preview-inner" id="previewWrap">
-          <img id="wallImg" src="" alt="Wallpaper preview" />
-        </div>
-
-        <div class="preview-meta">
-          <div class="tags" id="tagsRow"></div>
-          <div style="color:var(--muted);font-size:13px" id="ratioInfo"></div>
-        </div>
+      <div class="details">
+        <h2 id="wallTitle" class="title">Loading...</h2>
+        <span class="badge" id="wallPrice">Free</span>
+        <p id="wallDesc" class="desc">Loading description...</p>
+        <a id="downloadBtn" href="#" download class="btn-download">Download 4K HD</a>
       </div>
+    </div>
 
-      <!-- INFO / ACTIONS -->
-      <aside class="info">
-        <div class="card">
-          <div class="title-row">
-            <div>
-              <div id="wallTitle" class="title">Loading…</div>
-              <div id="wallSub" style="color:var(--muted);font-size:13px;margin-top:6px">—</div>
-            </div>
-            <div id="priceBadge" class="price" style="display:none">₹0</div>
-          </div>
-
-          <p id="desc" class="desc">—</p>
-
-          <div class="actions">
-            <a id="primaryBtn" class="btn btn-download" href="#" download>Download HD</a>
-            <a id="buyBtn" class="btn btn-buy" href="#" style="display:none" target="_blank" rel="noopener">Buy now</a>
-            <a id="previewBtn" class="btn btn-preview" href="#" style="display:none">Open preview</a>
-            <div id="fileNote" class="hint"></div>
-          </div>
-
-          <div class="suggest">
-            <h3>You may also like</h3>
-            <div class="suggest-grid" id="suggestGrid"></div>
-          </div>
+    <div class="suggestions">
+      <h2>You May Also Like</h2>
+      <div class="sugg-grid" id="suggestionGrid">
         </div>
-      </aside>
     </div>
   </div>
 
-  <!-- modal (preview) -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Preview">
-    <div class="box">
-      <button id="closeModal" class="close-modal">Close</button>
-      <img id="modalImg" src="" alt="Preview (watermarked)">
-      <div class="wm">INDUS — preview</div>
-    </div>
-  </div>
+  <script>
+    // Database of your wallpapers
+    const ITEMS = {
+      "tree.jpg": { title: "Lonely Tree", desc: "A quiet morning observation of a lone tree against a breathtaking landscape.", price: "Free", link: "assets/hd/tree.jpg" },
+      "beige.jpg": { title: "Smooth Beige", desc: "Clean, warm, and distraction-free minimal aesthetic.", price: "Free", link: "assets/hd/beige.jpg" },
+      "room.jpg": { title: "Empty Room", desc: "The quiet comfort of morning light pouring into an empty space.", price: "Free", link: "assets/hd/room.jpg" },
+      "moon.jpg": { title: "Moon Night", desc: "A deeply spiritual and calming view of the moon.", price: "₹79", link: "https://indus.gumroad.com/l/asndjt", paid: true },
+      "street.jpg": { title: "Night Street", desc: "Moody, cinematic street lamp glowing in the dark.", price: "₹99", link: "https://gumroad.com", paid: true },
+      "milkyway.jpg": { title: "Milky Way", desc: "Vast, infinite, and mesmerizing view of our galaxy.", price: "₹15", link: "https://gumroad.com", paid: true },
+      "cars.jpg": { title: "Cinematic Car", desc: "Sleek, powerful, and moody. The perfect dark aesthetic.", price: "Free", link: "assets/hd/cars.jpg" }
+    };
 
-<script>
-/* =========================
-   ITEMS: edit filenames + pay links here
-   Preview path: wallpapers/<file>.jpg
-   HD path:      wallpapers/hd/<file>.jpg  (for free items)
-   ========================= */
-const ITEMS = {
-  "tree.jpg":    { title:"Lonely Tree", preview:"wallpapers/tree.jpg", hd:"wallpapers/hd/tree.jpg", type:"free", price:0 },
-  "beige.jpg":   { title:"Smooth Beige", preview:"wallpapers/beige.jpg", hd:"wallpapers/hd/beige.jpg", type:"free", price:0 },
-  "room.jpg":    { title:"Empty Room Sunlight", preview:"wallpapers/room.jpg", hd:"wallpapers/hd/room.jpg", type:"free", price:0 },
- "moon.jpg": {
-  title:"Moon Night",
-  preview:"wallpapers/moon.jpg",
-  type:"paid",
-  price:79,
-  payLink:"https://indus.gumroad.com/l/asndjt"
-},
+    // Get the requested image from URL (e.g., view.html?img=tree.jpg)
+    const params = new URLSearchParams(window.location.search);
+    const imgKey = params.get('img') || 'tree.jpg';
+    const item = ITEMS[imgKey];
 
-  "milkyway.jpg":{ title:"Milky Way", preview:"wallpapers/milkyway.jpg", type:"paid", price:15, payLink:"https://gumroad.com" },
-  "street.jpg":  { title:"Night Street Lamp", preview:"wallpapers/street.jpg", type:"paid", price:99, payLink:"https://gumroad.com" }
-};
-
-/* get requested image from URL: view.html?img=tree.jpg */
-const params = new URLSearchParams(window.location.search);
-const img = params.get('img') || 'tree.jpg';
-const item = ITEMS[img] || null;
-
-/* UI refs */
-const wallImg = document.getElementById('wallImg');
-const wallTitle = document.getElementById('wallTitle');
-const wallSub = document.getElementById('wallSub');
-const priceBadge = document.getElementById('priceBadge');
-const desc = document.getElementById('desc');
-const primaryBtn = document.getElementById('primaryBtn');
-const buyBtn = document.getElementById('buyBtn');
-const previewBtn = document.getElementById('previewBtn');
-const fileNote = document.getElementById('fileNote');
-const suggestGrid = document.getElementById('suggestGrid');
-const modal = document.getElementById('modal');
-const modalImg = document.getElementById('modalImg');
-const closeModal = document.getElementById('closeModal');
-
-/* Safety: if item invalid, show simple error */
-if(!item){
-  wallTitle.innerText = "Wallpaper not found";
-  desc.innerText = "This wallpaper does not exist. Try the gallery.";
-  primaryBtn.style.display = "none";
-  buyBtn.style.display = "none";
-  previewBtn.style.display = "none";
-  throw new Error("Wallpaper key not found in ITEMS: " + img);
-}
-
-/* populate UI */
-wallImg.src = item.preview;
-wallTitle.innerText = item.title;
-wallSub.innerText = item.type === 'free' ? "Free • 9:16 preview" : "Premium • preview only";
-desc.innerText = item.type === 'free' ? "High resolution available for free download." : "Preview only — buy to unlock HD.";
-
-/* show tags / ratio */
-const ratioInfo = document.getElementById('ratioInfo');
-ratioInfo && (ratioInfo.innerText = "9:16 • mobile-ready");
-
-/* buttons logic */
-if(item.type === 'free'){
-  priceBadge.style.display = 'inline-block';
-  priceBadge.innerText = 'FREE';
-  buyBtn.style.display = 'none';
-  previewBtn.style.display = 'none';
-  // check if HD file exists; if yes, allow download, else warn
-  (async ()=>{
-    try{
-      const resp = await fetch(item.hd, {method:'HEAD'});
-      if(resp.ok){
-        primaryBtn.href = item.hd;
-        primaryBtn.setAttribute('download','');
-        primaryBtn.innerText = 'Download HD';
-        fileNote.innerText = '';
-      } else {
-        // not found
-        primaryBtn.href = item.preview;
-        primaryBtn.removeAttribute('download');
-        primaryBtn.innerText = 'Download HD';
-        fileNote.innerText = 'HD file not uploaded yet — contact admin or try preview.';
+    if (item) {
+      document.getElementById('mainImg').src = "assets/" + imgKey;
+      document.getElementById('wallTitle').innerText = item.title;
+      document.getElementById('wallDesc').innerText = item.desc;
+      
+      const priceBadge = document.getElementById('wallPrice');
+      priceBadge.innerText = item.price;
+      if(item.paid) { 
+        priceBadge.style.background = "rgba(251, 191, 36, 0.15)"; 
+        priceBadge.style.color = "#fbbf24"; 
       }
-    }catch(err){
-      // network or CORS; fallback to direct link (may 404)
-      primaryBtn.href = item.hd;
-      primaryBtn.setAttribute('download','');
-      fileNote.innerText = 'If download fails, upload HD to: ' + item.hd;
+
+      const btn = document.getElementById('downloadBtn');
+      btn.href = item.link;
+      if(item.paid) {
+        btn.innerText = "Buy HD - " + item.price;
+        btn.removeAttribute('download');
+        btn.target = "_blank";
+      }
     }
-  })();
-} else {
-  // paid
-  priceBadge.style.display = 'inline-block';
-  priceBadge.innerText = '₹' + item.price;
-  primaryBtn.style.display = 'none'; // hide direct download
-  buyBtn.style.display = 'inline-block';
-  buyBtn.href = item.payLink;
-  previewBtn.style.display = 'inline-block';
-  buyBtn.onclick = () => window.open(item.payLink, "_blank");
 
-  fileNote.innerText = 'Preview is watermarked and not downloadable. Buy to get HD.';
-}
-
-/* suggestions: add other items */
-Object.keys(ITEMS).forEach(key=>{
-  if(key === img) return;
-  const it = ITEMS[key];
-  const a = document.createElement('a');
-  a.href = 'view.html?img=' + key;
-  a.className = 'suggest-item';
-  a.innerHTML = `<img src="${it.preview}" alt="${it.title}">`;
-  suggestGrid.appendChild(a);
-});
-
-/* preview modal behavior (for paid items) */
-if(previewBtn){
-  previewBtn.addEventListener('click', function(e){
-    e.preventDefault();
-    modalImg.src = item.preview;
-    modal.classList.add('open');
-    // basic deterrents
-    modalImg.oncontextmenu = ev => { ev.preventDefault(); return false; };
-    modalImg.addEventListener('touchstart', ev => ev.preventDefault(), {passive:false});
-  });
-}
-closeModal.addEventListener('click', ()=>{ modal.classList.remove('open'); modalImg.src=''; });
-modal.addEventListener('click', (e)=>{ if(e.target===modal) { modal.classList.remove('open'); modalImg.src=''; }});
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ modal.classList.remove('open'); modalImg.src=''; }});
-
-/* small UX: zoom preview on click open modal as well (for free or paid) */
-document.getElementById('previewWrap').addEventListener('click', ()=> {
-  modalImg.src = item.preview;
-  modal.classList.add('open');
-});
-
-/* disable drag / right-click on main preview (reduces casual saving) */
-wallImg.oncontextmenu = ev => { ev.preventDefault(); return false; };
-wallImg.ondragstart = ev => { ev.preventDefault(); return false; };
-
-/* optional: lazy-load big images on slow devices - left as exercise */
-</script>
+    // Populate Suggestions (Exclude current item)
+    const suggGrid = document.getElementById('suggestionGrid');
+    Object.keys(ITEMS).forEach(key => {
+      if (key !== imgKey) {
+        const sugg = ITEMS[key];
+        suggGrid.innerHTML += `
+          <a href="view.html?img=${key}" class="sugg-card">
+            <img src="assets/${key}" alt="${sugg.title}">
+            <div class="sugg-info">${sugg.title}</div>
+          </a>
+        `;
+      }
+    });
+  </script>
 </body>
 </html>
-
