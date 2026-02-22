@@ -25,7 +25,7 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
-    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
@@ -40,23 +40,28 @@
     .nav-links a.active { color: #fff; position: relative; }
     .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow)); border-radius: 2px; }
 
-    /* ========== VISION HERO SECTION ========== */
-    .vision-hero { padding: 100px 0 60px; text-align: center; }
-    .vision-hero h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .vision-hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
-    .highlight { color: #fff; font-weight: 600; }
+    /* ========== 1. VISION HERO (BACKGROUND VIDEO) ========== */
+    .vision-hero { position: relative; padding: 140px 0 100px; text-align: center; overflow: hidden; border-bottom: 1px solid var(--border-subtle); border-radius: 0 0 30px 30px;}
+    .bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0.35; filter: grayscale(50%); }
+    /* Dark gradient overlay over video */
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, #030406 5%, transparent 100%); z-index: -1; }
+    
+    .vision-hero h2 { font-size: clamp(3rem, 6vw, 4.5rem); margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.8); letter-spacing: -0.02em;}
+    .vision-hero p { color: #d1d8dd; font-size: 1.25rem; max-width: 750px; margin: 0 auto; line-height: 1.8; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+    .highlight { color: #fff; font-weight: 700; background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
     /* ========== SECTION TITLES ========== */
-    .section-title { font-size: 2rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px; margin: 60px 0 30px; display: flex; justify-content: space-between; align-items: flex-end; }
-    .section-link { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--accent-primary); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+    .section-title { font-size: 2rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px; margin: 80px 0 40px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .section-link { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--accent-primary); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; transition: var(--transition-smooth); }
+    .section-link:hover { color: var(--accent-glow); transform: translateX(5px); }
 
-    /* ========== YOUTUBE GRID ========== */
+    /* ========== 2. YOUTUBE GRID ========== */
     .yt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
-    .video-card { background: var(--bg-surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle); transition: var(--transition-smooth); cursor: pointer; }
+    .video-card { background: var(--bg-surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle); transition: var(--transition-smooth); cursor: pointer; display: block; }
     .video-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
     
-    .thumb-wrap { position: relative; width: 100%; padding-top: 56.25%; /* 16:9 Aspect Ratio */ background: #000; overflow: hidden; }
-    .thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition-smooth); }
+    .thumb-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; overflow: hidden; }
+    .thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: transform 0.6s ease; }
     .video-card:hover .thumb-wrap img { opacity: 1; transform: scale(1.05); }
     
     .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(255, 69, 85, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: var(--transition-smooth); }
@@ -64,30 +69,45 @@
     .video-card:hover .play-btn { background: var(--accent-glow); transform: translate(-50%, -50%) scale(1.1); }
 
     .video-info { padding: 20px; }
-    .video-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; font-family: 'Inter', sans-serif; color: #fff; }
+    .video-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; font-family: 'Inter', sans-serif; color: #fff; line-height: 1.4; }
     .video-stats { font-size: 0.85rem; color: var(--text-muted); }
 
-    /* ========== SOCIAL GRID (INSTA & X) ========== */
-    .social-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
+    /* ========== 3. SOCIAL WALL (INSTAGRAM & X) ========== */
+    .social-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
     
-    /* Insta Styles */
     .insta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .insta-post { position: relative; padding-top: 100%; background: var(--bg-surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); }
+    .insta-post { position: relative; padding-top: 100%; background: var(--bg-surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); display: block; }
     .insta-post img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth); }
-    .insta-post:hover img { transform: scale(1.08); }
+    .insta-post:hover img { transform: scale(1.08); filter: brightness(1.1); }
 
-    /* X (Twitter) Styles */
     .x-feed { display: flex; flex-direction: column; gap: 16px; }
-    .x-post { background: var(--bg-surface); padding: 24px; border-radius: 12px; border: 1px solid var(--border-subtle); transition: var(--transition-smooth); }
-    .x-post:hover { border-color: rgba(255,255,255,0.15); }
+    .x-post { display: block; background: var(--bg-surface); padding: 24px; border-radius: 12px; border: 1px solid var(--border-subtle); transition: var(--transition-smooth); text-decoration: none; }
+    .x-post:hover { border-color: rgba(255, 255, 255, 0.2); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
     .x-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-    .x-avatar { width: 40px; height: 40px; border-radius: 50%; background: #333; }
+    .x-avatar { width: 40px; height: 40px; border-radius: 50%; background: #222; display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; font-family: 'Playfair Display'; border: 1px solid var(--border-subtle);}
     .x-name { font-weight: 700; color: #fff; font-size: 0.95rem; }
     .x-handle { color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
     .x-content { font-size: 0.95rem; color: #e1e7ec; line-height: 1.5; }
 
+    /* ========== 4. UPCOMING SNEAK PEEK ========== */
+    .upcoming-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .upcoming-card { position: relative; padding: 40px 30px; background: linear-gradient(145deg, #0a0d12, #05070a); border-radius: 20px; border: 1px dashed rgba(255,255,255,0.1); overflow: hidden; }
+    .badge-soon { position: absolute; top: 16px; right: 16px; background: rgba(255, 122, 24, 0.15); color: var(--accent-glow); padding: 4px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; border: 1px solid rgba(255, 122, 24, 0.3); }
+    .upcoming-card h4 { font-size: 1.4rem; color: #fff; margin-bottom: 12px; font-family: 'Inter', sans-serif; font-weight: 700; }
+    .upcoming-card p { font-size: 0.95rem; color: var(--text-muted); }
+
+    /* ========== 5. EMOTIONAL VISION LETTER ========== */
+    .vision-letter-sec { max-width: 800px; margin: 100px auto; padding: 60px; background: rgba(255,255,255,0.02); border-radius: 24px; border: 1px solid var(--border-subtle); position: relative; }
+    .vision-letter-sec::before { content: '"'; position: absolute; top: 20px; left: 30px; font-family: 'Playfair Display', serif; font-size: 8rem; color: rgba(255,255,255,0.03); line-height: 1; }
+    .vision-letter-sec h3 { font-size: 2.2rem; margin-bottom: 30px; color: #fff; }
+    .letter-text p { font-size: 1.1rem; color: #b5c0c8; line-height: 1.9; margin-bottom: 24px; font-family: 'Inter', sans-serif; }
+    .letter-sign { margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; }
+    .sign-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; font-style: italic; }
+    .sign-title { font-size: 0.9rem; color: var(--accent-primary); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px; }
+
     @media (max-width: 800px) {
       .social-layout { grid-template-columns: 1fr; }
+      .vision-letter-sec { padding: 40px 24px; margin: 60px auto; }
     }
   </style>
 </head>
@@ -111,89 +131,134 @@
     </div>
   </header>
 
-  <main class="container">
+  <main>
     
     <section class="vision-hero">
-      <h2>The INDUS Vision</h2>
-      <p>
-        Pushing limits with <span class="highlight">epic challenges</span> and making a real impact through <span class="highlight">philanthropy</span>. This is where entertainment meets purpose. Join the journey as we create content that matters.
-      </p>
-    </section>
-
-    <section>
-      <div class="section-title">
-        <h3>Latest on YouTube</h3>
-        <a href="#" class="section-link">View Channel →</a>
-      </div>
+      <video autoplay loop muted playsinline class="bg-video">
+        <source src="assets/vision-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
       
-      <div class="yt-grid">
-        <a href="#" class="video-card">
-          <div class="thumb-wrap">
-            <img src="assets/hero-dark.jpg" alt="Video Thumbnail">
-            <div class="play-btn"></div>
-          </div>
-          <div class="video-info">
-            <div class="video-title">Surviving 50 Hours in the Toughest Challenge</div>
-            <div class="video-stats">120K Views • 2 days ago</div>
-          </div>
-        </a>
-
-        <a href="#" class="video-card">
-          <div class="thumb-wrap">
-            <img src="assets/hero-dark.jpg" alt="Video Thumbnail">
-            <div class="play-btn"></div>
-          </div>
-          <div class="video-info">
-            <div class="video-title">Giving Back: The $10,000 Philanthropy Project</div>
-            <div class="video-stats">85K Views • 1 week ago</div>
-          </div>
-        </a>
+      <div class="container" style="position: relative; z-index: 2;">
+        <h2>The INDUS Vision</h2>
+        <p>
+          Pushing limits with <span class="highlight">epic challenges</span> and making a real impact through <span class="highlight">philanthropy</span>. This is where entertainment meets purpose. Join the journey as we create content that matters.
+        </p>
       </div>
     </section>
 
-    <section>
-      <div class="section-title">
-        <h3>Social Wall</h3>
-      </div>
+    <div class="container">
       
-      <div class="social-layout">
+      <section>
+        <div class="section-title">
+          <h3>Latest on YouTube</h3>
+          <a href="YOUR_YOUTUBE_CHANNEL_LINK_HERE" target="_blank" class="section-link">View Channel →</a>
+        </div>
         
-        <div>
-          <h4 style="font-family: 'Inter'; margin-bottom: 20px; font-weight: 600; color: var(--text-muted);">Instagram @indus</h4>
-          <div class="insta-grid">
-            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
-            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
-            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
-            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
-          </div>
-        </div>
-
-        <div>
-          <h4 style="font-family: 'Inter'; margin-bottom: 20px; font-weight: 600; color: var(--text-muted);">X (Updates)</h4>
-          <div class="x-feed">
-            
-            <div class="x-post">
-              <div class="x-header">
-                <div class="x-avatar"></div>
-                <div><div class="x-name">INDUS</div><div class="x-handle">@indus_official</div></div>
-              </div>
-              <div class="x-content">Just finished planning the biggest challenge video yet. Can't wait to show you guys what we're working on! 🚀🔥</div>
+        <div class="yt-grid">
+          <a href="YOUR_YOUTUBE_VIDEO_LINK_1" target="_blank" class="video-card">
+            <div class="thumb-wrap">
+              <img src="assets/yt-1.jpg" alt="Video Thumbnail" onerror="this.src='assets/hero-dark.jpg'">
+              <div class="play-btn"></div>
             </div>
-
-            <div class="x-post">
-              <div class="x-header">
-                <div class="x-avatar"></div>
-                <div><div class="x-name">INDUS</div><div class="x-handle">@indus_official</div></div>
-              </div>
-              <div class="x-content">Real impact happens when we come together. Huge thanks to everyone who supported the latest charity drive. ❤️</div>
+            <div class="video-info">
+              <div class="video-title">Surviving 50 Hours in the Toughest Challenge</div>
+              <div class="video-stats">120K Views • 2 days ago</div>
             </div>
+          </a>
 
-          </div>
+          <a href="YOUR_YOUTUBE_VIDEO_LINK_2" target="_blank" class="video-card">
+            <div class="thumb-wrap">
+              <img src="assets/yt-2.jpg" alt="Video Thumbnail" onerror="this.src='assets/hero-dark.jpg'">
+              <div class="play-btn"></div>
+            </div>
+            <div class="video-info">
+              <div class="video-title">Giving Back: The $10,000 Philanthropy Project</div>
+              <div class="video-stats">85K Views • 1 week ago</div>
+            </div>
+          </a>
         </div>
+      </section>
 
-      </div>
-    </section>
+      <section>
+        <div class="section-title">
+          <h3>Social Feed</h3>
+        </div>
+        
+        <div class="social-layout">
+          
+          <div>
+            <h4 style="font-family: 'Inter'; margin-bottom: 20px; font-weight: 600; color: var(--text-muted); font-size: 1.1rem;">Instagram <span style="color:#fff;">@indus</span></h4>
+            <div class="insta-grid">
+              <a href="YOUR_INSTA_LINK" target="_blank" class="insta-post"><img src="assets/ig-1.jpg" onerror="this.src='assets/hero-dark.jpg'"></a>
+              <a href="YOUR_INSTA_LINK" target="_blank" class="insta-post"><img src="assets/ig-2.jpg" onerror="this.src='assets/hero-dark.jpg'"></a>
+              <a href="YOUR_INSTA_LINK" target="_blank" class="insta-post"><img src="assets/ig-3.jpg" onerror="this.src='assets/hero-dark.jpg'"></a>
+              <a href="YOUR_INSTA_LINK" target="_blank" class="insta-post"><img src="assets/ig-4.jpg" onerror="this.src='assets/hero-dark.jpg'"></a>
+            </div>
+          </div>
 
+          <div>
+            <h4 style="font-family: 'Inter'; margin-bottom: 20px; font-weight: 600; color: var(--text-muted); font-size: 1.1rem;">X (Updates)</h4>
+            <div class="x-feed">
+              
+              <a href="YOUR_TWITTER_POST_LINK_1" target="_blank" class="x-post">
+                <div class="x-header">
+                  <div class="x-avatar">I</div>
+                  <div><div class="x-name">INDUS</div><div class="x-handle">@indus_official</div></div>
+                </div>
+                <div class="x-content">Just finished planning the biggest challenge video yet. The scale of this project is insane. Can't wait to show you guys what we're working on! 🚀🔥</div>
+              </a>
+
+              <a href="YOUR_TWITTER_POST_LINK_2" target="_blank" class="x-post">
+                <div class="x-header">
+                  <div class="x-avatar">I</div>
+                  <div><div class="x-name">INDUS</div><div class="x-handle">@indus_official</div></div>
+                </div>
+                <div class="x-content">Real impact happens when we come together. Giving back to the community has always been the core of INDUS. Huge thanks to everyone who supported the latest charity drive. ❤️</div>
+              </a>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <h3>Sneak Peek: What's Next?</h3>
+        </div>
+        <div class="upcoming-grid">
+          
+          <div class="upcoming-card">
+            <span class="badge-soon">In Production</span>
+            <h4>The Ultimate Survival Challenge</h4>
+            <p>We are currently setting up the craziest environment to test human endurance. It's not just a challenge; it's a battle against limits.</p>
+          </div>
+
+          <div class="upcoming-card">
+            <span class="badge-soon">Planning Phase</span>
+            <h4>Project Philanthropy</h4>
+            <p>Our next massive giveaway and community build. We are targeting a region that needs it the most. More details dropping very soon.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="vision-letter-sec">
+        <h3>Why I Started INDUS</h3>
+        <div class="letter-text">
+          <p>When I first thought about creating INDUS, I didn't just want to make another YouTube channel. I wanted to build a movement. A platform that proves we are capable of so much more than we realize.</p>
+          <p>Every challenge we take on is designed to push the human spirit to its absolute edge. It's about finding out what happens when you don't give up. But pushing our own limits is only half the vision.</p>
+          <p>The true heart of INDUS lies in what we can give back. The philanthropy projects aren't just videos; they are a promise to use our platform to make a tangible, real-world difference. Whether it's surviving the harshest conditions or changing someone's life, the goal remains the same: to inspire.</p>
+          <p>Thank you for being part of this journey. We are just getting started.</p>
+        </div>
+        <div class="letter-sign">
+          <div class="sign-name">Dimpal</div>
+          <div class="sign-title">Founder, INDUS</div>
+        </div>
+      </section>
+
+    </div>
   </main>
 
   <footer style="background: #030406; border-top: 1px solid var(--border-subtle); padding: 40px 0 20px; text-align: center;">
