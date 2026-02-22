@@ -454,7 +454,12 @@
   <section class="bundle-wrapper">
       
       <div class="bundle-content">
-        <div class="bundle-badge">⚡ Limited Time Offer</div>
+        <div style="display: flex; gap: 12px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;">
+          <div class="bundle-badge" style="margin-bottom: 0;">⚡ Limited Time Offer</div>
+          <div id="bundle-timer" class="bundle-timer">
+            ⏳ Ends in: <span id="t-hours">24</span>h <span id="t-mins">00</span>m <span id="t-secs">00</span>s
+          </div>
+        </div>
         <h2>The Creator's Arsenal</h2>
         <p>Get instant access to our top 10 most exclusive, premium 4K wallpapers. Handpicked for deep focus, aesthetics, and pure motivation. Skip the cart and get the ultimate bundle.</p>
         
@@ -481,6 +486,23 @@
 
     </section>
   <style>
+    /* Timer Design */
+    .bundle-timer {
+      background: rgba(255, 69, 85, 0.1);
+      color: #ff4555;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 69, 85, 0.3);
+      box-shadow: 0 0 15px rgba(255, 69, 85, 0.2);
+      animation: pulse-border 2s infinite;
+    }
+    @keyframes pulse-border {
+      0% { box-shadow: 0 0 0 0 rgba(255, 69, 85, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 69, 85, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 69, 85, 0); }
+    }
     /* Wallpaper Section Premium Styling */
     .wallpaper-section {
       padding: 100px 0 60px;
@@ -1423,6 +1445,49 @@
     bundleDesc.innerText = slide.desc;
     slideCounter.innerText = (bundleIndex + 1) + " / " + bundleData.length;
   }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const timerBox = document.getElementById('bundle-timer');
+    const hSpan = document.getElementById('t-hours');
+    const mSpan = document.getElementById('t-mins');
+    const sSpan = document.getElementById('t-secs');
+
+    if (!timerBox) return; // Agar timer nahi mila toh ruk jao
+
+    // Check karo ki pehle se time save hai kya (Browser Memory)
+    let endTime = localStorage.getItem('indusBundleTimer');
+    
+    if (!endTime) {
+      // Agar naya user hai, toh abhi se 24 ghante (24 * 60 * 60 * 1000 millisecond) ka time set karo
+      endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+      localStorage.setItem('indusBundleTimer', endTime);
+    } else {
+      endTime = parseInt(endTime);
+    }
+
+    // Har 1 second baad timer update karo
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+
+      if (distance < 0) {
+        // Agar 24 ghante poore ho gaye, toh timer ko chupa do aur loop band kar do
+        clearInterval(countdown);
+        timerBox.style.display = 'none';
+      } else {
+        // Bacha hua time calculate karo
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Screen par dikhao (01, 02 format mein)
+        hSpan.innerText = hours.toString().padStart(2, '0');
+        mSpan.innerText = minutes.toString().padStart(2, '0');
+        sSpan.innerText = seconds.toString().padStart(2, '0');
+      }
+    }, 1000);
+  });
 </script>
 </body>
 </html>
