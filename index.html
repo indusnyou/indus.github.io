@@ -463,9 +463,14 @@
           <div class="price-new">₹79 <span>(Save 84%)</span></div>
         </div>
 
-        <a href="YOUR_GUMROAD_BUNDLE_LINK" target="_blank" class="btn-premium" style="font-size: 1.1rem; padding: 16px 32px; width: 100%;">
-          Claim Bundle Now →
-        </a>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; width: 100%;">
+  <button onclick="openBundleModal()" class="btn-glass" style="flex: 1; padding: 16px; font-size: 1.05rem; cursor: pointer;">
+    👁 Preview Wallpapers
+  </button>
+  <a href="YOUR_GUMROAD_LINK_HERE" target="_blank" class="btn-premium" style="flex: 1; padding: 16px; font-size: 1.05rem; text-align: center;">
+    Buy Bundle - ₹79
+  </a>
+</div>
       </div>
 
       <div class="bundle-visual">
@@ -1302,5 +1307,122 @@
           });
         });
       </script>
+<style>
+  .bundle-modal-overlay {
+    position: fixed; inset: 0; background: rgba(3, 4, 6, 0.95); backdrop-filter: blur(15px);
+    z-index: 99999; display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px;
+  }
+  .bundle-modal-overlay.active { opacity: 1; visibility: visible; }
+  .bundle-modal-content {
+    background: #0a0d12; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px;
+    width: 100%; max-width: 450px; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    transform: scale(0.95); transition: all 0.3s ease; overflow: hidden;
+  }
+  .bundle-modal-overlay.active .bundle-modal-content { transform: scale(1); }
+  .bundle-close-btn {
+    position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6);
+    color: #fff; border: 1px solid rgba(255,255,255,0.2); width: 36px; height: 36px;
+    border-radius: 50%; cursor: pointer; z-index: 10; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+  }
+  .bundle-slider {
+    position: relative; width: 100%; aspect-ratio: 9/12; background: #000;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bundle-slider img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s ease; }
+  .slider-btn {
+    position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,69,85,0.8);
+    border: none; color: #fff; width: 44px; height: 44px; border-radius: 50%;
+    cursor: pointer; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); transition: 0.2s;
+  }
+  .slider-btn:hover { background: var(--accent-glow); transform: translateY(-50%) scale(1.1); }
+  .prev-btn { left: 12px; }
+  .next-btn { right: 12px; }
+  .slide-counter {
+    position: absolute; top: 16px; left: 16px; background: rgba(0,0,0,0.6);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(4px);
+  }
+  .bundle-info { padding: 24px; text-align: center; }
+  .bundle-info h3 { font-size: 1.5rem; margin-bottom: 8px; color: #fff; }
+  .bundle-info p { font-size: 0.95rem; color: #8b99a4; line-height: 1.5; margin-bottom: 24px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+</style>
+
+<div class="bundle-modal-overlay" id="bundleModal">
+  <div class="bundle-modal-content">
+    <button class="bundle-close-btn" onclick="closeBundleModal()">✕</button>
+    
+    <div class="bundle-slider">
+      <button class="slider-btn prev-btn" onclick="changeSlide(-1)">❮</button>
+      <img id="bundleSlideImg" src="" alt="Bundle Wallpaper">
+      <button class="slider-btn next-btn" onclick="changeSlide(1)">❯</button>
+      <div class="slide-counter" id="slideCounter">1 / 10</div>
+    </div>
+
+    <div class="bundle-info">
+      <h3 id="bundleSlideTitle">Title</h3>
+      <p id="bundleSlideDesc">Description</p>
+      
+      <a href="YOUR_GUMROAD_LINK_HERE" target="_blank" class="btn-premium" style="width: 100%; padding: 16px; font-size: 1.1rem; display: block;">
+        Buy Bundle Now - ₹79
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Top 10 Premium Wallpapers for the Bundle
+  const bundleData = [
+    { file: "street.jpg", title: "Night Street Lamp", desc: "Moody, cinematic street lamp glowing in the dark. A reminder to keep hustling." },
+    { file: "moon.jpg", title: "Moon Night", desc: "A deeply spiritual and calming view of the moon. Perfect for late-night focus." },
+    { file: "red-ferrari.jpg", title: "Rosso Ferrari", desc: "The legendary red Ferrari. A masterpiece of engineering, speed, and passion." },
+    { file: "vintage-roadside.jpg", title: "Vintage Roadside", desc: "A beautifully captured classic vintage car parked by the roadside. Pure nostalgia." },
+    { file: "milkyway.jpg", title: "Milky Way", desc: "Vast, infinite, and mesmerizing. A breathtaking view of our galaxy." },
+    { file: "compact-car-pro.jpg", title: "Compact Pro", desc: "Premium styling on a compact frame. Perfect for a clean home screen." },
+    { file: "pastel-lamborghini.jpg", title: "Pastel Lamborghini", desc: "A gorgeous Lamborghini wrapped in soft, aesthetic pastel colors." },
+    { file: "mclaren-placed.jpg", title: "McLaren Stance", desc: "The perfect aggressive stance of a premium McLaren parked beautifully." },
+    { file: "tree.jpg", title: "Lonely Tree", desc: "A quiet morning observation of a lone tree against a breathtaking landscape." },
+    { file: "cars.jpg", title: "Cinematic Car", desc: "Sleek, powerful, and moody. The perfect dark aesthetic for automotive enthusiasts." }
+  ];
+
+  let bundleIndex = 0;
+  const bundleModal = document.getElementById('bundleModal');
+  const bundleImg = document.getElementById('bundleSlideImg');
+  const bundleTitle = document.getElementById('bundleSlideTitle');
+  const bundleDesc = document.getElementById('bundleSlideDesc');
+  const slideCounter = document.getElementById('slideCounter');
+
+  function openBundleModal() {
+    bundleIndex = 0;
+    updateBundleSlide();
+    bundleModal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Niche scroll hona band
+  }
+
+  function closeBundleModal() {
+    bundleModal.classList.remove('active');
+    document.body.style.overflow = 'auto'; // Scroll wapas chalu
+  }
+
+  function changeSlide(direction) {
+    bundleIndex += direction;
+    if (bundleIndex < 0) bundleIndex = bundleData.length - 1;
+    if (bundleIndex >= bundleData.length) bundleIndex = 0;
+    
+    // Thoda sa animation effect swipe ke time
+    bundleImg.style.opacity = '0.5';
+    setTimeout(() => {
+      updateBundleSlide();
+      bundleImg.style.opacity = '1';
+    }, 150);
+  }
+
+  function updateBundleSlide() {
+    const slide = bundleData[bundleIndex];
+    bundleImg.src = "assets/" + slide.file;
+    bundleTitle.innerText = slide.title;
+    bundleDesc.innerText = slide.desc;
+    slideCounter.innerText = (bundleIndex + 1) + " / " + bundleData.length;
+  }
+</script>
 </body>
 </html>
