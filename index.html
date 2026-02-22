@@ -262,6 +262,65 @@
       .nav-links { display: none; } /* Hum aage iska mobile menu banayenge */
       .mobile-menu-btn { display: block; }
     }
+    /* ========== PRO BUNDLE OFFER SECTION ========== */
+    .bundle-wrapper {
+      background: linear-gradient(145deg, rgba(20, 24, 32, 0.9), rgba(10, 13, 18, 0.95));
+      border: 1px solid rgba(255, 69, 85, 0.3);
+      border-radius: 32px;
+      padding: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
+      margin: 80px 0;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6), inset 0 0 80px rgba(255, 69, 85, 0.05);
+    }
+
+    /* Background Glow */
+    .bundle-wrapper::before {
+      content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(255,69,85,0.1) 0%, transparent 50%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .bundle-content { position: relative; z-index: 2; max-width: 500px; }
+    
+    .bundle-badge {
+      display: inline-block; padding: 6px 16px; border-radius: 100px;
+      background: rgba(251, 191, 36, 0.15); color: var(--paid-gold);
+      font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 20px; border: 1px solid rgba(251, 191, 36, 0.3);
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+    }
+
+    .bundle-content h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 16px; line-height: 1.1; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    .bundle-content p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; }
+    
+    .price-row { display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px; }
+    .price-old { color: #5a6672; text-decoration: line-through; font-size: 1.4rem; font-weight: 600; }
+    .price-new { font-size: 3rem; font-family: 'Playfair Display', serif; color: #fff; font-weight: 900; }
+    .price-new span { font-size: 1.2rem; color: var(--success); font-family: 'Inter', sans-serif; font-weight: 600; vertical-align: middle; margin-left: 8px;}
+
+    /* Collage of Images */
+    .bundle-visual { position: relative; z-index: 2; width: 400px; height: 350px; perspective: 1000px; }
+    .bundle-visual img { position: absolute; border-radius: 16px; border: 2px solid rgba(255,255,255,0.1); box-shadow: 0 20px 50px rgba(0,0,0,0.8); transition: var(--transition-bounce); object-fit: cover; }
+    .bundle-visual .img-1 { top: 20px; left: 0; width: 220px; height: 300px; transform: rotate(-8deg) translateZ(-50px); filter: brightness(0.7); }
+    .bundle-visual .img-2 { top: 0; right: 0; width: 220px; height: 300px; transform: rotate(8deg) translateZ(-30px); filter: brightness(0.8); }
+    .bundle-visual .img-3 { top: 40px; left: 90px; width: 240px; height: 320px; transform: translateZ(50px); border-color: rgba(251, 191, 36, 0.5); z-index: 5; box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 30px rgba(255,69,85,0.2); }
+    
+    .bundle-wrapper:hover .bundle-visual .img-3 { transform: translateZ(80px) scale(1.05); }
+
+    @media (max-width: 900px) {
+      .bundle-wrapper { flex-direction: column; text-align: center; padding: 40px 24px; }
+      .bundle-content { display: flex; flex-direction: column; align-items: center; }
+      .price-row { justify-content: center; }
+      .bundle-visual { width: 100%; max-width: 320px; height: 300px; margin-top: 20px; }
+      .bundle-visual .img-1 { left: -10px; width: 160px; height: 240px; }
+      .bundle-visual .img-2 { right: -10px; width: 160px; height: 240px; }
+      .bundle-visual .img-3 { left: 40px; width: 180px; height: 260px; }
+    }
   </style>
 </head>
 <body>
@@ -1015,7 +1074,38 @@
         </div>
 
       </aside>
+<section class="bundle-wrapper">
+      
+      <div class="bundle-content">
+        <div class="bundle-badge">⚡ Limited Time Offer</div>
+        <h2>The Creator's Arsenal</h2>
+        <p>Get instant access to our top 10 most exclusive, premium 4K wallpapers. Handpicked for deep focus, aesthetics, and pure motivation. Skip the cart and get the ultimate bundle.</p>
+        
+        <div class="price-row">
+          <div class="price-old">₹499</div>
+          <div class="price-new">₹79 <span>(Save 84%)</span></div>
+        </div>
 
+        <a href="YOUR_GUMROAD_BUNDLE_LINK" target="_blank" class="btn-premium" style="font-size: 1.1rem; padding: 16px 32px; width: 100%;">
+          Claim Bundle Now →
+        </a>
+      </div>
+
+      <div class="bundle-visual">
+        <img src="assets/street.jpg" class="img-1" alt="Premium Wallpaper">
+        <img src="assets/moon.jpg" class="img-2" alt="Premium Wallpaper">
+        <img src="assets/red-ferrari.jpg" class="img-3" alt="Premium Wallpaper">
+      </div>
+
+    </section>
+    ```
+
+### Isme kya khas hai?
+1. **Collage Design:** Right side mein 3 premium wallpapers (Red Ferrari, Moon, Street) ek ke upar ek 3D style mein overlap karenge. Yeh dikhne mein itna premium lagta hai ki user ko feel hoga ki use sach mein ek "Bundle" mil raha hai.
+2. **Psychological Pricing:** Maine wahan old price `₹499` dikha kar cut (strike-through) kar diya hai, aur naya price `₹79` rakha hai `(Save 84%)` tag ke saath. Yeh marketing ki sabse best technique hai!
+3. **Hover Effect:** Jab koi mouse layega, toh aage wali photo halki si bahar (3D) nikalkar aayegi. 
+
+Isko `index.html` mein paste karke Save kijiye aur check kijiye. Dekh kar batayiye, kya yeh design us level ka laga jo aap soch rahe the?
     </div> </main>
     <style>
         .site-footer {
