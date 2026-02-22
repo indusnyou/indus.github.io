@@ -109,6 +109,34 @@
       .social-layout { grid-template-columns: 1fr; }
       .vision-letter-sec { padding: 40px 24px; margin: 60px auto; }
     }
+    /* ================= MOBILE FIXES ================= */
+    html, body { 
+      max-width: 100vw; 
+      overflow-x: hidden; 
+    }
+    
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 12px 0;
+      }
+      .nav-container { 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 12px; 
+      }
+      .nav-links { 
+        width: 100%; 
+        justify-content: center; 
+        flex-wrap: wrap; 
+        gap: 15px !important; 
+      }
+      .nav-links a {
+        font-size: 0.9rem;
+      }
+      .vision-hero h2 {
+        font-size: 2.5rem; /* Mobile pe heading thodi choti taaki achhi dikhe */
+      }
+    }
   </style>
 </head>
 <body>
