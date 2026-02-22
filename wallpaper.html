@@ -1197,23 +1197,15 @@
         // Engine ko wapas fresh start do
         filterWallpapers();
       };
-      // 6. Modal Open Logic (Eye Icon Par Click)
-      previewTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-          e.preventDefault(); // Link ka default kaam roko
-          
-          // Button se image ka link nikalo
-          const imgSrc = trigger.getAttribute('data-img');
-          
-          // Modal ke andar wo image set karo
-          modalImage.src = imgSrc;
-          
-          // Modal ko screen par lao (active class add karke)
+      // 6. Modal Open Logic (Naya Smart Engine)
+      document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('.preview-trigger');
+        if (trigger) {
+          e.preventDefault();
+          modalImage.src = trigger.getAttribute('data-img');
           previewModal.classList.add('active');
-          
-          // Scroll rok do taaki background move na ho
           document.body.style.overflow = 'hidden'; 
-        });
+        }
       });
 
       // 7. Modal Close Logic (Close "✕" button par click)
