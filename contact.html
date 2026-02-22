@@ -29,7 +29,7 @@
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-    /* ========== MOBILE FIXES (No Black Space) ========== */
+    /* ========== MOBILE FIXES ========== */
     html, body { max-width: 100vw; overflow-x: hidden; }
     @media (max-width: 768px) {
       .site-header { padding: 12px 0; }
@@ -50,13 +50,15 @@
     .nav-links a.active { color: #fff; position: relative; }
     .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow)); border-radius: 2px; }
 
-    /* ========== CONTACT HERO ========== */
-    .contact-hero { padding: 100px 0 60px; text-align: center; }
-    .contact-hero h2 { font-size: clamp(3rem, 6vw, 4.5rem); margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
-    .contact-hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+    /* ========== CONTACT HERO (WITH VIDEO) ========== */
+    .contact-hero { position: relative; padding: 140px 0 100px; text-align: center; overflow: hidden; border-bottom: 1px solid var(--border-subtle); border-radius: 0 0 30px 30px; }
+    .bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0.35; filter: grayscale(50%); }
+    .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(0deg, #030406 5%, transparent 100%); z-index: -1; }
+    .contact-hero h2 { position: relative; z-index: 2; font-size: clamp(3rem, 6vw, 4.5rem); margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+    .contact-hero p { position: relative; z-index: 2; color: #d1d8dd; font-size: 1.2rem; max-width: 600px; margin: 0 auto; line-height: 1.8; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
     
     /* ========== GRID LAYOUT ========== */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 100px; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 100px; margin-top: 60px; }
     @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
 
     /* ========== SPONSOR & INFO SECTION ========== */
@@ -109,72 +111,81 @@
     </div>
   </header>
 
-  <main class="container">
+  <main>
     
     <section class="contact-hero">
-      <h2>Let's Create Epic.</h2>
-      <p>Whether you're a brand looking to collaborate on our next massive challenge, or just want to say hi, my inbox is always open.</p>
+      <video autoplay loop muted playsinline class="bg-video">
+        <source src="assets/contact-bg.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <h2>Let's Create Epic.</h2>
+        <p>Whether you're a brand looking to collaborate on our next massive challenge, or just want to say hi, my inbox is always open.</p>
+      </div>
     </section>
 
-    <section class="contact-grid">
-      
-      <div class="info-box">
-        <h3>Partner With INDUS</h3>
-        <p>INDUS isn't just a channel; it's a statement. Founded by <strong>Priyesh</strong>, our content blends high-stakes endurance challenges with real-world philanthropy. We don't do regular vlogs; we create cinematic events that keep the audience hooked from the first second to the last.</p>
+    <div class="container">
+      <section class="contact-grid">
         
-        <div class="stats-row">
-          <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Authentic Impact</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">High</div>
-            <div class="stat-label">Engagement Rate</div>
-          </div>
-        </div>
-
-        <div class="direct-contact">
-          <div class="contact-method">
-            <div class="method-icon">✉️</div>
-            <div class="method-details">
-              <h4>Business & Sponsorships</h4>
-              <a href="mailto:business@indusnyou.com">business@indusnyou.com</a>
+        <div class="info-box">
+          <h3>Partner With INDUS</h3>
+          <p>INDUS isn't just a channel; it's a statement. Founded by <strong>Priyesh</strong>, our content blends high-stakes endurance challenges with real-world philanthropy. We don't do regular vlogs; we create cinematic events that keep the audience hooked from the first second to the last.</p>
+          
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Authentic Impact</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">High</div>
+              <div class="stat-label">Engagement Rate</div>
             </div>
           </div>
 
-          <div class="contact-method">
-            <div class="method-icon">📱</div>
-            <div class="method-details">
-              <h4>Direct Message on X</h4>
-              <a href="https://x.com/indusnyou" target="_blank">@indusnyou</a>
+          <div class="direct-contact">
+            <div class="contact-method">
+              <div class="method-icon">✉️</div>
+              <div class="method-details">
+                <h4>Business & Sponsorships</h4>
+                <a href="mailto:business@indusnyou.com">business@indusnyou.com</a>
+              </div>
+            </div>
+
+            <div class="contact-method">
+              <div class="method-icon">📱</div>
+              <div class="method-details">
+                <h4>Direct Message on X</h4>
+                <a href="https://x.com/indusnyou" target="_blank">@indusnyou</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="form-box">
-        <form action="#" method="POST">
-          <div class="form-group">
-            <label>Your Name / Brand</label>
-            <input type="text" class="form-control" placeholder="Enter your name" required>
-          </div>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" class="form-control" placeholder="name@company.com" required>
-          </div>
-          <div class="form-group">
-            <label>Subject</label>
-            <input type="text" class="form-control" placeholder="Sponsorship / Collaboration / General" required>
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea class="form-control" placeholder="Tell me about your project or idea..." required></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Send Message →</button>
-        </form>
-      </div>
+        <div class="form-box">
+          <form action="YOUR_FORMSPREE_LINK_HERE" method="POST">
+            <div class="form-group">
+              <label>Your Name / Brand</label>
+              <input type="text" name="Name" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="Email" class="form-control" placeholder="name@company.com" required>
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" name="Subject" class="form-control" placeholder="Sponsorship / Collaboration / General" required>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="Message" class="form-control" placeholder="Tell me about your project or idea..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Send Message →</button>
+          </form>
+        </div>
 
-    </section>
+      </section>
+    </div>
 
   </main>
 
