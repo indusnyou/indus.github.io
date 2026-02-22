@@ -1,8 +1,208 @@
-<nav>
-  <a href="/indus.github.io/index.html">Home</a>
-  <a href="/indus.github.io/content.html">Content</a>
-  <a href="/indus.github.io/wallpaper.html">Wallpapers</a>
-  <a href="/indus.github.io/contact.html">Contact</a>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Content · INDUS</title>
+  <meta name="theme-color" content="#030406">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&display=swap" rel="stylesheet">
 
+  <style>
+    /* ========== ROOT VARIABLES ========== */
+    :root {
+      --bg-base: #030406;
+      --bg-surface: #0a0d12;
+      --accent-primary: #ff4555;
+      --accent-glow: #ff7a18;
+      --text-main: #f3f7f9;
+      --text-muted: #8b99a4;
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ========== NAVBAR ========== */
+    .site-header { position: sticky; top: 0; z-index: 1000; background: rgba(3, 4, 6, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-subtle); padding: 16px 0; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; }
+    .brand-logo { display: flex; align-items: center; gap: 16px; }
+    .brand-text h1 { font-size: 1.4rem; background: linear-gradient(180deg, #fff, #a1b0b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    .nav-links a { font-size: 0.95rem; font-weight: 600; color: var(--text-muted); transition: var(--transition-smooth); }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: #fff; position: relative; }
+    .nav-links a.active::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-glow)); border-radius: 2px; }
+
+    /* ========== VISION HERO SECTION ========== */
+    .vision-hero { padding: 100px 0 60px; text-align: center; }
+    .vision-hero h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .vision-hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto; line-height: 1.8; }
+    .highlight { color: #fff; font-weight: 600; }
+
+    /* ========== SECTION TITLES ========== */
+    .section-title { font-size: 2rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px; margin: 60px 0 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .section-link { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--accent-primary); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* ========== YOUTUBE GRID ========== */
+    .yt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; }
+    .video-card { background: var(--bg-surface); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle); transition: var(--transition-smooth); cursor: pointer; }
+    .video-card:hover { transform: translateY(-8px); border-color: rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+    
+    .thumb-wrap { position: relative; width: 100%; padding-top: 56.25%; /* 16:9 Aspect Ratio */ background: #000; overflow: hidden; }
+    .thumb-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: var(--transition-smooth); }
+    .video-card:hover .thumb-wrap img { opacity: 1; transform: scale(1.05); }
+    
+    .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(255, 69, 85, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); transition: var(--transition-smooth); }
+    .play-btn::after { content: ''; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 16px solid #fff; margin-left: 4px; }
+    .video-card:hover .play-btn { background: var(--accent-glow); transform: translate(-50%, -50%) scale(1.1); }
+
+    .video-info { padding: 20px; }
+    .video-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; font-family: 'Inter', sans-serif; color: #fff; }
+    .video-stats { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ========== SOCIAL GRID (INSTA & X) ========== */
+    .social-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
+    
+    /* Insta Styles */
+    .insta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .insta-post { position: relative; padding-top: 100%; background: var(--bg-surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-subtle); }
+    .insta-post img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: var(--transition-smooth); }
+    .insta-post:hover img { transform: scale(1.08); }
+
+    /* X (Twitter) Styles */
+    .x-feed { display: flex; flex-direction: column; gap: 16px; }
+    .x-post { background: var(--bg-surface); padding: 24px; border-radius: 12px; border: 1px solid var(--border-subtle); transition: var(--transition-smooth); }
+    .x-post:hover { border-color: rgba(255,255,255,0.15); }
+    .x-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .x-avatar { width: 40px; height: 40px; border-radius: 50%; background: #333; }
+    .x-name { font-weight: 700; color: #fff; font-size: 0.95rem; }
+    .x-handle { color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
+    .x-content { font-size: 0.95rem; color: #e1e7ec; line-height: 1.5; }
+
+    @media (max-width: 800px) {
+      .social-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="assets/logo.png" alt="INDUS Logo" width="48" height="48" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); object-fit: cover;" onerror="this.src='assets/hero-dark.jpg'">
+        <div class="brand-text">
+          <h1>INDUS</h1>
+          <span>Digital Store</span>
+        </div>
+      </a>
+      <nav class="nav-links" style="display: flex; gap: 32px; align-items: center;">
+        <a href="index.html">Home</a>
+        <a href="content.html" class="active">Content</a>
+        <a href="wallpaper.html">Wallpapers</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <section class="vision-hero">
+      <h2>The INDUS Vision</h2>
+      <p>
+        Pushing limits with <span class="highlight">epic challenges</span> and making a real impact through <span class="highlight">philanthropy</span>. This is where entertainment meets purpose. Join the journey as we create content that matters.
+      </p>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h3>Latest on YouTube</h3>
+        <a href="#" class="section-link">View Channel →</a>
+      </div>
+      
+      <div class="yt-grid">
+        <a href="#" class="video-card">
+          <div class="thumb-wrap">
+            <img src="assets/hero-dark.jpg" alt="Video Thumbnail">
+            <div class="play-btn"></div>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Surviving 50 Hours in the Toughest Challenge</div>
+            <div class="video-stats">120K Views • 2 days ago</div>
+          </div>
+        </a>
+
+        <a href="#" class="video-card">
+          <div class="thumb-wrap">
+            <img src="assets/hero-dark.jpg" alt="Video Thumbnail">
+            <div class="play-btn"></div>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Giving Back: The $10,000 Philanthropy Project</div>
+            <div class="video-stats">85K Views • 1 week ago</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <h3>Social Wall</h3>
+      </div>
+      
+      <div class="social-layout">
+        
+        <div>
+          <h4 style="font-family: 'Inter'; margin-bottom: 20px; font-weight: 600; color: var(--text-muted);">Instagram @indus</h4>
+          <div class="insta-grid">
+            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
+            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
+            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
+            <a href="#" class="insta-post"><img src="assets/hero-dark.jpg" alt="Insta Post"></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-family: 'Inter'; margin-bottom: 20px; font-weight: 600; color: var(--text-muted);">X (Updates)</h4>
+          <div class="x-feed">
+            
+            <div class="x-post">
+              <div class="x-header">
+                <div class="x-avatar"></div>
+                <div><div class="x-name">INDUS</div><div class="x-handle">@indus_official</div></div>
+              </div>
+              <div class="x-content">Just finished planning the biggest challenge video yet. Can't wait to show you guys what we're working on! 🚀🔥</div>
+            </div>
+
+            <div class="x-post">
+              <div class="x-header">
+                <div class="x-avatar"></div>
+                <div><div class="x-name">INDUS</div><div class="x-handle">@indus_official</div></div>
+              </div>
+              <div class="x-content">Real impact happens when we come together. Huge thanks to everyone who supported the latest charity drive. ❤️</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background: #030406; border-top: 1px solid var(--border-subtle); padding: 40px 0 20px; text-align: center;">
+    <div class="container">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin-bottom: 8px;">INDUS</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">Making the impossible... Possible.</p>
+      <div style="color: rgba(255,255,255,0.3); font-size: 0.8rem;">&copy; 2026 INDUS. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
