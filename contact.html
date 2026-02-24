@@ -256,26 +256,9 @@
         </div>
 
         <style>
-            .indus-preview-heading-pro {
-                font-size: 24px; /* Size chota kiya (pehle 28px tha) */
-                font-weight: 600; /* Thoda sa kam bold kiya sleek look ke liye */
-                color: #ffffff;
-                margin-bottom: 5px;
-                letter-spacing: 0.5px;
-            }
-            .indus-subtext-pro {
-                color: #a0a0a0;
-                margin-bottom: 35px;
-                font-size: 13px;
-                letter-spacing: 0.5px;
-            }
-            
-            /* Mobile Fix: Ab phone par bhi video lamba (portrait) hi rahega */
-            @media (max-width: 900px) {
-                 /* Maine yahan se wo line hata di jo isko square bana rahi thi */
-            }
+            .indus-preview-heading-pro { font-size: 24px; font-weight: 600; color: #ffffff; margin-bottom: 5px; letter-spacing: 0.5px; }
+            .indus-subtext-pro { color: #a0a0a0; margin-bottom: 35px; font-size: 13px; letter-spacing: 0.5px; }
         </style>
-
 
         <h3 class="indus-preview-heading-pro">Experience the Live Demo</h3>
         <p class="indus-subtext-pro">(Tap on video to enable sound)</p>
@@ -286,7 +269,7 @@
                 <div class="device-label">
                     <i class="fa-solid fa-mobile-screen-button indus-text-red"></i> Mobile View
                 </div>
-                <div class="mockup-container mobile-ratio">
+                <div class="mockup-container mobile-ratio" style="padding-top: 177% !important;">
                     <video autoplay muted loop playsinline style="cursor: pointer;" onclick="this.muted = !this.muted">
                         <source src="videos/mobile-preview.mp4" type="video/mp4">
                     </video>
@@ -297,7 +280,7 @@
                 <div class="device-label">
                     <i class="fa-solid fa-desktop indus-text-red"></i> Desktop View
                 </div>
-                <div class="mockup-container desktop-ratio">
+                <div class="mockup-container desktop-ratio" style="padding-top: 62.5% !important;">
                      <video autoplay muted loop playsinline style="cursor: pointer;" onclick="this.muted = !this.muted">
                         <source src="videos/desktop-preview.mp4" type="video/mp4">
                     </video>
