@@ -119,119 +119,83 @@
     </div>
   </header>
 <style>
-  /* --- CSS START --- */
-  .indus-sales-section {
-      background-color: #080808; /* Dark theme background */
-      color: #ffffff;
-      padding: 80px 20px 100px 20px; /* Thoda bottom padding badhaya */
-      text-align: center;
-      font-family: 'Inter', 'Poppins', sans-serif;
-      border-bottom: 1px solid #222;
-  }
-  .indus-sales-container {
-      max-width: 1100px; /* Container thoda chauda kiya videos ke liye */
-      margin: 0 auto;
-  }
-  .indus-badge {
-      background: #ff3333; /* Red accent */
-      color: white;
-      padding: 6px 16px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: 700;
-      display: inline-block;
-      margin-bottom: 25px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-  }
-  .indus-sales-title {
-      font-size: 45px;
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: #ffffff;
-  }
+  .indus-sales-section { background-color: #080808; color: #ffffff; padding: 80px 20px 100px 20px; text-align: center; font-family: 'Inter', 'Poppins', sans-serif; border-bottom: 1px solid #222; }
+  .indus-sales-container { max-width: 1100px; margin: 0 auto; }
+  .indus-badge { background: #ff3333; color: white; padding: 6px 16px; border-radius: 30px; font-size: 13px; font-weight: 700; display: inline-block; margin-bottom: 25px; letter-spacing: 1px; text-transform: uppercase; }
+  .indus-sales-title { font-size: 45px; font-weight: 800; line-height: 1.2; margin-bottom: 20px; color: #ffffff; }
   .indus-text-red { color: #ff3333; }
-  .indus-sales-desc {
-      font-size: 18px; color: #a0a0a0; max-width: 700px; margin: 0 auto 35px auto; line-height: 1.6;
-  }
+  .indus-sales-desc { font-size: 18px; color: #a0a0a0; max-width: 700px; margin: 0 auto 35px auto; line-height: 1.6; }
   .indus-pricing { margin-bottom: 35px; }
-  .indus-price-strike {
-      text-decoration: line-through; color: #555555; font-size: 24px; margin-right: 12px; font-weight: 600;
-  }
+  .indus-price-strike { text-decoration: line-through; color: #555555; font-size: 24px; margin-right: 12px; font-weight: 600; }
   .indus-price-real { font-size: 50px; font-weight: 800; color: #ffffff; }
-  .indus-sales-btn {
-      background: #ffffff; color: #000000; padding: 18px 50px; font-size: 18px; font-weight: 700;
-      border-radius: 50px; text-decoration: none; display: inline-block; transition: all 0.3s ease;
-      margin-bottom: 25px; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-  }
-  .indus-sales-btn:hover {
-      background: #ff3333; color: #ffffff; transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(255, 51, 51, 0.4);
-  }
-  .indus-trust-info {
-      color: #777777; font-size: 14px; margin-bottom: 60px;
-      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
-  }
+  .indus-sales-btn { background: #ffffff; color: #000000; padding: 18px 50px; font-size: 18px; font-weight: 700; border-radius: 50px; text-decoration: none; display: inline-block; transition: all 0.3s ease; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1); }
+  .indus-sales-btn:hover { background: #ff3333; color: #ffffff; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255, 51, 51, 0.4); }
+  .indus-trust-info { color: #777777; font-size: 14px; margin-bottom: 60px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
   .trust-item i { color: #ff3333; margin-right: 8px;}
-
-  /* --- NEW DUAL VIDEO SECTION STYLES --- */
-  .indus-preview-heading {
-      font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 40px;
-  }
-  .indus-video-grid {
-      display: flex; gap: 30px; justify-content: center; align-items: flex-start;
-  }
-  .indus-device-wrapper {
-      flex: 1;
-      background: #111; /* Darker card background */
-      padding: 25px;
-      border-radius: 20px;
-      border: 1px solid #333; /* Subtle border */
-      transition: all 0.3s ease;
-  }
-  /* Hover effect for devices */
-  .indus-device-wrapper:hover {
-      border-color: #ff3333; /* Red glow on hover */
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px -10px rgba(255, 51, 51, 0.2);
-  }
-  .device-label {
-      font-size: 20px; font-weight: 600; margin-bottom: 20px;
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-  }
-  /* Mockup Containers (to hold video/image tightly) */
-  .mockup-container {
-      position: relative; width: 100%; border-radius: 12px; overflow: hidden;
-      background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      border: 2px solid #222;
-  }
-  /* Aspect Ratios for realism */
-  .mobile-ratio { padding-top: 177%; /* Looks like a phone screen (9:16) */ }
-  .desktop-ratio { padding-top: 62.5%; /* Looks like a laptop screen (16:10) */ }
-
-  .mockup-container video, .mockup-container img {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
-  }
-  /* Play Button Overlay (Optional, remove if using autoplay video) */
-  .play-overlay {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      font-size: 50px; color: rgba(255,255,255,0.7); pointer-events: none;
-  }
-
-  /* Mobile Responsive adjustments */
-  @media (max-width: 900px) {
-      .indus-video-grid { flex-direction: column; /* Stack on smaller screens */ }
-      .indus-device-wrapper { width: 100%; max-width: 500px; margin: 0 auto; }
-      .mobile-ratio { padding-top: 100%; /* Make mobile view shorter on mobile devices to save space */ }
-  }
-  @media (max-width: 768px) {
-      .indus-sales-title { font-size: 32px; }
-      .indus-price-real { font-size: 40px; }
-      .indus-trust-info { flex-direction: column; gap: 10px; }
-  }
-  /* --- CSS END --- */
+  
+  .indus-preview-heading { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .indus-video-grid { display: flex; gap: 30px; justify-content: center; align-items: flex-start; }
+  .indus-device-wrapper { flex: 1; background: #111; padding: 25px; border-radius: 20px; border: 1px solid #333; transition: all 0.3s ease; }
+  .indus-device-wrapper:hover { border-color: #ff3333; transform: translateY(-10px); box-shadow: 0 20px 40px -10px rgba(255, 51, 51, 0.2); }
+  .device-label { font-size: 20px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .mockup-container { position: relative; width: 100%; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #222; }
+  .mobile-ratio { padding-top: 177%; }
+  .desktop-ratio { padding-top: 62.5%; }
+  .mockup-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+  
+  @media (max-width: 900px) { .indus-video-grid { flex-direction: column; } .indus-device-wrapper { width: 100%; max-width: 500px; margin: 0 auto; } .mobile-ratio { padding-top: 100%; } }
+  @media (max-width: 768px) { .indus-sales-title { font-size: 32px; } .indus-price-real { font-size: 40px; } .indus-trust-info { flex-direction: column; gap: 10px; } }
 </style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<section class="indus-sales-section">
+    <div class="indus-sales-container">
+        
+        <div class="indus-badge">🔥 Limited Time Offer</div>
+        <h1 class="indus-sales-title">Stop Using Boring Links.<br>Get a Premium Website for <span class="indus-text-red">Just $9.</span></h1>
+        <p class="indus-sales-desc">Upgrade to a world-class digital identity that instantly builds trust and makes you stand out everywhere.</p>
+        
+        <div class="indus-pricing">
+            <span class="indus-price-strike">$49</span>
+            <span class="indus-price-real">$9 ONLY</span>
+        </div>
+
+        <a href="YOUR_GUMROAD_LINK_HERE" class="indus-sales-btn">Build My Website Now <i class="fa-solid fa-arrow-right-long" style="margin-left: 10px;"></i></a>
+        
+        <div class="indus-trust-info">
+            <span class="trust-item"><i class="fa-solid fa-bolt"></i> Delivered in 24 Hours</span>
+            <span class="trust-item"><i class="fa-solid fa-server"></i> Lifetime Free Hosting</span>
+            <span class="trust-item"><i class="fa-solid fa-file-code"></i> 100% Code Ownership</span>
+        </div>
+
+        <h3 class="indus-preview-heading">Demo Website: This Could Be Yours 👇</h3>
+        <p style="color: #a0a0a0; margin-bottom: 30px; font-size: 14px;">(Tap on the video to Unmute/Mute sound 🔊)</p>
+        
+        <div class="indus-video-grid">
+            
+            <div class="indus-device-wrapper mobile-wrapper">
+                <div class="device-label"><i class="fa-solid fa-mobile-screen-button indus-text-red"></i> Mobile View</div>
+                <div class="mockup-container mobile-ratio">
+                    <video autoplay muted loop playsinline style="cursor: pointer;" onclick="this.muted = !this.muted" title="Tap to Unmute">
+                        <source src="videos/mobile-preview.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="indus-device-wrapper desktop-wrapper">
+                <div class="device-label"><i class="fa-solid fa-desktop indus-text-red"></i> Desktop View</div>
+                <div class="mockup-container desktop-ratio">
+                    <video autoplay muted loop playsinline style="cursor: pointer;" onclick="this.muted = !this.muted" title="Tap to Unmute">
+                        <source src="videos/desktop-preview.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 
