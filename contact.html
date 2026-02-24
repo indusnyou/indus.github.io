@@ -255,7 +255,8 @@
             <span class="trust-item"><i class="fa-solid fa-file-code"></i> 100% Code Ownership</span>
         </div>
 
-        <h3 class="indus-preview-heading">See It In Action 👇</h3>
+        <h3 class="indus-preview-heading">Demo Website: This Could Be Yours 👇</h3>
+        <p style="color: #a0a0a0; margin-bottom: 30px; font-size: 14px;">(Tap on the video to Unmute/Mute sound 🔊)</p>
         
         <div class="indus-video-grid">
             
@@ -264,10 +265,9 @@
                     <i class="fa-solid fa-mobile-screen-button indus-text-red"></i> Mobile View
                 </div>
                 <div class="mockup-container mobile-ratio">
-                    <video autoplay muted loop playsinline poster="https://via.placeholder.com/450x800/0a0a0a/333333?text=Mobile+Video+Preview">
-                        Your browser does not support video.
+                    <video autoplay muted loop playsinline style="cursor: pointer;" onclick="this.muted = !this.muted">
+                        <source src="videos/mobile-preview.mp4" type="video/mp4">
                     </video>
-                     <div class="play-overlay"><i class="fa-regular fa-circle-play"></i></div>
                 </div>
             </div>
 
@@ -276,15 +276,20 @@
                     <i class="fa-solid fa-desktop indus-text-red"></i> Desktop View
                 </div>
                 <div class="mockup-container desktop-ratio">
-                     <video autoplay muted loop playsinline poster="https://via.placeholder.com/800x500/0a0a0a/333333?text=Desktop+Video+Preview">
-                        Your browser does not support video.
+                     <video autoplay muted loop playsinline style="cursor: pointer;" onclick="this.muted = !this.muted">
+                        <source src="videos/desktop-preview.mp4" type="video/mp4">
                     </video>
-                    <div class="play-overlay"><i class="fa-regular fa-circle-play"></i></div>
                 </div>
             </div>
 
         </div>
-        </div>
+        ```
+
+### Bas Ho Gaya! Ab GitHub par video folder confirm kar lein:
+
+Aapki coding puri ho chuki hai! Ise 'Commit changes' karke save kar dijiye. 
+
+Ab sirf ek aakhiri cheez check kijiye ki kya aapne GitHub par us **"Add file -> Upload files"** wale button se `videos` naam ka folder banakar wahan `mobile-preview.mp4` aur `desktop-preview.mp4` upload kar diye hain? Agar haan, toh aapka yeh page ekdum makkhan ki tarah chalega!
 </section>
   <main>
     
