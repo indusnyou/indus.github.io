@@ -100,44 +100,7 @@
   </style>
 </head>
 <body>
-<section class="indus-premium-service">
-    <div class="service-container">
-        
-        <div class="pitch-content fade-in">
-            <div class="exclusive-badge">🔥 Limited Time Offer</div>
-            <h1 class="service-title">Stop Using Boring Links.<br>Own Your <span class="gold-highlight">Digital Identity.</span></h1>
-            <p class="service-emotion">
-                Whether you're an influencer, freelancer, or business owner, a standard Linktree just doesn't cut it anymore. 
-                Upgrade to a world-class, premium mobile website that instantly builds trust and makes you stand out.
-            </p>
-            
-            <div class="pricing-display">
-                <span class="fake-price">$49</span>
-                <span class="real-price">$9 ONLY</span>
-                <span class="lifetime-text">/ Lifetime (No Monthly Fees)</span>
-            </div>
 
-            <div class="cta-wrapper">
-                <a href="LINK_TO_YOUR_GUMROAD" target="_blank" class="stunning-gold-btn pulse-effect">
-                    <i class="fa-solid fa-bolt"></i> Get Your Website for $9
-                </a>
-                <p class="trust-text"><i class="fa-solid fa-check-circle"></i> Delivered in 24 Hours • 100% Code Ownership</p>
-            </div>
-        </div>
-
-        <div class="preview-content fade-in-up">
-            <h3 class="preview-title">See What You Get 👇</h3>
-            <div class="video-mockup">
-                <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=1000&auto=format&fit=crop" alt="Premium Website Preview" class="mockup-img">
-                <div class="play-btn-overlay">
-                    <i class="fa-solid fa-play"></i>
-                </div>
-                <div class="mockup-caption">Live Demo: Glassmorphism Design</div>
-            </div>
-        </div>
-
-    </div>
-</section>
   <header class="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo">
@@ -155,7 +118,137 @@
       </nav>
     </div>
   </header>
+<style>
+  /* Sirf is section ka design, baaki website safe rahegi */
+  .indus-sales-section {
+      background-color: #080808; /* Dark theme to sync with your website */
+      color: #ffffff;
+      padding: 80px 20px;
+      text-align: center;
+      font-family: 'Inter', 'Poppins', sans-serif;
+      border-bottom: 1px solid #222;
+  }
+  .indus-sales-container {
+      max-width: 1000px;
+      margin: 0 auto;
+  }
+  .indus-badge {
+      background: #ff3333; /* Red accent */
+      color: white;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+  }
+  .indus-sales-title {
+      font-size: 45px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #ffffff;
+  }
+  .indus-text-red { 
+      color: #ff3333; 
+  }
+  .indus-sales-desc {
+      font-size: 18px;
+      color: #a0a0a0;
+      max-width: 700px;
+      margin: 0 auto 35px auto;
+      line-height: 1.6;
+  }
+  .indus-pricing {
+      margin-bottom: 35px;
+  }
+  .indus-price-strike {
+      text-decoration: line-through;
+      color: #555555;
+      font-size: 24px;
+      margin-right: 12px;
+      font-weight: 600;
+  }
+  .indus-price-real {
+      font-size: 50px;
+      font-weight: 800;
+      color: #ffffff;
+  }
+  .indus-sales-btn {
+      background: #ffffff;
+      color: #000000;
+      padding: 16px 45px;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      margin-bottom: 15px;
+  }
+  .indus-sales-btn:hover {
+      background: #ff3333;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 51, 51, 0.3);
+  }
+  .indus-trust-info {
+      color: #777777;
+      font-size: 14px;
+  }
+  .indus-video-preview {
+      margin-top: 60px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #333;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  }
+  .indus-video-preview img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0.8;
+      transition: 0.3s;
+  }
+  .indus-video-preview:hover img {
+      opacity: 1;
+  }
+  
+  /* Mobile ke liye settings */
+  @media (max-width: 768px) {
+      .indus-sales-title { font-size: 32px; }
+      .indus-price-real { font-size: 40px; }
+      .indus-sales-section { padding: 50px 15px; }
+  }
+</style>
 
+<section class="indus-sales-section">
+    <div class="indus-sales-container">
+        
+        <div class="indus-badge">🔥 Limited Time Offer</div>
+        
+        <h1 class="indus-sales-title">Stop Using Boring Links.<br>Get a Premium Website for <span class="indus-text-red">Just $9.</span></h1>
+        
+        <p class="indus-sales-desc">Whether you're an influencer, freelancer, or business owner, a standard Linktree doesn't cut it anymore. Upgrade to a world-class digital identity that instantly builds trust and makes you stand out everywhere.</p>
+        
+        <div class="indus-pricing">
+            <span class="indus-price-strike">$49</span>
+            <span class="indus-price-real">$9 ONLY</span>
+        </div>
+
+        <a href="#" class="indus-sales-btn">Build My Website Now</a>
+        
+        <p class="indus-trust-info">✓ Delivered in 24 Hours &nbsp;•&nbsp; ✓ Lifetime Free Hosting &nbsp;•&nbsp; ✓ 100% Code Ownership</p>
+
+        <div class="indus-video-preview">
+            <h3 style="color: #fff; margin: 20px 0; font-size: 20px;">See What You Get 👇</h3>
+            <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=1200&auto=format&fit=crop" alt="Premium Website Preview Demo">
+        </div>
+
+    </div>
+</section>
   <main>
     
     <section class="contact-hero">
